@@ -9,13 +9,30 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    <style>
+      /* Fullscreen Video Styles */
+      .intro-video-container {
+        position: fixed;  /* Keeps the video fixed on the screen */
+        top: 0;
+        left: 0;
+        width: 100%;  /* Full width */
+        height: 100%;  /* Full height */
+        z-index: 9999;  /* Make sure it appears on top of other content */
+      }
+
+      .intro-video {
+        object-fit: cover;  /* Ensure the video covers the screen */
+        width: 100%;  /* Stretch the video to full width */
+        height: 100%;  /* Stretch the video to full height */
+      }
+    </style>
   </head>
 
   <body>
     <!-- Intro Video -->
     <div class="intro-video-container">
-      <video id="intro-video" class="intro-video" autoplay muted loop>
-        <source src="path_to_your_video.mp4" type="video/mp4">
+      <video id="intro-video" class="intro-video" autoplay muted>
+        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
         <!-- You can also add WebM, Ogg, or other video formats here if necessary -->
         Your browser does not support the video tag.
       </video>
@@ -36,10 +53,11 @@ layout: compress
     {% include scripts.html %}
 
     <script>
-      // Hide the intro video once it's finished playing
-      var introVideo = document.getElementById('https://arjfaber.github.io/files/preview_Video_Start.mp4');
+      // Hide the intro video and redirect to the homepage once it's finished playing
+      var introVideo = document.getElementById('intro-video');
       introVideo.onended = function() {
-        introVideo.style.display = 'none';  // Hides the video once it finishes
+        introVideo.style.display = 'none';  // Hide the video once it finishes
+        window.location.href = "https://arjfaber.github.io/";  // Redirect to homepage
       };
     </script>
 
