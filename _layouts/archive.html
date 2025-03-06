@@ -2,14 +2,6 @@
 layout: default
 ---
 
-{% if page.url == "/" %}
-  <!-- Full-Screen Background Video -->
-  <video autoplay muted loop playsinline id="bg-video">
-      <source src="https://arjfaber.github.io/files/1060575229-preview (online-video-cutter.com) (online-video-cutter.com) - MERGE - Videobolt.net.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-  </video>
-{% endif %}
-
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
 {% endif %}
@@ -30,28 +22,4 @@ layout: default
     {{ content }}
   </div>
 </div>
-
-{% if page.url == "/" %}
-<!-- CSS for Full-Screen Video (Only on Front Page) -->
-<style>
-  #bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1; /* Sends video to the background */
-  }
-
-  /* Ensures content is readable over video */
-  #main {
-    position: relative;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.5); /* Optional: Adds transparency for readability */
-    color: white; /* Optional: Adjust text color */
-    padding: 20px;
-  }
-</style>
-{% endif %}
 
