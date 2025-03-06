@@ -6,7 +6,7 @@ permalink: /publication/2010-10-01-paper-title-number-2
 excerpt: 'This paper compares machine learning methods for proxying credit spreads.'
 date: 2010-10-01
 venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/BSc_thesis_Arjan_Faber.pdf'
+slidesurl: 'http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf'
 paperurl: 'http://academicpages.github.io/files/paper2.pdf'
 citation: 'Faber A, You. (2021). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
 ---
