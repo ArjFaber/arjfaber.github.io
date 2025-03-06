@@ -12,6 +12,14 @@ layout: compress
   </head>
 
   <body>
+    <!-- Intro Video -->
+    <div class="intro-video-container">
+      <video id="intro-video" class="intro-video" autoplay muted loop>
+        <source src="path_to_your_video.mp4" type="video/mp4">
+        <!-- You can also add WebM, Ogg, or other video formats here if necessary -->
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -26,6 +34,14 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+
+    <script>
+      // Hide the intro video once it's finished playing
+      var introVideo = document.getElementById('https://arjfaber.github.io/files/preview_Video_Start.mp4');
+      introVideo.onended = function() {
+        introVideo.style.display = 'none';  // Hides the video once it finishes
+      };
+    </script>
 
   </body>
 </html>
