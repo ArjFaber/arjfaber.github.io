@@ -22,26 +22,6 @@ layout: compress
       <button id="skip-button">Skip</button>
     </div>
 
-    <!-- Main Website Content (Initially Hidden) -->
-    <div id="main-content" style="display: none;">
-      
-      {% include browser-upgrade.html %}
-      {% include masthead.html %}
-
-      <div class="content-wrapper">
-        {{ content }}
-      </div>
-
-      <div class="page__footer">
-        <footer>
-          {% include footer/custom.html %}
-          {% include footer.html %}
-        </footer>
-      </div>
-
-      {% include scripts.html %}
-    </div>
-
     <!-- CSS -->
     <style>
       /* Full-screen intro video */
@@ -75,43 +55,30 @@ layout: compress
         padding: 10px 20px;
         cursor: pointer;
         font-size: 16px;
+        z-index: 10000;
       }
 
       #skip-button:hover {
         background: rgba(255, 255, 255, 0.3);
       }
-
-      /* Main content wrapper */
-      .content-wrapper {
-        position: relative;
-        z-index: 1;
-        background: white; /* Normal background */
-        color: black; /* Normal text */
-        padding: 20px;
-      }
     </style>
 
     <!-- JavaScript -->
     <script>
-      const introVideo = document.getElementById("intro-video");
-      const introContainer = document.getElementById("intro-video-container");
-      const mainContent = document.getElementById("main-content");
-      const skipButton = document.getElementById("skip-button");
+      document.addEventListener("DOMContentLoaded", function () {
+        const introVideo = document.getElementById("intro-video");
+        const skipButton = document.getElementById("skip-button");
 
-      // Function to hide intro and show the main site
-      function showMainContent() {
-        introContainer.style.opacity = "0"; // Fade out effect
-        setTimeout(() => {
-          introContainer.style.display = "none"; // Hide intro
-          mainContent.style.display = "block"; // Show main content
-        }, 500); // Smooth transition delay
-      }
+        function goToMainPage() {
+          window.location.href = "/"; // Redirect to your start page
+        }
 
-      // Auto-hide when video ends
-      introVideo.addEventListener("ended", showMainContent);
+        // Skip button functionality
+        skipButton.addEventListener("click", goToMainPage);
 
-      // Skip button functionality
-      skipButton.addEventListener("click", showMainContent);
+        // Auto-redirect when video ends
+        introVideo.addEventListener("ended", goToMainPage);
+      });
     </script>
 
   </body>
