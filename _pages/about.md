@@ -32,7 +32,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🚀 Let's connect to build the future of socially aware robotics together!
+## ⬅ Let's connect to build the future of socially aware robotics together!
 
 
 
