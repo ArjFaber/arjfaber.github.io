@@ -1,5 +1,5 @@
 ---
-title: "Unpublished paper (Harmony project)"
+title: 'A Universal Translator for Social Behavior in Healthcare Robotics via Reinforcement Learning'
 collection: publications
 category: manuscripts
 permalink: /publication/2009-10-01-paper-title-number-1
