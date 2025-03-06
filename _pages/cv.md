@@ -11,26 +11,25 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.Sc. in Data Science, Technology and Innovation, University of Edinburgh, 2023-Present
+* B.Sc. in Econometrics and Operations Research, University of Groningen, 2023 (obtained)
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* January - July 2024: Junior Researcher
+  * University of Twente
+  * Duties includes: Developed Machine Learning module for social behavior acquisition of robots in hospitals
+  * Supervisor: Prof. Dr. Vanessa Evers, Prof. Dr. Gwenn Englebienne, Dr. Bob Schadenberg
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Summer 2022: Stress Testing Intern 
+  * Dutch Central Bank (DNB)
+  * Duties included: Validation of several econometric models. 
+  * Supervisor: Francesco Caloia
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* August 2021 - January 2022: Quantitative Modeller Intern
+  * Achmea
+  * Duties included: Conversion of modules from Matlab to Python
+  * Supervisor: Michiel van Koningsveld
   
 Skills
 ======
