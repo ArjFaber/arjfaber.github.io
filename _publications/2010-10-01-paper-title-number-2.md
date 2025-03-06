@@ -2,7 +2,7 @@
 title: "Bachelor thesis"
 collection: publications
 category: manuscripts
-permalink: /publication/2010-10-01-paper-title-number-2
+permalink: /publications/2010-10-01-paper-title-number-2
 excerpt: 'This paper compares machine learning methods for proxying credit spreads.'
 date: 2010-10-01
 venue: 'Journal 1'
