@@ -25,8 +25,8 @@ author:
   avatar           : "profile_photo.png"
   name             : "Arjan Faber"
   pronouns         : "he/him" # example: "she/her"  
-  bio              : "Master student"
-  location         : "Amsterdam, Netherlands"
+  bio              : "Master's student at School of Informatics
+  location         : ""
   employer         : "University of Edinburgh"
   uri              : # URL
   email            : "arjan.bl.faber@gmail.com" 
