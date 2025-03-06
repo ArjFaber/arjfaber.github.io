@@ -16,7 +16,7 @@ layout: compress
     <!-- Full-Screen Intro Video -->
     <div id="intro-video-container">
       <video autoplay muted playsinline id="intro-video">
-        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+        <source src="https://arjfaber.github.io/files/preview_background.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <button id="skip-button">Skip</button>
@@ -70,16 +70,24 @@ layout: compress
         const skipButton = document.getElementById("skip-button");
 
         function goToMainPage() {
-          window.location.href = "/"; // Redirect to your start page
+          console.log("Redirecting to main page..."); // Debugging log
+          window.location.href = "/"; // Change this to your actual homepage URL if needed
         }
 
         // Skip button functionality
-        skipButton.addEventListener("click", goToMainPage);
+        skipButton.addEventListener("click", function () {
+          console.log("Skip button clicked"); // Debugging log
+          goToMainPage();
+        });
 
         // Auto-redirect when video ends
-        introVideo.addEventListener("ended", goToMainPage);
+        introVideo.addEventListener("ended", function () {
+          console.log("Video ended, redirecting..."); // Debugging log
+          goToMainPage();
+        });
       });
     </script>
 
   </body>
 </html>
+
