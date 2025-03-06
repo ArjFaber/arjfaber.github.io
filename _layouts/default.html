@@ -13,10 +13,18 @@ layout: compress
 
   <body>
 
+    <!-- Full-Screen Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    {{ content }}
+    <div class="content-wrapper">
+      {{ content }}
+    </div>
 
     <div class="page__footer">
       <footer>
@@ -26,6 +34,28 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+
+    <!-- CSS for Background Video -->
+    <style>
+      #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1; /* Sends video to the background */
+      }
+
+      /* Ensures content is readable over video */
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5); /* Optional: Dark overlay for readability */
+        color: white; /* Adjust text color */
+        padding: 20px;
+      }
+    </style>
 
   </body>
 </html>
