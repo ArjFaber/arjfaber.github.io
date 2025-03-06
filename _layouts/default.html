@@ -51,9 +51,14 @@ layout: compress
       .content-wrapper {
         position: relative;
         z-index: 1;
-        background: rgba(0, 0, 0, 0.5); /* Optional: Dark overlay for readability */
-        color: white; /* Adjust text color */
+        background: transparent; /* Remove background color */
+        color: white; /* Keep text readable */
         padding: 20px;
+      }
+
+      /* Remove any existing overlay */
+      .page__hero {
+        background: transparent !important;
       }
     </style>
 
