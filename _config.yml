@@ -24,7 +24,7 @@ author:
   # Biographic information
   avatar           : "profile_photo.png"
   name             : "Arjan Faber"
-  pronouns         : "he/him" # example: "she/her"  
+  pronouns         : "He/him" # example: "she/her"  
   bio              : "Master's student at School of Informatics, Edinburgh, UK"
   location         : "Amsterdam, the Netherlands"
   employer         : "University of Edinburgh"
