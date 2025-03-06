@@ -8,8 +8,6 @@ redirect_from:
 ---
 # Arjan Faber  
 
-🚀 **ML Researcher**  
-
 🔬 MSc Data Science, University of Edinburgh - Researching Formal Proofs in RL  
 💡 Passionate about Machine Learning, High-Performance Computing & Robotics  
 
