@@ -6,8 +6,8 @@ permalink: /publication/2010-10-01-paper-title-number-2
 excerpt: 'This paper compares machine learning methods for proxying credit spreads.'
 date: 2021-01-01
 venue: ''
-slidesurl: 'http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf'
-paperurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset'
+paperurl: 'http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf'
+slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset'
 citation: 'Faber A. (2021)'
 ---
 
