@@ -16,7 +16,7 @@ layout: compress
     <!-- Intro Video Section -->
     <div id="intro-video-container">
       <video autoplay muted playsinline id="intro-video">
-        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+        <source src="https://arjfaber.github.io/files/preview_background.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <button id="skip-button">Skip</button>
@@ -74,7 +74,7 @@ layout: compress
       }
 
       #skip-button:hover {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.5);
       }
     </style>
 
@@ -88,8 +88,9 @@ layout: compress
 
         function showMainContent() {
           console.log("Switching to main content...");
-          introContainer.style.display = "none";
-          mainContent.style.display = "block";
+          introContainer.style.display = "none"; // Hide video
+          mainContent.style.display = "block"; // Show main content
+          document.body.style.overflow = "auto"; // Allow scrolling
         }
 
         // Skip button functionality
@@ -103,6 +104,9 @@ layout: compress
           console.log("Video ended, showing main content...");
           showMainContent();
         });
+
+        // Ensure page does not scroll while video is playing
+        document.body.style.overflow = "hidden";
       });
     </script>
 
