@@ -4,7 +4,7 @@ collection: publications
 category: manuscripts
 permalink: /publication/2010-10-01-paper-title-number-2
 excerpt: 'This paper compares machine learning methods for proxying credit spreads.'
-date: 2020-30-01
+date: 2009-10-01
 venue: ''
 slidesurl: 'http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf'
 paperurl: 'https://arjfaber.github.io/files/HARMONY_UT_ML_Module_Report.pdf'
