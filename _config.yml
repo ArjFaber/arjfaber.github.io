@@ -24,12 +24,12 @@ author:
   # Biographic information
   avatar           : "profile_photo.png"
   name             : "Arjan Faber"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  pronouns         : "he/him" # example: "she/her"  
+  bio              : "Master student"
+  location         : "Amsterdam, Netherlands"
+  employer         : "University of Edinburgh"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "arjan.bl.faber@gmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
