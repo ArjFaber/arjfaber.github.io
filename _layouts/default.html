@@ -25,6 +25,11 @@ layout: compress
         width: 100%;  /* Stretch the video to full width */
         height: 100%;  /* Stretch the video to full height */
       }
+
+      /* Hide main content initially */
+      .page__content {
+        display: none;
+      }
     </style>
   </head>
 
@@ -32,34 +37,38 @@ layout: compress
     <!-- Intro Video -->
     <div class="intro-video-container">
       <video id="intro-video" class="intro-video" autoplay muted>
-        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+        <source src="path_to_your_video.mp4" type="video/mp4">
         <!-- You can also add WebM, Ogg, or other video formats here if necessary -->
         Your browser does not support the video tag.
       </video>
     </div>
 
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    <!-- Main content that will be shown after the video finishes -->
+    <div class="page__content">
+      {% include browser-upgrade.html %}
+      {% include masthead.html %}
 
-    {{ content }}
+      {{ content }}
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
+      <div class="page__footer">
+        <footer>
+          {% include footer/custom.html %}
+          {% include footer.html %}
+        </footer>
+      </div>
+
+      {% include scripts.html %}
     </div>
 
-    {% include scripts.html %}
-
     <script>
-      // Hide the intro video and redirect to the homepage once it's finished playing
+      // Hide the intro video and show the page content once it's finished playing
       var introVideo = document.getElementById('intro-video');
+      var pageContent = document.querySelector('.page__content');
+      
       introVideo.onended = function() {
         introVideo.style.display = 'none';  // Hide the video once it finishes
-        window.location.href = "https://arjfaber.github.io/";  // Redirect to homepage
+        pageContent.style.display = 'block';  // Show the page content after the video ends
       };
     </script>
-
   </body>
 </html>
