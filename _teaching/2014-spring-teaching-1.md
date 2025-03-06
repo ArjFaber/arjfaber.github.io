@@ -7,5 +7,5 @@ venue: "University of Twente, Human-Media-Interaction Group (HMI) lab"
 date: 2024-01-01
 location: "Enschede, Netherlands"
 ---
-[Github repository - Kuka ROS workspace](https://github.com/hmi-utwente/hmi_harmony_kuka_ido_ws)
+Please consult [Github repository - Kuka ROS workspace](https://github.com/hmi-utwente/hmi_harmony_kuka_ido_ws) for details and a tutorial to work with the KUKA robot. For a demo see [video](https:://arjfaber.github.io/files/Harmony_ML_Module_Final.mp4).  
 
