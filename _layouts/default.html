@@ -89,7 +89,7 @@ title: Home
       background: rgba(255, 255, 255, 0); /* Transparent background */
       color: black;
       padding: 20px;
-      z-index: 2;
+      z-index: 0;
       overflow-y: auto; /* Allow scrolling */
       box-sizing: border-box;
       flex-grow: 1; /* Allow the overlay to expand and take the remaining space */
@@ -105,16 +105,17 @@ title: Home
 
     /* Make text more readable if necessary */
     h1, p {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     /* Footer */
     .page__footer {
       width: 100%;
       padding: 20px;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(255, 255, 255, 0);
       color: white;
       text-align: center;
+      z-index: 0
     }
 
   </style>
