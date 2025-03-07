@@ -138,12 +138,30 @@ title: Home
 
   <!-- Main Content with Background Video B -->
   <div id="main-content">
+    <!-- Background Video -->
+<video autoplay loop muted playsinline id="background-video">
+  <source id="video-source" src="" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-    <!-- Background Video B -->
-    <video autoplay loop muted playsinline id="background-video">
-      <source src="https://arjfaber.github.io/files/background_video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const videoSource = document.getElementById("video-source");
+    const path = window.location.pathname;
+
+    // Define video sources for each page
+    let videoURL = "https://arjfaber.github.io/files/bio_crop_video.mp4"; // Default video
+
+    if (path.includes("/teaching")) {
+      videoURL = "https://arjfaber.github.io/files/preview_background.mp4";
+    }
+
+    // Update video source
+    videoSource.src = videoURL;
+    document.getElementById("background-video").load(); // Reload video with new source
+  });
+</script>
+
 
     <!-- Overlay Content (Transparent background and black text) -->
     <div id="main-overlay">
