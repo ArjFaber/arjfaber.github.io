@@ -147,23 +147,30 @@ title: Home
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const videoSource = document.getElementById("video-source");
+    const mainOverlay = document.getElementById("main-overlay"); // Target the text container
     const path = window.location.pathname;
 
-    // Define video sources for each page
-    let videoURL = "https://arjfaber.github.io/files/main_background.mp4"; // Default video
+    // Define default video and font color
+    let videoURL = "https://arjfaber.github.io/files/main_background.mp4";
+    let fontColor = "black"; // Default font color
 
     if (path.includes("/teaching")) {
       videoURL = "https://arjfaber.github.io/files/background_video.mp4";
     }
     if (path.includes("paper-title-number-2")) {
       videoURL = "https://arjfaber.github.io/files/stock_market.mp4";
+      fontColor = "white"; // Change text color to white for better contrast
     }
 
     // Update video source
     videoSource.src = videoURL;
     document.getElementById("background-video").load(); // Reload video with new source
+
+    // Apply the font color change
+    mainOverlay.style.color = fontColor;
   });
 </script>
+
 
 
     <!-- Overlay Content (Transparent background and black text) -->
