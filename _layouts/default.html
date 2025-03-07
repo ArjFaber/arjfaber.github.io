@@ -9,30 +9,7 @@ layout: compress
 <head>
   {% include head.html %}
   {% include head/custom.html %}
-  <style>
-    body {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    /* Ensure content appears correctly */
-    .page-content {
-      display: block;
-    }
-  </style>
-  <script>
-    // Check if user has seen the intro video
-    if (!localStorage.getItem("seenIntro")) {
-      window.location.href = "video.html"; // Redirect to intro if not seen
-    } else {
-      document.addEventListener("DOMContentLoaded", function() {
-        document.body.style.visibility = "visible";
-        document.body.style.opacity = "1"; // Fade in effect
-      });
-    }
-  </script>
-</head>
+  
 
 <body>
 
