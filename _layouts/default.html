@@ -159,9 +159,13 @@ title: Home
     const path = window.location.pathname;
 
     // Define default video and font color
-    let videoURL = "https://arjfaber.github.io/files/main_background.mp4";
+    let videoURL = "";
     let fontColor = "black"; // Default font color
+  
 
+    if (path.includes("/publications/") {
+      videoURL = "https://arjfaber.github.io/files/main_background.mp4"
+    }
     if (path.includes("/teaching")) {
       videoURL = "https://arjfaber.github.io/files/background_video.mp4";
     }
@@ -176,6 +180,7 @@ title: Home
 
     // Apply the font color change
     mainOverlay.style.color = fontColor;
+    mainOverlay.style.size
   });
 </script>
 
