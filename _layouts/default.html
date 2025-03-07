@@ -85,13 +85,16 @@ layout: compress
       const video = document.getElementById("intro-video");
       const skipButton = document.getElementById("skip-button");
 
+      // Function to hide the video and show the main content
       function hideVideo() {
         videoContainer.style.display = "none"; // Hide video
         mainContent.style.display = "block"; // Show main content
       }
 
-      // Attach event listeners to skip button and video end
+      // Handle skip button click
       skipButton.addEventListener("click", hideVideo);
+
+      // Handle video end event
       video.addEventListener("ended", hideVideo);
 
       // Try to autoplay the video (handle potential autoplay restrictions)
