@@ -1,5 +1,6 @@
 ---
-layout: compress
+layout: default
+title: Video Intro
 ---
 
 {% include base_path %}
@@ -62,22 +63,6 @@ layout: compress
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
-  <!-- Main content - Header, Footer, etc. -->
-  <div id="main-content" style="display: none;">
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-    <div class="page-content">
-      {{ content }}
-    </div>
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-    {% include scripts.html %}
-  </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const video = document.getElementById("intro-video");
@@ -85,8 +70,8 @@ layout: compress
 
       // Function to redirect to default.html after the video finishes or is skipped
       function goToMainPage() {
-        localStorage.setItem("seenIntro", "true"); // Mark intro as seen
-        window.location.href = '/default.html';  // Redirect to default page after intro
+        localStorage.setItem("seenIntro", "true");  // Store that intro was seen
+        window.location.href = '/default.html'; // Redirect to the main page
       }
 
       // Add event listener for the skip button and video end
