@@ -1,4 +1,4 @@
----
+--
 layout: default
 title: Home
 ---
@@ -15,7 +15,7 @@ title: Home
   {% include head.html %}
   {% include head/custom.html %}
   <style>
-    /* Fullscreen Video A (Intro Video) */
+    /* Fullscreen Video Styling */
     #video-container {
       position: fixed;
       top: 0;
@@ -27,6 +27,11 @@ title: Home
       justify-content: center;
       align-items: center;
       z-index: 9999;
+    }
+
+    #main-content {
+      display: none;
+      z-index: 1;
     }
 
     /* Skip Button */
@@ -44,43 +49,14 @@ title: Home
     }
 
     .skip-button:hover {
-      background-color: rgba(255, 255, 255, 0.8);
-      color: black;
-    }
-
-    /* Fullscreen Background Video B (Looping Animation) */
-    #background-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    /* Main Content */
-    #main-content {
-      display: none;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    .content-box {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
+      background-color: rgba(0, 0, 0, 1);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Intro Video (Video A) -->
+  <!-- Video container -->
   <div id="video-container">
     <video id="intro-video" autoplay muted playsinline>
       <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
@@ -89,28 +65,16 @@ title: Home
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
-  <!-- Main content with background animation -->
-  <div id="main-content">
-    
-    <!-- Background Animation (Video B) -->
-    <video id="background-video" autoplay loop muted playsinline>
-      <source src="https://arjfaber.github.io/files/preview_Video_Background.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <!-- Content on top of the animated background -->
-    <div class="content-box">
-      <h1>Welcome to My Website</h1>
-      <p>This is the homepage with a looping animated background.</p>
-    </div>
-
+  <!-- Main content of the page -->
+  <div id="main-content" style="display: none;">
+    {% include masthead.html %}
+    {{ content }}
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}
         {% include footer.html %}
       </footer>
     </div>
-    
     {% include scripts.html %}
   </div>
 
@@ -121,14 +85,14 @@ title: Home
       const video = document.getElementById("intro-video");
       const skipButton = document.getElementById("skip-button");
 
-      // Function to hide video A and show main page with Video B
+      // Function to hide video and show main content
       function goToMainPage() {
         sessionStorage.setItem("seenIntro", "true");  // Store session data
-        videoContainer.style.display = "none"; // Hide Video A
-        mainContent.style.display = "block"; // Show main content with Video B
+        videoContainer.style.display = "none"; // Hide video
+        mainContent.style.display = "block"; // Show main content
       }
 
-      // Check if the intro video has already been seen in this session
+      // Check if the video has already been seen in this session
       if (sessionStorage.getItem("seenIntro") === "true") {
         goToMainPage();
       } else {
@@ -137,14 +101,15 @@ title: Home
         video.addEventListener("ended", goToMainPage);
       }
 
-      // Try autoplay with a fallback
+      // Try to autoplay the video with a fallback
       video.play().catch(error => {
         console.error("Autoplay prevented:", error);
-        video.muted = true;
+        video.muted = true;  // Some browsers may require muted autoplay
         video.play();
       });
     });
   </script>
 
 </body>
-</html>
+
+</html> 
