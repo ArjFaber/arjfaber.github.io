@@ -159,7 +159,7 @@ title: Home
     const path = window.location.pathname;
 
     // Define default video and font color
-    let videoURL = "https://arjfaber.github.io/files/black_background.mp4";
+    let videoURL = "https://arjfaber.github.io/files/black_2_background.mp4";
     let fontColor = "white"; // Default font color
   
 
@@ -173,6 +173,8 @@ title: Home
     if (path.includes("paper-title-number-2")) {
       videoURL = "https://arjfaber.github.io/files/stock_market.mp4";
       fontColor = "white"; // Change text color to white for better contrast
+      document.getElementById("background-video").playbackRate = 0.65; // 0.5x speed (half speed)
+
     }
 
     // Update video source
