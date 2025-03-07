@@ -1,4 +1,14 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
 <head>
+  {% include head.html %}
+  {% include head/custom.html %}
   <style>
     /* Fullscreen Video Styling */
     .intro-video-container {
@@ -12,7 +22,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.5s ease-out;
     }
 
     .intro-video {
@@ -38,17 +47,6 @@
     .skip-button:hover {
       background-color: rgba(0, 0, 0, 1);
     }
-
-    /* Hide video container when the "hide" class is added */
-    .hide {
-      opacity: 0;
-      pointer-events: none; /* Prevent clicks while fading */
-    }
-
-    /* Ensure main content is hidden initially */
-    #main-content {
-      display: none;
-    }
   </style>
 </head>
 
@@ -64,16 +62,19 @@
   </div>
 
   <!-- Main content -->
-  <div id="main-content">
+  <div id="main-content" style="display: none;">
     {% include browser-upgrade.html %}
     {% include masthead.html %}
+
     {{ content }}
+
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}
         {% include footer.html %}
       </footer>
     </div>
+
     {% include scripts.html %}
   </div>
 
@@ -105,4 +106,6 @@
     });
   </script>
 
+
 </body>
+</html> 
