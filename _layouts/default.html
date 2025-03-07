@@ -13,9 +13,9 @@ layout: compress
     <!-- Check if the user is coming from the front_video page -->
     {% if page.url == "/" and request.params['visited_video'] != 'true' %}
       <!-- Redirect to front_video.html if not already visited -->
-      <meta http-equiv="refresh" content="0; url=front_video.html?visited_video=true">
+      <meta http-equiv="refresh" content="0; url=video.html?visited_video=true">
       <script type="text/javascript">
-        window.location.href = "front_video.html?visited_video=true";
+        window.location.href = "video.html?visited_video=true";
       </script>
     {% endif %}
   </head>
