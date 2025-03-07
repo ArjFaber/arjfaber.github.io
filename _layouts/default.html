@@ -120,6 +120,29 @@ title: Home
       text-align: center;
       z-index: 2;
     }
+
+    /* Navigation styling */
+    #main-overlay nav {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3; /* Ensure it stays above all other content */
+    }
+
+    /* Customize the links within the navigation */
+    #main-overlay nav a {
+      color: white;
+      font-size: 18px;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    /* Hover effect on navigation links */
+    #main-overlay nav a:hover {
+      color: #f39c12;
+    }
+
   </style>
 </head>
 
@@ -146,6 +169,12 @@ title: Home
     <!-- Overlay Content (Transparent background and black text) -->
     <div id="main-overlay">
       {% include masthead.html %}
+
+      <!-- Navigation Bar (placed above content) -->
+      <nav>
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+      </nav>
 
       <!-- Content that will scroll -->
       <div class="content-area">
