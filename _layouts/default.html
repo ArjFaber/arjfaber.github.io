@@ -52,6 +52,7 @@ layout: compress
 
 <body>
 
+  <!-- Video container -->
   <div id="video-container" class="intro-video-container">
     <video id="intro-video" class="intro-video" autoplay muted playsinline>
       <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
@@ -60,6 +61,7 @@ layout: compress
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
+  <!-- Main content -->
   <div id="main-content" style="display: none;">
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -84,24 +86,18 @@ layout: compress
       const skipButton = document.getElementById("skip-button");
 
       function hideVideo() {
-        sessionStorage.setItem("videoWatched", "true"); // Mark as watched
         videoContainer.style.display = "none"; // Hide video
         mainContent.style.display = "block"; // Show main content
       }
 
-      // If video has been watched before, skip it
-      if (sessionStorage.getItem("videoWatched") === "true") {
-        hideVideo();
-      } else {
-        // Attach event listeners
-        skipButton.addEventListener("click", hideVideo);
-        video.addEventListener("ended", hideVideo);
+      // Attach event listeners to skip button and video end
+      skipButton.addEventListener("click", hideVideo);
+      video.addEventListener("ended", hideVideo);
 
-        // Ensure video plays (fix autoplay issues in some browsers)
-        video.play().catch(error => {
-          console.error("Autoplay prevented:", error);
-        });
-      }
+      // Try to autoplay the video (handle potential autoplay restrictions)
+      video.play().catch(error => {
+        console.error("Autoplay prevented:", error);
+      });
     });
   </script>
 
