@@ -9,36 +9,15 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    <script>
+      // Check if the user has already seen the video (sessionStorage resets after closing browser)
+      if (!sessionStorage.getItem("videoWatched")) {
+        window.location.href = "video.html"; // Redirect to video page
+      }
+    </script>
   </head>
 
   <body>
-
-    <script>
-      // Check if the user has already seen the video
-      if (!sessionStorage.getItem("videoWatched")) {
-        document.write(`
-          <div class="intro-video-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
-            <video id="intro-video" class="intro-video" autoplay muted style="object-fit: cover; width: 100%; height: 100%;">
-              <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <button class="skip-button" id="skip-button" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.5); color: white; border: none; font-size: 16px; cursor: pointer; z-index: 10000;">
-              Skip
-            </button>
-          </div>
-          <script>
-            document.getElementById("skip-button").addEventListener("click", function() {
-              sessionStorage.setItem("videoWatched", "true");
-              location.reload(); // Reload to show the actual website
-            });
-            document.getElementById("intro-video").onended = function() {
-              sessionStorage.setItem("videoWatched", "true");
-              location.reload(); // Reload to show the actual website
-            };
-          </script>
-        `);
-      }
-    </script>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
