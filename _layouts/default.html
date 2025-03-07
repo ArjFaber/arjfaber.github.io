@@ -29,7 +29,7 @@ title: Home
       z-index: 9999;
     }
 
-    /* Hide main content initially */
+    /* Main content */
     #main-content {
       display: none;
       position: relative;
@@ -55,7 +55,7 @@ title: Home
       background-color: rgba(0, 0, 0, 1);
     }
 
-    /* Background Video */
+    /* Background Video A (Intro Video) */
     #background-video {
       position: fixed;
       top: 0;
@@ -66,19 +66,28 @@ title: Home
       z-index: -1; /* Send video to the background */
     }
 
-    /* Overlay for content */
-    #main-overlay {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white; /* Ensure text is readable */
-      background: rgba(0, 0, 0, 0.3); /* Light transparency for contrast */
-      padding: 20px;
+    /* Overlay for content (White background and black text) */
+   #main-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0); /* Fully transparent background */
+  color: black; /* Black text color */
+  padding: 20px;
+  z-index: 2; /* Ensure overlay is above background video */
+}
+
+
+    /* Make text more readable if necessary */
+    h1, p {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: adds shadow to text for better contrast */
     }
   </style>
 </head>
@@ -103,7 +112,7 @@ title: Home
       Your browser does not support the video tag.
     </video>
 
-    <!-- Overlay Content -->
+    <!-- Overlay Content (White background and black text) -->
     <div id="main-overlay">
       {% include masthead.html %}
       {{ content }}
@@ -150,4 +159,5 @@ title: Home
   </script>
 
 </body>
+
 </html>
