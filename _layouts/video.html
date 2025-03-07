@@ -1,9 +1,17 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Intro Video</title>
+  {% include head.html %}
+  {% include head/custom.html %}
   <style>
     /* Fullscreen Video Styling */
     .intro-video-container {
@@ -16,6 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 9999;
     }
 
     .intro-video {
@@ -42,7 +51,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <!-- Video container -->
@@ -54,15 +62,31 @@
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
+  <!-- Main content - Header, Footer, etc. -->
+  <div id="main-content" style="display: none;">
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
+    <div class="page-content">
+      {{ content }}
+    </div>
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
+    </div>
+    {% include scripts.html %}
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const video = document.getElementById("intro-video");
       const skipButton = document.getElementById("skip-button");
 
-      // Function to handle redirection and mark intro as seen
+      // Function to redirect to default.html after the video finishes or is skipped
       function goToMainPage() {
         localStorage.setItem("seenIntro", "true"); // Mark intro as seen
-        window.location.href = "default.html"; // Redirect to default page (previously index.html)
+        window.location.href = '/default.html';  // Redirect to default page after intro
       }
 
       // Add event listener for the skip button and video end
