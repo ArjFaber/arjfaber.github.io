@@ -15,6 +15,13 @@ title: Home
   {% include head.html %}
   {% include head/custom.html %}
   <style>
+    /* Set the html and body to prevent double scrollbars */
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden; /* Prevent scrolling on the whole page */
+    }
+
     /* Fullscreen Video Styling */
     #video-container {
       position: fixed;
@@ -83,7 +90,7 @@ title: Home
       color: black;
       padding: 20px;
       z-index: 2;
-      overflow-y: auto; /* Allow scrolling */
+      overflow-y: auto; /* Enable scrolling only on the content overlay */
       box-sizing: border-box;
     }
 
