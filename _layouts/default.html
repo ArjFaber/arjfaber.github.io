@@ -19,6 +19,9 @@ layout: compress
       height: 100%;
       z-index: 9999;
       background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .intro-video {
@@ -75,23 +78,29 @@ layout: compress
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      const videoContainer = document.getElementById("video-container");
+      const mainContent = document.getElementById("main-content");
+      const video = document.getElementById("intro-video");
+      const skipButton = document.getElementById("skip-button");
+
+      // Function to hide video and show main content
+      function hideVideo() {
+        console.log("Hiding video and showing main content.");
+        sessionStorage.setItem("videoWatched", "true"); // Mark as watched
+        videoContainer.style.display = "none"; // Hide video
+        mainContent.style.display = "block"; // Show main content
+      }
+
       // Check if the video has already been watched
-      if (sessionStorage.getItem("videoWatched")) {
-        // Hide video and show main content immediately
-        document.getElementById("video-container").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
+      if (sessionStorage.getItem("videoWatched") === "true") {
+        console.log("Video already watched, skipping to content.");
+        hideVideo();
       } else {
-        function markVideoWatched() {
-          sessionStorage.setItem("videoWatched", "true");
-          document.getElementById("video-container").style.display = "none";
-          document.getElementById("main-content").style.display = "block";
-        }
+        console.log("Playing intro video.");
 
-        // Handle Skip button click
-        document.getElementById("skip-button").addEventListener("click", markVideoWatched);
-
-        // Handle video end event
-        document.getElementById("intro-video").onended = markVideoWatched;
+        // Attach event listeners
+        skipButton.addEventListener("click", hideVideo);
+        video.addEventListener("ended", hideVideo);
       }
     });
   </script>
