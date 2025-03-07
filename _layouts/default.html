@@ -35,6 +35,7 @@ title: Home
       position: relative;
       width: 100%;
       height: 100vh;
+      overflow: hidden;
     }
 
     /* Skip Button */
@@ -83,7 +84,8 @@ title: Home
       padding: 20px;
       z-index: 2; /* Ensure overlay is above background video */
       overflow-y: auto; /* Enable vertical scrolling */
-      padding-bottom: 60px; /* Optional: Extra padding to prevent content from being cut off at the bottom */
+      max-height: 100vh; /* Ensure it doesn't overflow the viewport */
+      box-sizing: border-box; /* Ensures padding is accounted for */
     }
 
     /* Make text more readable if necessary */
@@ -117,7 +119,7 @@ title: Home
       Your browser does not support the video tag.
     </video>
 
-    <!-- Overlay Content (White background and black text) -->
+    <!-- Overlay Content (Transparent background and black text) -->
     <div id="main-overlay">
       {% include masthead.html %}
       {{ content }}
