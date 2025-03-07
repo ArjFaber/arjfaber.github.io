@@ -6,32 +6,89 @@ layout: compress
 
 <!doctype html>
 <html lang="en">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-    <script>
-      // Check if the user has already seen the video (sessionStorage resets after closing browser)
-      if (!sessionStorage.getItem("videoWatched")) {
-        window.location.href = "video.html"; // Redirect to video page
+<head>
+  {% include head.html %}
+  {% include head/custom.html %}
+  <style>
+    /* Fullscreen Video Styling */
+    .intro-video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: black;
+    }
+
+    .intro-video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Skip Button */
+    .skip-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .skip-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="video-container" class="intro-video-container">
+    <video id="intro-video" class="intro-video" autoplay>
+      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <button id="skip-button" class="skip-button">Skip</button>
+  </div>
+
+  <div id="main-content" style="display: none;">
+    {% include header.html %}
+    {% include navigation.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Check if the video has already been watched
+      if (sessionStorage.getItem("videoWatched")) {
+        // Hide video and show main content immediately
+        document.getElementById("video-container").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        function markVideoWatched() {
+          sessionStorage.setItem("videoWatched", "true");
+          document.getElementById("video-container").style.display = "none";
+          document.getElementById("main-content").style.display = "block";
+        }
+
+        // Handle Skip button click
+        document.getElementById("skip-button").addEventListener("click", markVideoWatched);
+
+        // Handle video end event
+        document.getElementById("intro-video").onended = markVideoWatched;
       }
-    </script>
-  </head>
+    });
+  </script>
 
-  <body>
-
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    {{ content }}
-
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-
-    {% include scripts.html %}
-
-  </body>
+</body>
 </html>
