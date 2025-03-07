@@ -4,82 +4,68 @@ layout: compress
 
 {% include base_path %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Intro Video</title>
-  <style>
-    /* Fullscreen Video Styles */
-    .intro-video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-    }
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+    
+    <!-- Check if the user is coming from the front_video page -->
+    {% if page.url == "/" and request.params['visited_video'] != 'true' %}
+      <!-- Redirect to front_video.html if not already visited -->
+      <meta http-equiv="refresh" content="0; url=front_video.html?visited_video=true">
+      <script type="text/javascript">
+        window.location.href = "front_video.html?visited_video=true";
+      </script>
+    {% endif %}
+  </head>
 
-    .intro-video {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      display: block; /* Ensure it's displayed */
-    }
-
-    /* Skip Button Styles */
-    .skip-button {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      z-index: 10000;
-    }
-
-    .skip-button:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-  </style>
-</head>
-<body>
-  <!-- Intro Video -->
-  <div class="intro-video-container">
-    <video id="intro-video" class="intro-video" autoplay muted>
-      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
-      <!-- Fallback for unsupported video formats -->
-      <source src="https://arjfaber.github.io/files/preview_Video_Start.webm" type="video/webm">
-      <source src="https://arjfaber.github.io/files/preview_Video_Start.ogv" type="video/ogg">
-      Your browser does not support the video tag.
-    </video>
-
-    <!-- Skip Button -->
-    <button class="skip-button" id="skip-button">Skip</button>
-  </div>
-
-  <script>
-    // Wait for the DOM content to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      var introVideo = document.getElementById('intro-video');
-      var skipButton = document.getElementById('skip-button');
+  <body>
+    <!-- Fullscreen Video Container -->
+    <div class="intro-video-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+      <video id="intro-video" class="intro-video" autoplay muted>
+        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       
-      // Skip button click event
-      skipButton.addEventListener('click', function() {
-        // Redirect to main content page when skip is clicked
-        window.location.href = 'default.html';  // Redirect to your main page (default.html)
-      });
+      <!-- Skip Button -->
+      <button class="skip-button" id="skip-button" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.5); color: white; border: none; font-size: 16px; cursor: pointer; z-index: 10000;">
+        Skip
+      </button>
+    </div>
 
-      // Video ended event
-      introVideo.onended = function() {
-        // Redirect to main content page after the video ends
-        window.location.href = 'default.html';  // Redirect to your main page (default.html)
-      };
-    });
-  </script>
-</body>
+    <script>
+      // Wait for the DOM content to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        var introVideo = document.getElementById('intro-video');
+        var skipButton = document.getElementById('skip-button');
+        
+        // Skip button click event
+        skipButton.addEventListener('click', function() {
+          // Redirect to main content page when skip is clicked
+          window.location.href = 'default.html';  // Redirect to your main page (default.html)
+        });
+
+        // Video ended event
+        introVideo.onended = function() {
+          // Redirect to main content page after the video ends
+          window.location.href = 'default.html';  // Redirect to your main page (default.html)
+        };
+      });
+    </script>
+
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
+    
+    {{ content }}
+
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
+  </body>
 </html>
