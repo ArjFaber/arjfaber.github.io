@@ -36,7 +36,7 @@ layout: compress
       top: 20px;
       right: 20px;
       padding: 10px 20px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
       font-size: 16px;
@@ -45,7 +45,7 @@ layout: compress
     }
 
     .skip-button:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 1);
     }
   </style>
 </head>
@@ -53,7 +53,7 @@ layout: compress
 <body>
 
   <div id="video-container" class="intro-video-container">
-    <video id="intro-video" class="intro-video" autoplay>
+    <video id="intro-video" class="intro-video" autoplay muted playsinline>
       <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -83,24 +83,24 @@ layout: compress
       const video = document.getElementById("intro-video");
       const skipButton = document.getElementById("skip-button");
 
-      // Function to hide video and show main content
       function hideVideo() {
-        console.log("Hiding video and showing main content.");
         sessionStorage.setItem("videoWatched", "true"); // Mark as watched
         videoContainer.style.display = "none"; // Hide video
         mainContent.style.display = "block"; // Show main content
       }
 
-      // Check if the video has already been watched
+      // If video has been watched before, skip it
       if (sessionStorage.getItem("videoWatched") === "true") {
-        console.log("Video already watched, skipping to content.");
         hideVideo();
       } else {
-        console.log("Playing intro video.");
-
         // Attach event listeners
         skipButton.addEventListener("click", hideVideo);
         video.addEventListener("ended", hideVideo);
+
+        // Ensure video plays (fix autoplay issues in some browsers)
+        video.play().catch(error => {
+          console.error("Autoplay prevented:", error);
+        });
       }
     });
   </script>
