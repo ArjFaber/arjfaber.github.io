@@ -69,32 +69,40 @@ title: Home
 
     /* Overlay for content */
     #main-overlay {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh; /* Set overlay height to 100% of the viewport */
+      height: 100%; /* Allow the overlay to fill the entire screen */
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Start from the top */
+      justify-content: flex-start;
       align-items: center;
       text-align: center;
       background: rgba(255, 255, 255, 0); /* Transparent background */
-      color: black; /* Black text color */
+      color: black;
       padding: 20px;
-      z-index: 2; /* Ensure overlay is above background video */
-      overflow-y: auto; /* Enable vertical scrolling */
-      max-height: 100vh; /* Ensure it doesn't overflow the viewport */
-      box-sizing: border-box; /* Ensures padding is accounted for */
+      z-index: 2;
+      overflow-y: auto; /* Allow scrolling */
+      box-sizing: border-box;
+    }
+
+    /* Ensure the content area can scroll when there's too much content */
+    .content-area {
+      flex-grow: 1; /* Let the content area grow to take up available space */
+      overflow-y: auto; /* Make sure the content is scrollable */
+      width: 100%;
     }
 
     /* Make text more readable if necessary */
     h1, p {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: adds shadow to text for better contrast */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
+    /* Footer */
     .page__footer {
       margin-top: auto; /* Push footer to the bottom */
+      width: 100%;
     }
   </style>
 </head>
@@ -122,13 +130,20 @@ title: Home
     <!-- Overlay Content (Transparent background and black text) -->
     <div id="main-overlay">
       {% include masthead.html %}
-      {{ content }}
+
+      <!-- Content that will scroll -->
+      <div class="content-area">
+        {{ content }}
+      </div>
+
+      <!-- Footer -->
       <div class="page__footer">
         <footer>
           {% include footer/custom.html %}
           {% include footer.html %}
         </footer>
       </div>
+
       {% include scripts.html %}
     </div>
 
