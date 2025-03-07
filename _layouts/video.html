@@ -59,11 +59,13 @@
       const video = document.getElementById("intro-video");
       const skipButton = document.getElementById("skip-button");
 
+      // Function to handle redirection and mark intro as seen
       function goToMainPage() {
         localStorage.setItem("seenIntro", "true"); // Mark intro as seen
         window.location.href = "index.html"; // Redirect to main page
       }
 
+      // Add event listener for the skip button and video end
       skipButton.addEventListener("click", goToMainPage);
       video.addEventListener("ended", goToMainPage);
     });
