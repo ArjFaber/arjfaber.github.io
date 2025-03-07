@@ -1,31 +1,97 @@
 ---
-layout: compress
+layout: default
+title: Home
 ---
 
 {% include base_path %}
 
 <!DOCTYPE html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
   {% include head.html %}
   {% include head/custom.html %}
-  
+  <style>
+    /* Main content and video fade effect */
+    #video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #main-content {
+      display: none;
+      z-index: 1;
+    }
+  </style>
+</head>
 
 <body>
 
-  {% include browser-upgrade.html %}
-  {% include masthead.html %}
-
-  {{ content }}
-
-  <div class="page__footer">
-    <footer>
-      {% include footer/custom.html %}
-      {% include footer.html %}
-    </footer>
+  <!-- Main content of the page -->
+  <div id="main-content" style="display: none;">
+    {% include masthead.html %}
+    {{ content }}
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
+    </div>
+    {% include scripts.html %}
   </div>
 
-  {% include scripts.html %}
+  <!-- Video container -->
+  <div id="video-container">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="skip-button" class="skip-button" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.7); color: white; border: none; font-size: 16px; cursor: pointer; z-index: 10000;">Skip</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const videoContainer = document.getElementById("video-container");
+      const mainContent = document.getElementById("main-content");
+      const video = document.getElementById("intro-video");
+      const skipButton = document.getElementById("skip-button");
+
+      // Function to hide video and show main content
+      function goToMainPage() {
+        localStorage.setItem("seenIntro", "true");  // Store that intro was seen
+        videoContainer.style.display = "none"; // Hide video
+        mainContent.style.display = "block"; // Show main content
+      }
+
+      // Check if intro has been already seen
+      if (localStorage.getItem("seenIntro") === "true") {
+        goToMainPage();
+      } else {
+        // Attach event listeners for skip button and video end
+        skipButton.addEventListener("click", goToMainPage);
+        video.addEventListener("ended", goToMainPage);
+      }
+
+      // Try to autoplay the video with a fallback
+      video.play().catch(error => {
+        console.error("Autoplay prevented:", error);
+        video.muted = true;  // Some browsers may require muted autoplay
+        video.play();
+      });
+    });
+  </script>
 
 </body>
+
 </html>
