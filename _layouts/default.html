@@ -10,14 +10,17 @@ layout: compress
     {% include head.html %}
     {% include head/custom.html %}
     
-    <!-- Check if the user is coming from the front_video page -->
-    {% if page.url == "/" and request.params['visited_video'] != 'true' %}
-      <!-- Redirect to front_video.html if not already visited -->
-      <meta http-equiv="refresh" content="0; url=video.html?visited_video=true">
-      <script type="text/javascript">
-        window.location.href = "video.html?visited_video=true";
-      </script>
-    {% endif %}
+    <script type="text/javascript">
+      // Check if the user has already visited the video
+      if (!localStorage.getItem('visited_video')) {
+        // Redirect to video.html if not visited
+        window.location.href = "video.html";
+      } else {
+        // Clear the visited flag if the user has visited already
+        localStorage.removeItem('visited_video');
+      }
+    </script>
+
   </head>
 
   <body>
@@ -38,4 +41,3 @@ layout: compress
 
   </body>
 </html>
-
