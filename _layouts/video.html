@@ -5,61 +5,72 @@ layout: compress
 {% include base_path %}
 
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+<html lang="en">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    <style>
+      /* Fullscreen Video Styling */
+      .intro-video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: black;
+      }
+
+      .intro-video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Skip Button */
+      .skip-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        z-index: 10000;
+      }
+
+      .skip-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Fullscreen Intro Video -->
-    <div class="intro-video-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
-      <video id="intro-video" class="intro-video" autoplay muted>
+
+    <div class="intro-video-container">
+      <video id="intro-video" class="intro-video" autoplay>
         <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
-      <!-- Skip Button -->
-      <button class="skip-button" id="skip-button" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.5); color: white; border: none; font-size: 16px; cursor: pointer; z-index: 10000;">
-        Skip
-      </button>
+      <button id="skip-button" class="skip-button">Skip</button>
     </div>
 
     <script>
-      // Wait for the DOM content to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        var introVideo = document.getElementById('intro-video');
-        var skipButton = document.getElementById('skip-button');
-        
-        // Set the visited_video flag once the user enters video.html
-        localStorage.setItem('visited_video', 'true');
+      // Store video watch status in sessionStorage
+      function markVideoWatched() {
+        sessionStorage.setItem("videoWatched", "true");
+        window.location.href = "index.html"; // Redirect to main site
+      }
 
-        // Skip button click event
-        skipButton.addEventListener('click', function() {
-          // Redirect to the main content page after skipping the video
-          window.location.href = 'video.html';  // Or you can change to 'default.html'
-        });
+      // Handle Skip button click
+      document.getElementById("skip-button").addEventListener("click", markVideoWatched);
 
-        // Video ended event
-        introVideo.onended = function() {
-          // Redirect to the main content page after the video ends
-          window.location.href = 'video.html';  // Or you can change to 'default.html'
-        };
-      });
+      // Handle video end event
+      document.getElementById("intro-video").onended = markVideoWatched;
     </script>
 
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    {{ content }}
-
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-
-    {% include scripts.html %}
   </body>
 </html>
