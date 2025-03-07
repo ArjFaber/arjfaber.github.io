@@ -26,12 +26,29 @@ title: Home
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: -1; /* Ensures it's in the background */
     }
 
+    /* Fullscreen Video A */
+    #intro-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Fullscreen Video B */
+    #background-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Main content */
     #main-content {
-      display: none;
-      z-index: 1;
+      position: relative;
+      z-index: 1;  /* Ensure it's above the video */
+      padding: 20px;
+      color: white;
     }
 
     /* Skip Button */
@@ -45,28 +62,37 @@ title: Home
       border: none;
       font-size: 16px;
       cursor: pointer;
-      z-index: 10000;
+      z-index: 100;
     }
 
     .skip-button:hover {
       background-color: rgba(0, 0, 0, 1);
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Video container -->
-  <div id="video-container">
+  <!-- Video container for Video A (Intro Video) -->
+  <div id="video-container" class="video-a-container">
     <video id="intro-video" autoplay muted playsinline>
-      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+      <source src="https:/arjfaber.github.io.files/preview_Video_Start" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
+  <!-- Video container for Video B (Background Video) -->
+  <div id="video-container-b" class="video-b-container" style="display:none;">
+    <video id="background-video" autoplay muted loop playsinline>
+      <source src="https:arjfaber.github.io/files/preview_background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
   <!-- Main content of the page -->
-  <div id="main-content" style="display: none;">
+  <div id="main-content">
     {% include masthead.html %}
     {{ content }}
     <div class="page__footer">
@@ -80,33 +106,44 @@ title: Home
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const videoContainer = document.getElementById("video-container");
-      const mainContent = document.getElementById("main-content");
-      const video = document.getElementById("intro-video");
-      const skipButton = document.getElementById("skip-button");
-
-      // Function to hide video and show main content
-      function goToMainPage() {
-        sessionStorage.setItem("seenIntro", "true");  // Store session data
-        videoContainer.style.display = "none"; // Hide video
-        mainContent.style.display = "block"; // Show main content
-      }
+      const introVideo = document.getElementById('intro-video');
+      const backgroundVideo = document.getElementById('background-video');
+      const skipButton = document.getElementById('skip-button');
+      const videoContainer = document.getElementById('video-container');
+      const videoContainerB = document.getElementById('video-container-b');
+      const mainContent = document.getElementById('main-content');
 
       // Check if the video has already been seen in this session
       if (sessionStorage.getItem("seenIntro") === "true") {
-        goToMainPage();
+        // Skip intro video and show Video B
+        showBackgroundVideo();
       } else {
-        // Attach event listeners for skip button and video end
-        skipButton.addEventListener("click", goToMainPage);
-        video.addEventListener("ended", goToMainPage);
+        // Show Video A initially (Intro video)
+        introVideo.play().catch(error => {
+          console.error("Autoplay prevented:", error);
+          introVideo.muted = true;  // Some browsers may require muted autoplay
+          introVideo.play();
+        });
+
+        // Skip Button Logic
+        skipButton.addEventListener("click", skipIntroVideo);
+
+        // End of Video A (Intro Video)
+        introVideo.addEventListener("ended", skipIntroVideo);
       }
 
-      // Try to autoplay the video with a fallback
-      video.play().catch(error => {
-        console.error("Autoplay prevented:", error);
-        video.muted = true;  // Some browsers may require muted autoplay
-        video.play();
-      });
+      // Skip the intro video and show main content with Video B in the background
+      function skipIntroVideo() {
+        sessionStorage.setItem("seenIntro", "true");  // Store session data
+        videoContainer.style.display = "none";  // Hide intro video
+        showBackgroundVideo(); // Show Video B
+      }
+
+      // Function to show Video B in the background and main content
+      function showBackgroundVideo() {
+        videoContainerB.style.display = "block"; // Show Video B
+        mainContent.style.display = "block"; // Show main content
+      }
     });
   </script>
 
