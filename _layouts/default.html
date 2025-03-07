@@ -1,4 +1,4 @@
----
+--
 layout: compress
 ---
 
@@ -9,98 +9,23 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
-    <style>
-      /* Fullscreen Video Styles */
-      .intro-video-container {
-        position: fixed;  /* Keeps the video fixed on the screen */
-        top: 0;
-        left: 0;
-        width: 100%;  /* Full width */
-        height: 100%;  /* Full height */
-        z-index: 9999;  /* Make sure it appears on top of other content */
-      }
-
-      .intro-video {
-        object-fit: cover;  /* Ensure the video covers the screen */
-        width: 100%;  /* Stretch the video to full width */
-        height: 100%;  /* Stretch the video to full height */
-      }
-
-      /* Skip Button Styles */
-      .skip-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        z-index: 10000;
-      }
-
-      .skip-button:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-
-      /* Hide main content initially */
-      .page__content {
-        display: none;
-      }
-    </style>
   </head>
 
   <body>
-    <!-- Intro Video -->
-    <div class="intro-video-container">
-      <video id="intro-video" class="intro-video" autoplay muted>
-        <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
-        <!-- You can also add WebM, Ogg, or other video formats here if necessary -->
-        Your browser does not support the video tag.
-      </video>
-      <!-- Skip Button -->
-      <button class="skip-button" id="skip-button">Skip</button>
+
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
+
+    {{ content }}
+
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
     </div>
 
-    <!-- Main content that will be shown after the video finishes -->
-    <div class="page__content">
-      {% include browser-upgrade.html %}
-      {% include masthead.html %}
+    {% include scripts.html %}
 
-      {{ content }}
-
-      <div class="page__footer">
-        <footer>
-          {% include footer/custom.html %}
-          {% include footer.html %}
-        </footer>
-      </div>
-
-      {% include scripts.html %}
-    </div>
-
-    <script>
-      // Wait for the DOM content to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Get the video element, content, and skip button
-        var introVideo = document.getElementById('intro-video');
-        var pageContent = document.querySelector('.page__content');
-        var skipButton = document.getElementById('skip-button');
-
-        // Skip button click event to hide the video and show the content
-        skipButton.addEventListener('click', function() {
-          introVideo.style.display = 'none';  // Hide the video
-          pageContent.style.display = 'block';  // Show the page content
-        });
-
-        // Video ended event to hide the video and show the content
-        introVideo.onended = function() {
-          introVideo.style.display = 'none';  // Hide the video
-          pageContent.style.display = 'block';  // Show the page content
-        };
-      });
-    </script>
   </body>
 </html>
-
