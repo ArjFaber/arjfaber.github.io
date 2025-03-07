@@ -5,7 +5,7 @@ layout: compress
 {% include base_path %}
 
 <!doctype html>
-<html lang="en">
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
 <head>
   {% include head.html %}
   {% include head/custom.html %}
@@ -54,17 +54,23 @@ layout: compress
       <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-
     <button id="skip-button" class="skip-button">Skip</button>
   </div>
 
   <div id="main-content" style="display: none;">
-    {% include header.html %}
-    {% include navigation.html %}
-    <main>
-      {{ content }}
-    </main>
-    {% include footer.html %}
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
+
+    {{ content }}
+
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
   </div>
 
   <script>
