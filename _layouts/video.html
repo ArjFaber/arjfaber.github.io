@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro Video</title>
+  <style>
+    /* Fullscreen Video Styles */
+    .intro-video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+    }
+
+    .intro-video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Skip Button Styles */
+    .skip-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .skip-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Video -->
+  <div class="intro-video-container">
+    <video id="intro-video" class="intro-video" autoplay muted>
+      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Skip Button -->
+    <button class="skip-button" id="skip-button">Skip</button>
+  </div>
+
+  <script>
+    // Wait for the DOM content to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      var introVideo = document.getElementById('intro-video');
+      var skipButton = document.getElementById('skip-button');
+      
+      // Skip button click event
+      skipButton.addEventListener('click', function() {
+        // Redirect to main content page when skip is clicked
+        window.location.href = 'default.html';  // Redirect to your main page (default.html)
+      });
+
+      // Video ended event
+      introVideo.onended = function() {
+        // Redirect to main content page after the video ends
+        window.location.href = 'default.html';  // Redirect to your main page (default.html)
+      };
+    });
+  </script>
+</body>
+</html>
