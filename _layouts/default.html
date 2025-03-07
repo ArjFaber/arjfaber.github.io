@@ -43,6 +43,8 @@ title: Home
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Skip Button */
@@ -76,11 +78,9 @@ title: Home
 
     /* Overlay for content */
     #main-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       width: 100%;
-      height: 100%; /* Allow the overlay to fill the entire screen */
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -90,8 +90,9 @@ title: Home
       color: black;
       padding: 20px;
       z-index: 2;
-      overflow-y: auto; /* Enable scrolling only on the content overlay */
+      overflow-y: auto; /* Allow scrolling */
       box-sizing: border-box;
+      flex-grow: 1; /* Allow the overlay to expand and take the remaining space */
     }
 
     /* Ensure the content area can scroll when there's too much content */
@@ -99,6 +100,7 @@ title: Home
       flex-grow: 1; /* Let the content area grow to take up available space */
       overflow-y: auto; /* Make sure the content is scrollable */
       width: 100%;
+      padding-bottom: 50px; /* Space for the footer */
     }
 
     /* Make text more readable if necessary */
@@ -108,9 +110,13 @@ title: Home
 
     /* Footer */
     .page__footer {
-      margin-top: auto; /* Push footer to the bottom */
       width: 100%;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
     }
+
   </style>
 </head>
 
