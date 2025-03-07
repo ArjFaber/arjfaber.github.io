@@ -79,30 +79,35 @@ layout: compress
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const videoContainer = document.getElementById("video-container");
-      const mainContent = document.getElementById("main-content");
-      const video = document.getElementById("intro-video");
-      const skipButton = document.getElementById("skip-button");
+  document.addEventListener("DOMContentLoaded", function () {
+    const videoContainer = document.getElementById("video-container");
+    const mainContent = document.getElementById("main-content");
+    const video = document.getElementById("intro-video");
+    const skipButton = document.getElementById("skip-button");
 
-      // Function to hide the video and show the main content
-      function hideVideo() {
+    function hideVideo() {
+      videoContainer.style.opacity = "0";
+      videoContainer.style.visibility = "hidden";
+      setTimeout(() => {
         videoContainer.style.display = "none"; // Hide video
         mainContent.style.display = "block"; // Show main content
-      }
+      }, 500); // Give time for fade-out effect
+    }
 
-      // Handle skip button click
-      skipButton.addEventListener("click", hideVideo);
+    // Attach event listeners
+    skipButton.addEventListener("click", hideVideo);
+    video.addEventListener("ended", hideVideo);
 
-      // Handle video end event
-      video.addEventListener("ended", hideVideo);
-
-      // Try to autoplay the video (handle potential autoplay restrictions)
-      video.play().catch(error => {
-        console.error("Autoplay prevented:", error);
-      });
+    // Try autoplay with a fallback
+    video.play().catch(error => {
+      console.error("Autoplay prevented:", error);
+      video.muted = true; // Some browsers require mute for autoplay
+      video.play();
     });
-  </script>
+
+  });
+</script>
+
 
 </body>
 </html>
