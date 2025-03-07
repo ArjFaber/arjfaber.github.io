@@ -51,9 +51,28 @@ title: Home
     .skip-button:hover {
       background-color: rgba(0, 0, 0, 1);
     }
+/* Background video */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* Send video to the background */
+}
+
+/* Overlay content */
+#main-overlay {
+  color: black; /* Dark text for readability */
+  background: none; /* Fully transparent */
+}
+
   </style>
 </head>
 
+
+  
 <body>
 
   <!-- Video container -->
@@ -66,7 +85,17 @@ title: Home
   </div>
 
   <!-- Main content of the page -->
-  <div id="main-content" style="display: none;">
+ <!-- Main content of the page -->
+<div id="main-content" style="display: none; position: relative;">
+
+  <!-- Background Video -->
+  <video autoplay loop muted playsinline id="background-video">
+    <source src="https://arjfaber.github.io/files/background_video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay content (text, navigation, etc.) -->
+  <div id="main-overlay">
     {% include masthead.html %}
     {{ content }}
     <div class="page__footer">
@@ -77,6 +106,8 @@ title: Home
     </div>
     {% include scripts.html %}
   </div>
+
+</div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
