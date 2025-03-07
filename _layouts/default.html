@@ -15,7 +15,7 @@ title: Home
   {% include head.html %}
   {% include head/custom.html %}
   <style>
-    /* Main content and video fade effect */
+    /* Fullscreen Video Styling */
     #video-container {
       position: fixed;
       top: 0;
@@ -33,10 +33,37 @@ title: Home
       display: none;
       z-index: 1;
     }
+
+    /* Skip Button */
+    .skip-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .skip-button:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Video container -->
+  <div id="video-container">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="skip-button" class="skip-button">Skip</button>
+  </div>
 
   <!-- Main content of the page -->
   <div id="main-content" style="display: none;">
@@ -51,15 +78,6 @@ title: Home
     {% include scripts.html %}
   </div>
 
-  <!-- Video container -->
-  <div id="video-container">
-    <video id="intro-video" autoplay muted playsinline>
-      <source src="https://arjfaber.github.io/files/preview_Video_Start.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <button id="skip-button" class="skip-button" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.7); color: white; border: none; font-size: 16px; cursor: pointer; z-index: 10000;">Skip</button>
-  </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const videoContainer = document.getElementById("video-container");
@@ -69,13 +87,13 @@ title: Home
 
       // Function to hide video and show main content
       function goToMainPage() {
-        localStorage.setItem("seenIntro", "true");  // Store that intro was seen
+        sessionStorage.setItem("seenIntro", "true");  // Store session data
         videoContainer.style.display = "none"; // Hide video
         mainContent.style.display = "block"; // Show main content
       }
 
-      // Check if intro has been already seen
-      if (localStorage.getItem("seenIntro") === "true") {
+      // Check if the video has already been seen in this session
+      if (sessionStorage.getItem("seenIntro") === "true") {
         goToMainPage();
       } else {
         // Attach event listeners for skip button and video end
