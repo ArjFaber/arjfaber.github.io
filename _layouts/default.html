@@ -1,14 +1,4 @@
----
-layout: compress
----
-
-{% include base_path %}
-
-<!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
 <head>
-  {% include head.html %}
-  {% include head/custom.html %}
   <style>
     /* Fullscreen Video Styling */
     .intro-video-container {
@@ -22,6 +12,7 @@ layout: compress
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: opacity 0.5s ease-out;
     }
 
     .intro-video {
@@ -47,6 +38,17 @@ layout: compress
     .skip-button:hover {
       background-color: rgba(0, 0, 0, 1);
     }
+
+    /* Hide video container when the "hide" class is added */
+    .hide {
+      opacity: 0;
+      pointer-events: none; /* Prevent clicks while fading */
+    }
+
+    /* Ensure main content is hidden initially */
+    #main-content {
+      display: none;
+    }
   </style>
 </head>
 
@@ -62,52 +64,45 @@ layout: compress
   </div>
 
   <!-- Main content -->
-  <div id="main-content" style="display: none;">
+  <div id="main-content">
     {% include browser-upgrade.html %}
     {% include masthead.html %}
-
     {{ content }}
-
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}
         {% include footer.html %}
       </footer>
     </div>
-
     {% include scripts.html %}
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const videoContainer = document.getElementById("video-container");
-    const mainContent = document.getElementById("main-content");
-    const video = document.getElementById("intro-video");
-    const skipButton = document.getElementById("skip-button");
+    document.addEventListener("DOMContentLoaded", function () {
+      const videoContainer = document.getElementById("video-container");
+      const mainContent = document.getElementById("main-content");
+      const video = document.getElementById("intro-video");
+      const skipButton = document.getElementById("skip-button");
 
-    function hideVideo() {
-      videoContainer.style.opacity = "0";
-      videoContainer.style.visibility = "hidden";
-      setTimeout(() => {
-        videoContainer.style.display = "none"; // Hide video
-        mainContent.style.display = "block"; // Show main content
-      }, 500); // Give time for fade-out effect
-    }
+      function hideVideo() {
+        videoContainer.classList.add("hide"); // Apply CSS fade-out effect
+        setTimeout(() => {
+          videoContainer.style.display = "none"; // Hide video completely after fade-out
+          mainContent.style.display = "block"; // Show main content
+        }, 500); // Ensure timing matches CSS transition duration
+      }
 
-    // Attach event listeners
-    skipButton.addEventListener("click", hideVideo);
-    video.addEventListener("ended", hideVideo);
+      // Attach event listeners
+      skipButton.addEventListener("click", hideVideo);
+      video.addEventListener("ended", hideVideo);
 
-    // Try autoplay with a fallback
-    video.play().catch(error => {
-      console.error("Autoplay prevented:", error);
-      video.muted = true; // Some browsers require mute for autoplay
-      video.play();
+      // Try autoplay with a fallback
+      video.play().catch(error => {
+        console.error("Autoplay prevented:", error);
+        video.muted = true; // Some browsers require mute for autoplay
+        video.play();
+      });
     });
-
-  });
-</script>
-
+  </script>
 
 </body>
-</html>
