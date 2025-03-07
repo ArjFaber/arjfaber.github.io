@@ -26,6 +26,24 @@ layout: compress
         height: 100%;  /* Stretch the video to full height */
       }
 
+      /* Skip Button Styles */
+      .skip-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        z-index: 10000;
+      }
+
+      .skip-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
       /* Hide main content initially */
       .page__content {
         display: none;
@@ -41,6 +59,8 @@ layout: compress
         <!-- You can also add WebM, Ogg, or other video formats here if necessary -->
         Your browser does not support the video tag.
       </video>
+      <!-- Skip Button -->
+      <button class="skip-button" id="skip-button">Skip</button>
     </div>
 
     <!-- Main content that will be shown after the video finishes -->
@@ -61,14 +81,26 @@ layout: compress
     </div>
 
     <script>
-      // Hide the intro video and show the page content once it's finished playing
-      var introVideo = document.getElementById('intro-video');
-      var pageContent = document.querySelector('.page__content');
-      
-      introVideo.onended = function() {
-        introVideo.style.display = 'none';  // Hide the video once it finishes
-        pageContent.style.display = 'block';  // Show the page content after the video ends
-      };
+      // Wait for the DOM content to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get the video element, content, and skip button
+        var introVideo = document.getElementById('intro-video');
+        var pageContent = document.querySelector('.page__content');
+        var skipButton = document.getElementById('skip-button');
+
+        // Skip button click event to hide the video and show the content
+        skipButton.addEventListener('click', function() {
+          introVideo.style.display = 'none';  // Hide the video
+          pageContent.style.display = 'block';  // Show the page content
+        });
+
+        // Video ended event to hide the video and show the content
+        introVideo.onended = function() {
+          introVideo.style.display = 'none';  // Hide the video
+          pageContent.style.display = 'block';  // Show the page content
+        };
+      });
     </script>
   </body>
 </html>
+
