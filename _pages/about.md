@@ -36,10 +36,10 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 <div class="slider-container">
     <div class="video-slider">
         <div class="video">
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
         <div class="video">
-            <video width="400" height="225" controls>
+            <video class="video-frame" controls>
                 <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -51,7 +51,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 <style>
     .slider-container {
-        width: 420px;
+        width: 640px; /* Set consistent container width */
         overflow: hidden;
         position: relative;
         margin: auto;
@@ -68,6 +68,15 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     .video {
         min-width: 100%;
         box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-frame {
+        width: 640px; /* Ensures both videos are the same width */
+        height: 360px; /* Matches YouTube 16:9 aspect ratio */
+        border-radius: 10px;
     }
 
     .btn {
