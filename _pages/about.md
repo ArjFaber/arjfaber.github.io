@@ -32,9 +32,8 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ## Introduction Video
 <iframe width="400" height="225" 
-    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
+    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" 
     frameborder="0" 
-    allow="autoplay" 
     allowfullscreen>
 </iframe>
 
