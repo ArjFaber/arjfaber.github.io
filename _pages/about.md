@@ -11,11 +11,12 @@ redirect_from:
 🔬 MSc Data Science, University of Edinburgh - Researching Formal Proofs in RL  
 💡 Passionate about Machine Learning, High-Performance Computing & Robotics  
 
-<video width="400" height="225" controls autoplay>
-  <source src="https://arjfaber.github.io/files/Intro2-2.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+<iframe width="400" height="225" 
+    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
+    frameborder="0" 
+    allow="autoplay" 
+    allowfullscreen>
+</iframe>
 ---
 
 ## 🔍 About Me  
