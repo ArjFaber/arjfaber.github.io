@@ -17,6 +17,13 @@ redirect_from:
 
 I'm a graduate researcher with a background in econometrics, AI, and reinforcement learning. My work spans deep learning, robotics, and formal verification of algorithms. Currently, I'm researching **formal proof methods for reinforcement learning** at the University of Edinburgh.  
 
+<iframe width="400" height="225" 
+    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
+    frameborder="0" 
+    allow="autoplay" 
+    allowfullscreen>
+</iframe>
+
 When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or traveling the world!  
 
 ---
