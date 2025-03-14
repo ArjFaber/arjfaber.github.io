@@ -102,7 +102,6 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         background-color: rgba(0, 0, 0, 0.8);
     }
 </style>
-
 <script>
     let index = 0;
     const slider = document.querySelector('.video-slider');
@@ -122,24 +121,29 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         updateSlider();
     }
 
-    // Start auto-sliding immediately (on page load)
+    // Initialize auto-sliding on page load
     let autoSlideInterval = setInterval(autoSlide, 5000);
 
-    // Optional: Stop auto-slide when a video is playing
+    // Ensure the auto-slide functionality works regardless of interaction with the videos
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
         video.addEventListener('play', () => {
-            clearInterval(autoSlideInterval);  // Pause auto-slide when video starts playing
+            clearInterval(autoSlideInterval);  // Stop auto-slide when a video starts playing
         });
         video.addEventListener('pause', () => {
-            autoSlideInterval = setInterval(autoSlide, 5000); // Resume auto-slide when paused
+            autoSlideInterval = setInterval(autoSlide, 5000); // Restart auto-slide when paused
         });
         video.addEventListener('ended', () => {
-            autoSlideInterval = setInterval(autoSlide, 5000); // Resume auto-slide when video ends
+            autoSlideInterval = setInterval(autoSlide, 5000); // Restart auto-slide when ended
         });
     });
 
-    // Initialize the slider immediately without waiting for videos
+    // Start the auto-slide as soon as the page is loaded
+    window.addEventListener('load', () => {
+        autoSlideInterval = setInterval(autoSlide, 5000);  // Ensure auto-slide starts after page load
+    });
+
+    // Initialize the slider to the first video
     updateSlider();
 </script>
 
