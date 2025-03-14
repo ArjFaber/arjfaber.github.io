@@ -36,7 +36,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 <div class="slider-container">
     <div class="video-slider">
         <div class="video">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" ></iframe>
+            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
         <div class="video">
             <video class="video-frame" controls>
@@ -51,12 +51,15 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 <style>
     .slider-container {
-        width: 640px; /* Set consistent container width */
+        width: 560px; /* Reduced size for better fit */
         overflow: hidden;
         position: relative;
-        margin: auto;
+        margin: auto; /* Centers the slider */
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .video-slider {
@@ -74,8 +77,8 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 640px; /* Ensures both videos are the same width */
-        height: 360px; /* Matches YouTube 16:9 aspect ratio */
+        width: 560px; /* Slightly smaller width */
+        height: 315px; /* Maintains 16:9 aspect ratio */
         border-radius: 10px;
     }
 
@@ -109,6 +112,3 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         slider.style.transform = `translateX(-${index * 100}%)`;
     }
 </script>
-
-
-
