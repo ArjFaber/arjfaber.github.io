@@ -133,8 +133,8 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     function startAutoSlide() {
-        if (!isVideoPlaying) {
-            autoSlideInterval = setInterval(autoSlide, 5000);
+        if (!autoSlideInterval && !isVideoPlaying) {
+            autoSlideInterval = setInterval(autoSlide, 3000);
         }
     }
 
@@ -144,9 +144,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     // Ensure the auto-slide functionality works even without interaction
-    window.addEventListener('load', () => {
-        startAutoSlide();
-    });
+   startAutoSlide();
 
     // Pause auto-slide when a video starts playing
     const videos = document.querySelectorAll('video');
