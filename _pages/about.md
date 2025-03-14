@@ -102,36 +102,45 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         background-color: rgba(0, 0, 0, 0.8);
     }
 </style>
+
 <script>
     let index = 0;
     const slider = document.querySelector('.video-slider');
     const totalVideos = document.querySelectorAll('.video').length;
+
+    let autoSlideInterval;
+    let isVideoPlaying = false;
 
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
     }
 
     function moveSlider(direction) {
-        index = (index + direction + totalVideos) % totalVideos;
-        updateSlider();
+        if (!isVideoPlaying) {
+            index = (index + direction + totalVideos) % totalVideos;
+            updateSlider();
+        }
     }
 
     function autoSlide() {
-        index = (index + 1) % totalVideos;
-        updateSlider();
+        if (!isVideoPlaying) {
+            index = (index + 1) % totalVideos;
+            updateSlider();
+        }
     }
 
-    // Initialize auto-sliding on page load
-    let autoSlideInterval;
-
-    // Ensure the auto-slide functionality works even without interaction
     function startAutoSlide() {
-        if (!autoSlideInterval) {
+        if (!autoSlideInterval && !isVideoPlaying) {
             autoSlideInterval = setInterval(autoSlide, 5000);
         }
     }
 
-    // Start the auto-slide as soon as the page is loaded
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
+
+    // Ensure the auto-slide functionality works even without interaction
     window.addEventListener('load', () => {
         startAutoSlide();
     });
@@ -140,12 +149,15 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
         video.addEventListener('play', () => {
-            clearInterval(autoSlideInterval);  // Stop auto-slide when a video starts playing
+            isVideoPlaying = true;
+            stopAutoSlide();  // Stop auto-slide when a video starts playing
         });
         video.addEventListener('pause', () => {
+            isVideoPlaying = false;
             startAutoSlide();  // Restart auto-slide when video is paused
         });
         video.addEventListener('ended', () => {
+            isVideoPlaying = false;
             startAutoSlide();  // Restart auto-slide when video ends
         });
     });
