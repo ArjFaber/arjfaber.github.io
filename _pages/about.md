@@ -2,7 +2,7 @@
 permalink: /
 title: "About"
 author_profile: true
-description: "MSc Data Science at the University of Edinburgh, specializing in RL and Formal Proofs in AI."
+description: "Arjan Faber, MSc Data Science at the University of Edinburgh, specializing in Reinforcement Learning, High-Performance Computing, Robotics, and Formal Proofs in AI."
 redirect_from: 
   - /about/
   - /about.html
@@ -54,6 +54,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 </div>
 
 <style>
+    /* Container for the video slider */
     .slider-container {
         max-width: 100%;
         width: auto;
@@ -67,27 +68,31 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         align-items: center;
     }
 
+    /* Slider (holds all videos) */
     .video-slider {
         display: flex;
         width: 300%;
         transition: transform 0.5s ease-in-out;
     }
 
+    /* Each individual video container */
     .video {
-        min-width: 100%;
+        min-width: 100%; /* Each video takes full width */
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
+    /* Ensure the videos are responsive and maintain their aspect ratio */
     .video-frame {
-        width: 100%;
-        max-width: 560px;
-        height: auto;
+        width: 100%; /* Fill the container */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 100%; /* Don't exceed the container's width */
         border-radius: 10px;
     }
 
+    /* Style for the slider navigation buttons */
     .btn {
         position: absolute;
         top: 50%;
