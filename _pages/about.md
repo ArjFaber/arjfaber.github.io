@@ -1,7 +1,8 @@
 ---
 permalink: /
-title: ""
+title: "Arjan Faber - AI & Robotics Research"
 author_profile: true
+description: "Arjan Faber - AI & Robotics Researcher | Specializing in Reinforcement Learning, High-Performance Computing, and Robotics."
 redirect_from: 
   - /about/
   - /about.html
@@ -54,10 +55,11 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 <style>
     .slider-container {
-        width: 560px; /* Keeps the approved video size */
+        max-width: 100%;
+        width: auto;
         overflow: hidden;
         position: relative;
-        margin: auto; /* Centers the slider */
+        margin: auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
@@ -67,7 +69,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
     .video-slider {
         display: flex;
-        width: 200%;
+        width: 300%;
         transition: transform 0.5s ease-in-out;
     }
 
@@ -80,8 +82,8 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 560px; /* Consistent width */
-        height: 315px; /* 16:9 aspect ratio */
+        width: 560px;
+        height: 315px;
         border-radius: 10px;
     }
 
@@ -144,25 +146,28 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     // Ensure the auto-slide functionality works even without interaction
-   startAutoSlide();
+    startAutoSlide();
 
     // Pause auto-slide when a video starts playing
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
         video.addEventListener('play', () => {
             isVideoPlaying = true;
-            stopAutoSlide();  // Stop auto-slide when a video starts playing
+            stopAutoSlide();
         });
         video.addEventListener('pause', () => {
             isVideoPlaying = false;
-            startAutoSlide();  // Restart auto-slide when video is paused
+            startAutoSlide();
         });
         video.addEventListener('ended', () => {
             isVideoPlaying = false;
-            startAutoSlide();  // Restart auto-slide when video ends
+            startAutoSlide();
         });
     });
 
     // Initialize the slider position
     updateSlider();
 </script>
+
+
+
