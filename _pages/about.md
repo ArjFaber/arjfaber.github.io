@@ -31,7 +31,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🎥Most recent projects
+## 🎥 Most Recent Projects
 
 <div class="slider-container">
     <div class="video-slider">
@@ -45,20 +45,22 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
             </video>
         </div>
     </div>
-    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+    <div class="dots">
+        <span class="dot active" onclick="selectSlide(0)"></span>
+        <span class="dot" onclick="selectSlide(1)"></span>
+    </div>
 </div>
 
 <style>
     .slider-container {
-        width: 560px; /* Reduced size for better fit */
+        width: 560px;
         overflow: hidden;
         position: relative;
-        margin: auto; /* Centers the slider */
+        margin: auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
     }
 
@@ -77,38 +79,81 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 560px; /* Slightly smaller width */
-        height: 315px; /* Maintains 16:9 aspect ratio */
+        width: 560px;
+        height: 315px;
         border-radius: 10px;
     }
 
-    .btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 18px;
-        border-radius: 50%;
+    .dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
     }
 
-    .prev { left: 5px; }
-    .next { right: 5px; }
+    .dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-    .btn:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+    .dot.active {
+        background-color: #555;
     }
 </style>
 
 <script>
     let index = 0;
-    function moveSlider(direction) {
-        const slider = document.querySelector('.video-slider');
-        const totalVideos = document.querySelectorAll('.video').length;
-        index = (index + direction + totalVideos) % totalVideos;
+    const slider = document.querySelector('.video-slider');
+    const dots = document.querySelectorAll('.dot');
+    const videos = document.querySelectorAll('video, iframe');
+
+    function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
     }
+
+    function selectSlide(newIndex) {
+        index = newIndex;
+        updateSlider();
+        resetAutoSlide();
+    }
+
+    function autoSlide() {
+        if (!isVideoPlaying()) {
+            index = (index + 1) % videos.length;
+            updateSlider();
+        }
+    }
+
+    let autoSlideInterval = setInterval(autoSlide, 5000);
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(autoSlide, 5000);
+    }
+
+    function isVideoPlaying() {
+        return Array.from(videos).some(video => {
+            if (video.tagName === 'VIDEO') {
+                return !video.paused && !video.ended;
+            } else if (video.tagName === 'IFRAME') {
+                return false; // Can't detect iframe play state
+            }
+        });
+    }
+
+    videos.forEach(video => {
+        if (video.tagName === 'VIDEO') {
+            video.addEventListener('play', () => clearInterval(autoSlideInterval));
+            video.addEventListener('pause', resetAutoSlide);
+            video.addEventListener('ended', resetAutoSlide);
+        }
+    });
 </script>
+
