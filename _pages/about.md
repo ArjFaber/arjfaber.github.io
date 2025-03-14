@@ -31,7 +31,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🎥 Most Recent Projects
+## 🎥 Video Slider
 
 <div class="slider-container">
     <div class="video-slider">
@@ -45,22 +45,20 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
             </video>
         </div>
     </div>
-    <div class="dots">
-        <span class="dot active" onclick="selectSlide(0)"></span>
-        <span class="dot" onclick="selectSlide(1)"></span>
-    </div>
+    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
 <style>
     .slider-container {
-        width: 560px;
+        width: 560px; /* Keeps the approved video size */
         overflow: hidden;
         position: relative;
-        margin: auto;
+        margin: auto; /* Centers the slider */
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 
@@ -79,81 +77,61 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 560px;
-        height: 315px;
+        width: 560px; /* Consistent width */
+        height: 315px; /* 16:9 aspect ratio */
         border-radius: 10px;
     }
 
-    .dots {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .dot {
-        width: 12px;
-        height: 12px;
-        margin: 0 5px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
+    .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        font-size: 18px;
+        border-radius: 50%;
     }
 
-    .dot.active {
-        background-color: #555;
+    .prev { left: 5px; }
+    .next { right: 5px; }
+
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
     }
 </style>
 
 <script>
     let index = 0;
     const slider = document.querySelector('.video-slider');
-    const dots = document.querySelectorAll('.dot');
-    const videos = document.querySelectorAll('video, iframe');
+    const totalVideos = document.querySelectorAll('.video').length;
 
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
     }
 
-    function selectSlide(newIndex) {
-        index = newIndex;
+    function moveSlider(direction) {
+        index = (index + direction + totalVideos) % totalVideos;
         updateSlider();
-        resetAutoSlide();
     }
 
     function autoSlide() {
-        if (!isVideoPlaying()) {
-            index = (index + 1) % videos.length;
-            updateSlider();
+        // For the current slide, if it contains an HTML5 video element,
+        // check if it is playing. If it is playing, do not auto slide.
+        const currentSlide = document.querySelectorAll('.video')[index];
+        const html5Video = currentSlide.querySelector('video');
+        
+        // Only slide if the video is not playing
+        if (html5Video && !html5Video.paused) {
+            return; // Do not auto slide while the video is playing
         }
+        index = (index + 1) % totalVideos;
+        updateSlider();
     }
 
+    // Automatically slide every 5 seconds
     let autoSlideInterval = setInterval(autoSlide, 5000);
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(autoSlide, 5000);
-    }
-
-    function isVideoPlaying() {
-        return Array.from(videos).some(video => {
-            if (video.tagName === 'VIDEO') {
-                return !video.paused && !video.ended;
-            } else if (video.tagName === 'IFRAME') {
-                return false; // Can't detect iframe play state
-            }
-        });
-    }
-
-    videos.forEach(video => {
-        if (video.tagName === 'VIDEO') {
-            video.addEventListener('play', () => clearInterval(autoSlideInterval));
-            video.addEventListener('pause', resetAutoSlide);
-            video.addEventListener('ended', resetAutoSlide);
-        }
-    });
 </script>
 
