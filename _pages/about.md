@@ -31,7 +31,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🎥 Video Slider
+## 🎥Most recent projects
 
 <div class="slider-container">
     <div class="video-slider">
@@ -45,22 +45,20 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
             </video>
         </div>
     </div>
-    <div class="dots">
-        <span class="dot active" onclick="selectSlide(0)"></span>
-        <span class="dot" onclick="selectSlide(1)"></span>
-    </div>
+    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
 <style>
     .slider-container {
-        width: 560px;
+        width: 560px; /* Reduced size for better fit */
         overflow: hidden;
         position: relative;
-        margin: auto;
+        margin: auto; /* Centers the slider */
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 
@@ -79,62 +77,38 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 560px;
-        height: 315px;
+        width: 560px; /* Slightly smaller width */
+        height: 315px; /* Maintains 16:9 aspect ratio */
         border-radius: 10px;
     }
 
-    .dots {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .dot {
-        width: 12px;
-        height: 12px;
-        margin: 0 5px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
+    .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        font-size: 18px;
+        border-radius: 50%;
     }
 
-    .dot.active {
-        background-color: #555;
-    }
+    .prev { left: 5px; }
+    .next { right: 5px; }
 
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 </style>
 
 <script>
     let index = 0;
-    const totalVideos = document.querySelectorAll('.video').length;
-    const slider = document.querySelector('.video-slider');
-    const dots = document.querySelectorAll('.dot');
-
-    function updateSlider() {
+    function moveSlider(direction) {
+        const slider = document.querySelector('.video-slider');
+        const totalVideos = document.querySelectorAll('.video').length;
+        index = (index + direction + totalVideos) % totalVideos;
         slider.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-    }
-
-    function selectSlide(newIndex) {
-        index = newIndex;
-        updateSlider();
-        resetAutoSlide();
-    }
-
-    function autoSlide() {
-        index = (index + 1) % totalVideos;
-        updateSlider();
-    }
-
-    let autoSlideInterval = setInterval(autoSlide, 5000);
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(autoSlide, 5000);
     }
 </script>
-
