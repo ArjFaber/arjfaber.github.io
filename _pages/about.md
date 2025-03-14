@@ -6,6 +6,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
+
 # Arjan Faber  
 
 🔬 MSc Data Science, University of Edinburgh - Researching Formal Proofs in RL  
@@ -30,13 +31,75 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## Introduction Video
-<iframe width="400" height="225" 
-    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" 
-    frameborder="0" 
-    allowfullscreen>
-</iframe>
+## 🎥 Video Slider
 
+<div class="slider-container">
+    <div class="video-slider">
+        <div class="video">
+            <iframe width="400" height="225" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+        </div>
+        <div class="video">
+            <video width="400" height="225" controls>
+                <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+</div>
+
+<style>
+    .slider-container {
+        width: 420px;
+        overflow: hidden;
+        position: relative;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-slider {
+        display: flex;
+        width: 200%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .video {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 50%;
+    }
+
+    .prev { left: 5px; }
+    .next { right: 5px; }
+
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+</style>
+
+<script>
+    let index = 0;
+    function moveSlider(direction) {
+        const slider = document.querySelector('.video-slider');
+        const totalVideos = document.querySelectorAll('.video').length;
+        index = (index + direction + totalVideos) % totalVideos;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+</script>
 
 
 
