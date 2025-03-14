@@ -1,8 +1,8 @@
 ---
 permalink: /
-title: "Arjan Faber - AI & Robotics Research"
+title: "About"
 author_profile: true
-description: "Arjan Faber - AI & Robotics Researcher | Specializing in Reinforcement Learning, High-Performance Computing, and Robotics."
+description: "MSc Data Science at the University of Edinburgh, specializing in RL and Formal Proofs in AI."
 redirect_from: 
   - /about/
   - /about.html
@@ -37,16 +37,16 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 <div class="slider-container">
     <div class="video-slider">
         <div class="video">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame lazy-load" data-src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=1" allowfullscreen></iframe>
         </div>
         <div class="video">
-            <video class="video-frame" controls>
-                <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+            <video class="video-frame lazy-load" controls>
+                <source data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
         <div class="video">
-         <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame lazy-load" data-src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=1&mute=1" allowfullscreen></iframe>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
@@ -82,8 +82,9 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     .video-frame {
-        width: 560px;
-        height: 315px;
+        width: 100%;
+        max-width: 560px;
+        height: auto;
         border-radius: 10px;
     }
 
@@ -91,20 +92,21 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
         color: white;
         border: none;
-        padding: 10px;
+        padding: 15px;
         cursor: pointer;
-        font-size: 18px;
-        border-radius: 50%;
+        font-size: 20px;
+        border-radius: 5px;
     }
 
     .prev { left: 5px; }
     .next { right: 5px; }
 
     .btn:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.9);
+        transform: scale(1.1);
     }
 </style>
 
@@ -145,8 +147,31 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         autoSlideInterval = null;
     }
 
-    // Ensure the auto-slide functionality works even without interaction
+    // Start slider immediately without waiting for videos
     startAutoSlide();
+
+    // Lazy load videos when they come into view
+    function lazyLoad() {
+        const lazyVideos = document.querySelectorAll('.lazy-load');
+        lazyVideos.forEach((video) => {
+            const rect = video.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (video.tagName === 'IFRAME') {
+                    video.src = video.dataset.src;
+                } else if (video.tagName === 'VIDEO') {
+                    const source = video.querySelector('source');
+                    source.src = source.dataset.src;
+                    video.load();
+                }
+                video.classList.remove('lazy-load');
+            }
+        });
+    }
+
+    // Listen for scroll and resize events to trigger lazy loading
+    window.addEventListener('scroll', lazyLoad);
+    window.addEventListener('resize', lazyLoad);
+    window.addEventListener('load', lazyLoad);
 
     // Pause auto-slide when a video starts playing
     const videos = document.querySelectorAll('video');
@@ -161,13 +186,10 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         });
         video.addEventListener('ended', () => {
             isVideoPlaying = false;
-            startAutoSlide();
+            startAutoSlide();  // Resume auto-sliding after video ends
         });
     });
 
     // Initialize the slider position
     updateSlider();
 </script>
-
-
-
