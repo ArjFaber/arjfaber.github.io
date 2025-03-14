@@ -168,4 +168,3 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     // Initialize the slider position
     updateSlider();
 </script>
-
