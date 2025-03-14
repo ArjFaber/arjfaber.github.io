@@ -36,7 +36,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 <div class="slider-container">
     <div class="video-slider">
         <div class="video">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" ></iframe>
         </div>
         <div class="video">
             <video class="video-frame" controls>
