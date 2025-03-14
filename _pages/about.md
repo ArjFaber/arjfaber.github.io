@@ -118,16 +118,6 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     function autoSlide() {
-        // Check if the current slide contains a video element
-        const currentSlide = document.querySelectorAll('.video')[index];
-        const videoElement = currentSlide.querySelector('video');
-        
-        // If the video is playing, do not auto slide
-        if (videoElement && !videoElement.paused) {
-            return; // Do not auto slide while the video is playing
-        }
-
-        // If the video is not playing, slide to the next one
         index = (index + 1) % totalVideos;
         updateSlider();
     }
@@ -138,14 +128,15 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     // Optional: Stop auto-slide when a video is playing
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
-        video.addEventListener('play', () => clearInterval(autoSlideInterval));
+        video.addEventListener('play', () => {
+            clearInterval(autoSlideInterval);  // Pause auto-slide when video starts playing
+        });
         video.addEventListener('pause', () => {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(autoSlide, 5000);
+            autoSlideInterval = setInterval(autoSlide, 5000); // Resume auto-slide when paused
         });
         video.addEventListener('ended', () => {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(autoSlide, 5000);
+            autoSlideInterval = setInterval(autoSlide, 5000); // Resume auto-slide when video ends
         });
     });
 </script>
+
