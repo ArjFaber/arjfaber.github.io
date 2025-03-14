@@ -110,62 +110,65 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 <script>
     let index = 0;
-    const slider = document.querySelector('.video-slider');
-    const totalVideos = document.querySelectorAll('.video').length;
+  const slider = document.querySelector('.video-slider');
+const totalVideos = document.querySelectorAll('.video').length;
 
-    let autoSlideInterval;
-    let isVideoPlaying = false;
+let autoSlideInterval;
+let isVideoPlaying = false;
 
-    function updateSlider() {
-        slider.style.transform = translateX(-${index * 100}%);
+function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}%)`;  // Added backticks to create a valid string
+}
+
+function moveSlider(direction) {
+    if (!isVideoPlaying) {
+        index = (index + direction + totalVideos) % totalVideos;
+        updateSlider();
     }
+}
 
-    function moveSlider(direction) {
-        if (!isVideoPlaying) {
-            index = (index + direction + totalVideos) % totalVideos;
-            updateSlider();
-        }
+function autoSlide() {
+    if (!isVideoPlaying) {
+        index = (index + 1) % totalVideos;
+        updateSlider();
     }
+}
 
-    function autoSlide() {
-        if (!isVideoPlaying) {
-            index = (index + 1) % totalVideos;
-            updateSlider();
-        }
+function startAutoSlide() {
+    if (!autoSlideInterval && !isVideoPlaying) {
+        autoSlideInterval = setInterval(autoSlide, 5000);
     }
+}
 
-    function startAutoSlide() {
-        if (!autoSlideInterval && !isVideoPlaying) {
-            autoSlideInterval = setInterval(autoSlide, 5000);
-        }
-    }
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
+}
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    }
-
-    // Ensure the auto-slide functionality works even without interaction
+// Ensure the auto-slide functionality works even without interaction
+document.addEventListener('DOMContentLoaded', function () {
     startAutoSlide();
+});
 
-    // Pause auto-slide when a video starts playing
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-        video.addEventListener('play', () => {
-            isVideoPlaying = true;
-            stopAutoSlide();
-        });
-        video.addEventListener('pause', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
-        video.addEventListener('ended', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
+// Pause auto-slide when a video starts playing
+const videos = document.querySelectorAll('video');
+videos.forEach(video => {
+    video.addEventListener('play', () => {
+        isVideoPlaying = true;
+        stopAutoSlide();
     });
+    video.addEventListener('pause', () => {
+        isVideoPlaying = false;
+        startAutoSlide();
+    });
+    video.addEventListener('ended', () => {
+        isVideoPlaying = false;
+        startAutoSlide();
+    });
+});
 
-    // Initialize the slider position
-    updateSlider();
+// Initialize the slider position
+updateSlider();
+
 </script>
 
