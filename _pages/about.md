@@ -122,29 +122,35 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     // Initialize auto-sliding on page load
-    let autoSlideInterval = setInterval(autoSlide, 5000);
+    let autoSlideInterval;
 
-    // Ensure the auto-slide functionality works regardless of interaction with the videos
+    // Ensure the auto-slide functionality works even without interaction
+    function startAutoSlide() {
+        if (!autoSlideInterval) {
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        }
+    }
+
+    // Start the auto-slide as soon as the page is loaded
+    window.addEventListener('load', () => {
+        startAutoSlide();
+    });
+
+    // Pause auto-slide when a video starts playing
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
         video.addEventListener('play', () => {
             clearInterval(autoSlideInterval);  // Stop auto-slide when a video starts playing
         });
         video.addEventListener('pause', () => {
-            autoSlideInterval = setInterval(autoSlide, 5000); // Restart auto-slide when paused
+            startAutoSlide();  // Restart auto-slide when video is paused
         });
         video.addEventListener('ended', () => {
-            autoSlideInterval = setInterval(autoSlide, 5000); // Restart auto-slide when ended
+            startAutoSlide();  // Restart auto-slide when video ends
         });
     });
 
-    // Start the auto-slide as soon as the page is loaded
-    window.addEventListener('load', () => {
-        autoSlideInterval = setInterval(autoSlide, 5000);  // Ensure auto-slide starts after page load
-    });
-
-    // Initialize the slider to the first video
+    // Initialize the slider position
     updateSlider();
 </script>
-
 
