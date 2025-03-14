@@ -31,7 +31,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🎥 Video Slider
+## 🎥 Recent work assignments
 
 <div class="slider-container">
     <div class="video-slider">
