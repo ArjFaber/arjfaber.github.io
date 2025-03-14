@@ -134,7 +134,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
     function startAutoSlide() {
         if (!autoSlideInterval && !isVideoPlaying) {
-            autoSlideInterval = setInterval(autoSlide, 3000);
+            autoSlideInterval = setInterval(autoSlide, 5000);
         }
     }
 
