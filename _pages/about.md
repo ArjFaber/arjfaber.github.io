@@ -31,7 +31,7 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 
 ---
 
-## 🎥 Most recent work
+## 🎥 Video Slider
 
 <div class="slider-container">
     <div class="video-slider">
@@ -137,3 +137,4 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
         autoSlideInterval = setInterval(autoSlide, 5000);
     }
 </script>
+
