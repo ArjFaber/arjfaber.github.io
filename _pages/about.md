@@ -11,12 +11,6 @@ redirect_from:
 🔬 MSc Data Science, University of Edinburgh - Researching Formal Proofs in RL  
 💡 Passionate about Machine Learning, High-Performance Computing & Robotics  
 
-<iframe width="400" height="225" 
-    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
-    frameborder="0" 
-    allow="autoplay" 
-    allowfullscreen>
-</iframe>
 ---
 
 ## 🔍 About Me  
@@ -35,6 +29,14 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
 - **Robotics & AI** – ROS1/ROS2, OpenPose, SLAM  
 
 ---
+
+## Introduction Video
+<iframe width="400" height="225" 
+    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
+    frameborder="0" 
+    allow="autoplay" 
+    allowfullscreen>
+</iframe>
 
 ## ⬅ Excited to discuss socially aware robotics, ML, or anything innovative—let’s connect!
 
