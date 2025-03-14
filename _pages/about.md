@@ -12,7 +12,7 @@ redirect_from:
 💡 Passionate about Machine Learning, High-Performance Computing & Robotics  
 
 <iframe width="400" height="225" 
-    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=1&mute=0" 
+    src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" 
     frameborder="0" 
     allow="autoplay" 
     allowfullscreen>
