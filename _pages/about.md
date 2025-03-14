@@ -118,20 +118,35 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
     }
 
     function autoSlide() {
-        // For the current slide, if it contains an HTML5 video element,
-        // check if it is playing. If it is playing, do not auto slide.
+        // Check if the current slide contains a video element
         const currentSlide = document.querySelectorAll('.video')[index];
-        const html5Video = currentSlide.querySelector('video');
+        const videoElement = currentSlide.querySelector('video');
         
-        // Only slide if the video is not playing
-        if (html5Video && !html5Video.paused) {
+        // If the video is playing, do not auto slide
+        if (videoElement && !videoElement.paused) {
             return; // Do not auto slide while the video is playing
         }
+
+        // If the video is not playing, slide to the next one
         index = (index + 1) % totalVideos;
         updateSlider();
     }
 
     // Automatically slide every 5 seconds
     let autoSlideInterval = setInterval(autoSlide, 5000);
+
+    // Optional: Stop auto-slide when a video is playing
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        video.addEventListener('play', () => clearInterval(autoSlideInterval));
+        video.addEventListener('pause', () => {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        });
+        video.addEventListener('ended', () => {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        });
+    });
 </script>
 
