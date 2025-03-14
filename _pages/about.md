@@ -138,5 +138,9 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
             autoSlideInterval = setInterval(autoSlide, 5000); // Resume auto-slide when video ends
         });
     });
+
+    // Initialize the slider immediately without waiting for videos
+    updateSlider();
 </script>
+
 
