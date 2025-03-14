@@ -44,6 +44,9 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
                 Your browser does not support the video tag.
             </video>
         </div>
+        <div class="video">
+          <iframe class="video-frame" src="https://www.youtube.com/watch?v=X8vEKe2i508?autoplay=0&mute=0" allowfullscreen"></iframe>
+        </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
