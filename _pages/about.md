@@ -22,12 +22,17 @@ redirect_from:
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
-<!-- CV Section -->
-<div class="cv-container">
+<!-- CV Toggle Button -->
+<div class="cv-toggle-container">
+    <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
+</div>
+
+<!-- Hidden PDF Viewer -->
+<div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
     <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
         This browser does not support PDFs. Please download the PDF to view it:
-        <a href="Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
+        <a href="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
     </iframe>
 </div>
 
@@ -86,6 +91,26 @@ redirect_from:
         background-color: rgba(0, 0, 0, 0.8);
     }
 
+    .cv-toggle-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .cv-toggle-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .cv-toggle-btn:hover {
+        background-color: #0056b3;
+    }
+
     .cv-container {
         max-width: 90%;
         margin: 20px auto;
@@ -93,6 +118,7 @@ redirect_from:
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
         background: #fff;
+        display: none;
     }
 
     .cv-container h2 {
@@ -159,4 +185,16 @@ redirect_from:
     });
 
     updateSlider();
+
+    function toggleCV() {
+        const cvContainer = document.getElementById('cvContainer');
+        const button = document.querySelector('.cv-toggle-btn');
+        if (cvContainer.style.display === 'none') {
+            cvContainer.style.display = 'block';
+            button.textContent = 'Hide CV';
+        } else {
+            cvContainer.style.display = 'none';
+            button.textContent = 'View CV';
+        }
+    }
 </script>
