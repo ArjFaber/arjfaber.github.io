@@ -39,7 +39,7 @@ redirect_from:
 <style>
     .slider-container {
         max-width: 100%;
-        width: auto;
+        width: 100%;
         overflow: hidden;
         position: relative;
         margin: 40px auto 20px auto;
