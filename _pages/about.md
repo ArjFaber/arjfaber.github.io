@@ -7,36 +7,60 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<div class="slider-container">
-    <div class="video-slider">
-        <div class="video">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+
+<div class="content-wrapper">
+    <!-- Left: Video Slider -->
+    <div class="slider-container">
+        <div class="video-slider">
+            <div class="video">
+                <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+            </div>
+            <div class="video">
+                <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
+            </div>
         </div>
-        <div class="video">
-         <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
-        </div>
+        <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+        <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
     </div>
-    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+
+    <!-- Right: PDF Viewer -->
+    <div class="cv-container">
+        <h2>My CV</h2>
+        <iframe src="your-file.pdf" width="100%" height="600px">
+            This browser does not support PDFs. Please download the PDF to view it:
+            <a href="your-file.pdf">Download PDF</a>.
+        </iframe>
+    </div>
 </div>
+
 <style>
+    .content-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
     .slider-container {
-        max-width: 90%;
-        width: auto;
+        flex: 1 1 45%;
+        max-width: 560px;
         overflow: hidden;
         position: relative;
-        margin: auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     .video-slider {
         display: flex;
         width: 300%;
         transition: transform 0.5s ease-in-out;
     }
+
     .video {
         min-width: 100%;
         box-sizing: border-box;
@@ -44,11 +68,14 @@ redirect_from:
         justify-content: center;
         align-items: center;
     }
+
     .video-frame {
-        width: 560px;
+        width: 100%;
+        max-width: 560px;
         height: 315px;
         border-radius: 10px;
     }
+
     .btn {
         position: absolute;
         top: 50%;
@@ -61,74 +88,98 @@ redirect_from:
         font-size: 18px;
         border-radius: 50%;
     }
+
     .prev { left: 5px; }
     .next { right: 5px; }
+
     .btn:hover {
         background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .cv-container {
+        flex: 1 1 45%;
+        max-width: 560px;
+        padding: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .cv-container h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    @media screen and (max-width: 1000px) {
+        .content-wrapper {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slider-container,
+        .cv-container {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
     }
 </style>
 
 <script>
     let index = 0;
-  const slider = document.querySelector('.video-slider');
-const totalVideos = document.querySelectorAll('.video').length;
+    const slider = document.querySelector('.video-slider');
+    const totalVideos = document.querySelectorAll('.video').length;
 
-let autoSlideInterval;
-let isVideoPlaying = false;
+    let autoSlideInterval;
+    let isVideoPlaying = false;
 
-function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;  // Added backticks to create a valid string
-}
-
-function moveSlider(direction) {
-    if (!isVideoPlaying) {
-        index = (index + direction + totalVideos) % totalVideos;
-        updateSlider();
+    function updateSlider() {
+        slider.style.transform = `translateX(-${index * 100}%)`;
     }
-}
 
-function autoSlide() {
-    if (!isVideoPlaying) {
-        index = (index + 1) % totalVideos;
-        updateSlider();
+    function moveSlider(direction) {
+        if (!isVideoPlaying) {
+            index = (index + direction + totalVideos) % totalVideos;
+            updateSlider();
+        }
     }
-}
 
-function startAutoSlide() {
-    if (!autoSlideInterval && !isVideoPlaying) {
-        autoSlideInterval = setInterval(autoSlide, 5000);
+    function autoSlide() {
+        if (!isVideoPlaying) {
+            index = (index + 1) % totalVideos;
+            updateSlider();
+        }
     }
-}
 
-function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = null;
-}
+    function startAutoSlide() {
+        if (!autoSlideInterval && !isVideoPlaying) {
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        }
+    }
 
-// Ensure the auto-slide functionality works even without interaction
-document.addEventListener('DOMContentLoaded', function () {
-    startAutoSlide();
-});
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
 
-// Pause auto-slide when a video starts playing
-const videos = document.querySelectorAll('video');
-videos.forEach(video => {
-    video.addEventListener('play', () => {
-        isVideoPlaying = true;
-        stopAutoSlide();
-    });
-    video.addEventListener('pause', () => {
-        isVideoPlaying = false;
+    document.addEventListener('DOMContentLoaded', function () {
         startAutoSlide();
     });
-    video.addEventListener('ended', () => {
-        isVideoPlaying = false;
-        startAutoSlide();
+
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        video.addEventListener('play', () => {
+            isVideoPlaying = true;
+            stopAutoSlide();
+        });
+        video.addEventListener('pause', () => {
+            isVideoPlaying = false;
+            startAutoSlide();
+        });
+        video.addEventListener('ended', () => {
+            isVideoPlaying = false;
+            startAutoSlide();
+        });
     });
-});
 
-// Initialize the slider position
-updateSlider();
-
+    updateSlider();
 </script>
-# About Me
