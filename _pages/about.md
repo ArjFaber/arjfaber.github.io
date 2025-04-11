@@ -67,7 +67,7 @@ redirect_from:
 
     .video-frame {
         width: 100%;
-        max-width: 560px;
+        max-width: 100%;
         height: 315px;
         border-radius: 10px;
     }
