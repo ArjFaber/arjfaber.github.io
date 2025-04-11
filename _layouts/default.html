@@ -175,7 +175,7 @@ title: Home
     let fontColor = "black"; // Default font color
 
     const baseURL = "https://arjfaber.github.io/files/";
-    const videoURLs = []
+    const videoURLs = [];
     const videoFiles = [
             "background_1.mp4',
             'background_1b.mp4',
@@ -188,21 +188,21 @@ title: Home
 
 
     if (path.includes("/publications/")) {
-      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
+      videoURL = videoURLs.push(baseURL + videoFiles[Math.floor(Math.random() * videoFiles.length)]);
       fontColor = "black";
     }
     if (path.includes("/teaching")) {
-      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
+      videoURL = videoURLs.push(baseURL + videoFiles[Math.floor(Math.random() * videoFiles.length)]);
       fontColor = "black";
     }
     if (path.includes("paper-title-number-2")) {
-      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
+      videoURL = videoURLs.push(baseURL + videoFiles[Math.floor(Math.random() * videoFiles.length)]);
       fontColor = "black"; // Change text color to white for better contrast
       document.getElementById("background-video").playbackRate = 0.65; // 0.5x speed (half speed)
 
     }
     if (path.includes("paper-title-number-1"))  {
-      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
+      videoURL = videoURLs.push(baseURL + videoFiles[Math.floor(Math.random() * videoFiles.length)]);
       fontColor = "black"; // Change text color to white for better contrast
       
     }
