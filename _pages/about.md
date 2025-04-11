@@ -38,39 +38,36 @@ redirect_from:
 
 <style>
     .slider-container {
-        max-width: 100%;
-        width: 100%;
+        max-width: 90%;
+        margin: 40px auto 20px auto;
         overflow: hidden;
         position: relative;
-        margin: 40px auto 20px auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .video-slider {
         display: flex;
-        width: 300%;
         transition: transform 0.5s ease-in-out;
+        width: 200%; /* 100% per video */
     }
 
-   .video {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
-  }
+    .video {
+        width: 100%;
+        position: relative;
+        padding-top: 56.25%; /* 16:9 aspect ratio */
+        flex-shrink: 0;
+    }
 
-  .video-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-  }
+    .video-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+    }
 
     .btn {
         position: absolute;
@@ -83,6 +80,7 @@ redirect_from:
         cursor: pointer;
         font-size: 18px;
         border-radius: 50%;
+        z-index: 1;
     }
 
     .prev { left: 5px; }
@@ -133,59 +131,14 @@ redirect_from:
     const slider = document.querySelector('.video-slider');
     const totalVideos = document.querySelectorAll('.video').length;
 
-    let autoSlideInterval;
-    let isVideoPlaying = false;
-
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
     }
 
     function moveSlider(direction) {
-        if (!isVideoPlaying) {
-            index = (index + direction + totalVideos) % totalVideos;
-            updateSlider();
-        }
+        index = (index + direction + totalVideos) % totalVideos;
+        updateSlider();
     }
-
-    function autoSlide() {
-        if (!isVideoPlaying) {
-            index = (index + 1) % totalVideos;
-            updateSlider();
-        }
-    }
-
-    function startAutoSlide() {
-        if (!autoSlideInterval && !isVideoPlaying) {
-            autoSlideInterval = setInterval(autoSlide, 5000);
-        }
-    }
-
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        startAutoSlide();
-    });
-
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-        video.addEventListener('play', () => {
-            isVideoPlaying = true;
-            stopAutoSlide();
-        });
-        video.addEventListener('pause', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
-        video.addEventListener('ended', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
-    });
-
-    updateSlider();
 
     function toggleCV() {
         const cvContainer = document.getElementById('cvContainer');
@@ -198,4 +151,9 @@ redirect_from:
             button.textContent = 'View CV';
         }
     }
+
+    // Initialize slider
+    document.addEventListener('DOMContentLoaded', () => {
+        updateSlider();
+    });
 </script>
