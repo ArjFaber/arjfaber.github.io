@@ -171,10 +171,17 @@ title: Home
     const path = window.location.pathname;
 
     // Define default video and font color
-    let videoURL = "https://arjfaber.github.io/files/background_1.mp4";
+
+    const videoFilesAbout = [
+      "background_1.mp4",
+      "background_1b.mp4"
+      ];
+    
     let fontColor = "black"; // Default font color
 
     const baseURL = "https://arjfaber.github.io/files/";
+    let videoURL = baseURL + videoFilesAbout[Math.floor(Math.random() * videoFilesAbout.length)];
+
     const videoURLs = [];
     const videoFiles = [
             "background_1.mp4",
