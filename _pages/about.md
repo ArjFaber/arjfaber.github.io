@@ -40,12 +40,6 @@ When I'm not coding, you'll find me playing jazz guitar, following Formula 1, or
             <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
         <div class="video">
-            <video class="video-frame" controls>
-                <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="video">
          <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
     </div>
