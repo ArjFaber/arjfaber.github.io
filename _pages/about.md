@@ -22,7 +22,7 @@ redirect_from:
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
-# My CV accessible below for further details! 
+# See my CV below for further details regarding my work! 
 
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
