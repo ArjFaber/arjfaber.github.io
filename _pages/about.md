@@ -22,6 +22,7 @@ redirect_from:
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
+# Hi, welcome to my website! It contains most of my academic related work to date. 
 # See my CV below for further details regarding my work! 
 
 <!-- CV Toggle Button -->
