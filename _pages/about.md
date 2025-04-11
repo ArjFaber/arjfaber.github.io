@@ -41,7 +41,7 @@ redirect_from:
         max-width: 100%;
         width: 100%;
         overflow: hidden;
-        position: center;
+        position: relative;
         margin: 40px auto 20px auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
