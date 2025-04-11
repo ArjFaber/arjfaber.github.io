@@ -8,45 +8,36 @@ redirect_from:
   - /about.html
 ---
 
-<div class="content-wrapper">
-    <!-- Left: Video Slider -->
-    <div class="slider-container">
-        <div class="video-slider">
-            <div class="video">
-                <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
-            </div>
-            <div class="video">
-                <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
-            </div>
+<!-- Video Slider -->
+<div class="slider-container">
+    <div class="video-slider">
+        <div class="video">
+            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
-        <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-        <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+        <div class="video">
+            <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
+        </div>
     </div>
-    <!-- Right: PDF Viewer -->
-    <div class="cv-container">
-        <h2>My CV</h2>
-        <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
-            This browser does not support PDFs. Please download the PDF to view it:
-            <a href="Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
-        </iframe>
-    </div>
+    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+</div>
+
+<!-- CV Section -->
+<div class="cv-container">
+    <h2>My CV</h2>
+    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV.Recent.pdf" width="100%" height="600px">
+        This browser does not support PDFs. Please download the PDF to view it:
+        <a href="Arjan_Faber_CV.Recent.pdf">Download PDF</a>.
+    </iframe>
 </div>
 
 <style>
-    .content-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 20px;
-    }
-
     .slider-container {
-        flex: 1 1 45%;
-        max-width: 560px;
+        max-width: 90%;
+        width: auto;
         overflow: hidden;
         position: relative;
+        margin: 40px auto 20px auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         display: flex;
@@ -96,9 +87,9 @@ redirect_from:
     }
 
     .cv-container {
-        flex: 1 1 45%;
-        max-width: 560px;
-        padding: 10px;
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
         background: #fff;
@@ -107,19 +98,6 @@ redirect_from:
     .cv-container h2 {
         text-align: center;
         margin-bottom: 15px;
-    }
-
-    @media screen and (max-width: 1000px) {
-        .content-wrapper {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .slider-container,
-        .cv-container {
-            flex: 1 1 100%;
-            max-width: 100%;
-        }
     }
 </style>
 
