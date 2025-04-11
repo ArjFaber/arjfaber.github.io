@@ -23,7 +23,7 @@ redirect_from:
 </div>
 
 # Hi, welcome to my website! It contains most of my academic related work to date. 
-# See my CV below for further details regarding my work! 
+# See my CV below for a consize summary of my work! 
 
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
