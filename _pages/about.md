@@ -21,7 +21,7 @@ redirect_from:
 </div>
 <style>
     .slider-container {
-        max-width: 100%;
+        max-width: 90%;
         width: auto;
         overflow: hidden;
         position: relative;
@@ -32,13 +32,11 @@ redirect_from:
         justify-content: center;
         align-items: center;
     }
-
     .video-slider {
         display: flex;
         width: 300%;
         transition: transform 0.5s ease-in-out;
     }
-
     .video {
         min-width: 100%;
         box-sizing: border-box;
@@ -46,13 +44,11 @@ redirect_from:
         justify-content: center;
         align-items: center;
     }
-
     .video-frame {
         width: 560px;
         height: 315px;
         border-radius: 10px;
     }
-
     .btn {
         position: absolute;
         top: 50%;
@@ -65,10 +61,8 @@ redirect_from:
         font-size: 18px;
         border-radius: 50%;
     }
-
     .prev { left: 5px; }
     .next { right: 5px; }
-
     .btn:hover {
         background-color: rgba(0, 0, 0, 0.8);
     }
