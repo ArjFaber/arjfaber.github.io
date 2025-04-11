@@ -57,20 +57,25 @@ redirect_from:
     }
 
     .video {
-        min-width: 100%;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+  }
 
-    .video-frame {
-        width: 100%;
-        max-width: 560px;
-        height: 315px;
-        border-radius: 10px;
-    }
-
+   .video-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+  }
     .btn {
         position: absolute;
         top: 50%;
