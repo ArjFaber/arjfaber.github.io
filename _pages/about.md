@@ -56,26 +56,22 @@ redirect_from:
         transition: transform 0.5s ease-in-out;
     }
 
-    .video {
-    min-width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   .video {
     position: relative;
+    width: 100%;
     padding-top: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
   }
 
-   .video-frame {
+  .video-frame {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
     border: none;
+    border-radius: 10px;
   }
+
     .btn {
         position: absolute;
         top: 50%;
