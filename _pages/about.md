@@ -19,11 +19,6 @@ redirect_from:
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
-
-# About Me
-
-
-
 <style>
     .slider-container {
         max-width: 100%;
@@ -142,4 +137,4 @@ videos.forEach(video => {
 updateSlider();
 
 </script>
-
+# About Me
