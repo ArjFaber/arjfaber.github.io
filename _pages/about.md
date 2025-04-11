@@ -21,7 +21,9 @@ redirect_from:
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
-## More about me! 
+
+## Check my most recent CV accessible via the button below for more details about my work! 
+
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
