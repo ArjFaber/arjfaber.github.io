@@ -173,24 +173,36 @@ title: Home
     // Define default video and font color
     let videoURL = "https://arjfaber.github.io/files/background_1.mp4";
     let fontColor = "black"; // Default font color
-  
+
+    const baseURL = "https://arjfaber.github.io/files/";
+    const videoURLs = []
+    const videoFiles = [
+            "background_1.mp4',
+            'background_1b.mp4',
+            'background_2.mp4',
+            'background_3.mp4',  // You can also add .mov or any other video formats
+            'background_4.mp4';
+        ];
+
+        // Select a random video file
+
 
     if (path.includes("/publications/")) {
-      videoURL = "https://arjfaber.github.io/files/background_2.mp4"
+      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
       fontColor = "black";
     }
     if (path.includes("/teaching")) {
-      videoURL = "https://arjfaber.github.io/files/background_1b.mp4";
+      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
       fontColor = "black";
     }
     if (path.includes("paper-title-number-2")) {
-      videoURL = "https://arjfaber.github.io/files/background_4.mp4";
+      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
       fontColor = "black"; // Change text color to white for better contrast
       document.getElementById("background-video").playbackRate = 0.65; // 0.5x speed (half speed)
 
     }
     if (path.includes("paper-title-number-1"))  {
-      videoURL = "https://arjfaber.github.io/files/background_3.mp4";
+      videoURL = videoFiles[Math.floor(Math.random() * videoFiles.length)];
       fontColor = "black"; // Change text color to white for better contrast
       
     }
