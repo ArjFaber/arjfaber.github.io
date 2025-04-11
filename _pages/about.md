@@ -49,7 +49,7 @@ redirect_from:
     .video-slider {
         display: flex;
         transition: transform 0.5s ease-in-out;
-        width: 200%; /* 100% per video */
+        width: 100%; /* 100% per video */
     }
 
     .video {
