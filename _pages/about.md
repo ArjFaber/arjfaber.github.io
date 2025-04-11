@@ -25,9 +25,9 @@ redirect_from:
 <!-- CV Section -->
 <div class="cv-container">
     <h2>My CV</h2>
-    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV.Recent.pdf" width="100%" height="600px">
+    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
         This browser does not support PDFs. Please download the PDF to view it:
-        <a href="Arjan_Faber_CV.Recent.pdf">Download PDF</a>.
+        <a href="Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
     </iframe>
 </div>
 
