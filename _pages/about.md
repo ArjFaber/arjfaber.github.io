@@ -30,9 +30,9 @@ redirect_from:
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
-    <iframe src="https://arjfaber.github.io/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
+    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
         This browser does not support PDFs. Please download the PDF to view it:
-        <a href="https://arjfaber.github.io/Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
+        <a href="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
     </iframe>
 </div>
 
