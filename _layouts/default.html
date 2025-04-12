@@ -195,10 +195,13 @@ title: Home
 
         // Select a random video file
 
-
+      const videoFiles_YLW - [
+          "background_2a.mp4",
+          "background_2c.mp4
+        ];
     if (path.includes("/publications/")) {
-      videoURL = baseURL + "background_2a.mp4";
-      fontColor = "white";
+      videoURL = baseURL + videoFiles_YLW[Math.floor(Math.random() * videoFiles_YLW.length)];
+      fontColor = "black";
     }
     if (path.includes("/teaching")) {
       videoURL = baseURL + videoFiles[Math.floor(Math.random() * videoFiles.length)];
