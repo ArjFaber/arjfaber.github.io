@@ -180,9 +180,7 @@ title: Home
       ];
 
     const videoFiles_YLW = [
-      "background_2a.mp4",
       "background_2c.mp4",
-      "background_3c.mp4"
       ];
     
     let fontColor = "black"; // Default font color
@@ -215,6 +213,11 @@ title: Home
 
     }
     if (path.includes("paper-title-number-1"))  {
+      videoURL = baseURL  ;
+      fontColor = "black"; // Change text color to white for better contrast
+      
+    }
+     if (path.includes("paper-title-number-2"))  {
       videoURL = baseURL  ;
       fontColor = "black"; // Change text color to white for better contrast
       
