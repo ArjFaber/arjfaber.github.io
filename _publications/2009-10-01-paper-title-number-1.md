@@ -16,3 +16,20 @@ This research focuses on developing socially aware robotics using reinforcement 
 We implemented Deep Q-Learning (DQN) to optimize decision-making in human-robot interactions. Additionally, we developed a predictive model for sound classification, addressing class imbalance with random oversampling, label simplification, and confidence interval adjustments. These improvements enhanced the model's accuracy and generalization.
 
 Future work includes exploring Bayesian neural networks, SMOTE for data balancing, and real-time learning, aiming to refine socially intelligent robotic behavior.
+
+
+Featured:
+
+Data Collection with KUKA robot (Harmony):
+<video width="640" height="360" controls autoplay muted>
+    <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+Final Demo with KUKA robot (Harmony):
+
+<video width="640" height="360" controls autoplay muted>
+    <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
