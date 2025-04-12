@@ -30,6 +30,7 @@ redirect_from:
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
 </div>
 
+For any queries, don't hesitate to contact me!
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
