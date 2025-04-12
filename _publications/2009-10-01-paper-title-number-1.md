@@ -21,14 +21,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 Featured:
 
 Data Collection with KUKA robot (Harmony):
-<video width="640" height="360" controls autoplay muted>
-    <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
+<video width="640" height="360" controls autoplay muted loop>
+    <source src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
 Final Demo with KUKA robot (Harmony):
 
-<video width="640" height="360" controls autoplay muted>
+<video width="640" height="360" controls autoplay muted loop>
     <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
