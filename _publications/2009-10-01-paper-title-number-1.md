@@ -33,3 +33,4 @@ Final Demo with KUKA robot (Harmony):
     Your browser does not support the video tag.
 </video>
 
+![KUKA Robot Image](https://arjfaber.github.io/files/UT.png)
