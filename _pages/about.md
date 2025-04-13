@@ -11,7 +11,7 @@ redirect_from:
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
-        <div class="video">
+        <div class="video active">
             <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
         <div class="video">
@@ -45,27 +45,39 @@ redirect_from:
 <style>
     .slider-container {
         max-width: 90%;
+        width: auto;
         overflow: hidden;
         position: relative;
         margin: 40px auto 20px auto;
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .video-slider {
         display: flex;
+        width: 300%;
         transition: transform 0.5s ease-in-out;
-        width: 200%; /* 100% * number of videos */
     }
 
     .video {
         min-width: 100%;
         width: 100%;
         box-sizing: border-box;
-        flex: 0 0 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    .video.active {
+        transform: scale(1.05);
+        opacity: 1;
+        z-index: 2;
     }
 
     .video-frame {
@@ -138,14 +150,46 @@ redirect_from:
     const videoElements = document.querySelectorAll('.video');
     const totalVideos = videoElements.length;
 
+    let autoSlideInterval;
+    let isVideoPlaying = false;
+
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
+
+        videoElements.forEach((vid, i) => {
+            vid.classList.toggle('active', i === index);
+        });
     }
 
     function moveSlider(direction) {
-        index = (index + direction + totalVideos) % totalVideos;
-        updateSlider();
+        if (!isVideoPlaying) {
+            index = (index + direction + totalVideos) % totalVideos;
+            updateSlider();
+        }
     }
+
+    function autoSlide() {
+        if (!isVideoPlaying) {
+            index = (index + 1) % totalVideos;
+            updateSlider();
+        }
+    }
+
+    function startAutoSlide() {
+        if (!autoSlideInterval && !isVideoPlaying) {
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        }
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        startAutoSlide();
+        updateSlider();
+    });
 
     function toggleCV() {
         const cvContainer = document.getElementById('cvContainer');
@@ -158,8 +202,4 @@ redirect_from:
             button.textContent = 'View CV';
         }
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        updateSlider();
-    });
 </script>
