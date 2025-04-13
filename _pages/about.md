@@ -83,8 +83,9 @@ redirect_from:
     }
 
     .slider-container {
-        max-width: 90%;
+        max-width: 100%;
         overflow: hidden;
+        aspect-ratio: 16 /9;  
         position: relative;
         margin: 40px auto 20px auto;
         border-radius: 10px;
@@ -96,12 +97,14 @@ redirect_from:
 
     .video-slider {
         display: flex;
-        width: 300%;
+        height: 100%;
+        width: 100%;
         transition: transform 0.5s ease-in-out;
     }
 
     .video {
         min-width: 100%;
+        height: 100%;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
