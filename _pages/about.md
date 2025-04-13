@@ -11,7 +11,7 @@ redirect_from:
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
-        <div class="video">
+        <div class="video active">
             <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
         <div class="video">
@@ -22,17 +22,17 @@ redirect_from:
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
-# Hi, welcome to my website! It contains most of my academic related work to date. 
-# See my CV below for a concise summary! 
+<!-- Intro Text -->
+<p style="text-align:center; margin-top: 20px;">
+  Hi, welcome to my website! It contains most of my academic related work to date.<br>
+  See my CV below for a concise summary!
+</p>
 
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
 </div>
 
-
-
-For any queries, don't hesitate to contact me!
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
@@ -69,6 +69,15 @@ For any queries, don't hesitate to contact me!
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    .video.active {
+        transform: scale(1.05);
+        opacity: 1;
+        z-index: 2;
     }
 
     .video-frame {
@@ -89,6 +98,7 @@ For any queries, don't hesitate to contact me!
         cursor: pointer;
         font-size: 18px;
         border-radius: 50%;
+        z-index: 3;
     }
 
     .prev { left: 5px; }
@@ -137,13 +147,18 @@ For any queries, don't hesitate to contact me!
 <script>
     let index = 0;
     const slider = document.querySelector('.video-slider');
-    const totalVideos = document.querySelectorAll('.video').length;
+    const videoElements = document.querySelectorAll('.video');
+    const totalVideos = videoElements.length;
 
     let autoSlideInterval;
     let isVideoPlaying = false;
 
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
+
+        videoElements.forEach((vid, i) => {
+            vid.classList.toggle('active', i === index);
+        });
     }
 
     function moveSlider(direction) {
@@ -173,25 +188,8 @@ For any queries, don't hesitate to contact me!
 
     document.addEventListener('DOMContentLoaded', function () {
         startAutoSlide();
+        updateSlider();
     });
-
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-        video.addEventListener('play', () => {
-            isVideoPlaying = true;
-            stopAutoSlide();
-        });
-        video.addEventListener('pause', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
-        video.addEventListener('ended', () => {
-            isVideoPlaying = false;
-            startAutoSlide();
-        });
-    });
-
-    updateSlider();
 
     function toggleCV() {
         const cvContainer = document.getElementById('cvContainer');
