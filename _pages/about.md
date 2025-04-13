@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Arjan Faber – About Me"
+title: "About Me "
 author_profile: true
 description: "Specializing in Reinforcement Learning, High-Performance Computing, and Robotics."
 redirect_from: 
