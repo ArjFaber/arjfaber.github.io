@@ -10,7 +10,7 @@ redirect_from:
 <div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 
 <p style="text-align:center; margin-top: 20px;">
-"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!"
+Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!
 </p>
 
 <div class="cv-toggle-container">
