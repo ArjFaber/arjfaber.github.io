@@ -98,7 +98,7 @@ redirect_from:
         display: flex;
         justify-content: center;
         align-items: center;
-        transform: scale(0.9);
+        transform: scale(1);
         opacity: 0.6;
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
