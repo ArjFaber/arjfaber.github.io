@@ -51,7 +51,7 @@ redirect_from:
 <!-- Project Cards -->
 <div class="project-card">
     <h3> Verifying the Upper Confidence Bound in Isabelle/HOL</h3>
-    <p>This project formally verifies the Upper Confidence Bound (UCB) algorithm in Isabelle/HOL, focusing on its probabilistic guarantees and regret bounds. By leveraging advanced stochastic tools—such as martingales, concentration inequalities, and stopping times—it de- velops machine-checked proofs of UCB’s correctness. The work extends Isabelle/HOL’s probabilistic framework and explores verification of continuous-time bandit models via stochastic differential equations and Itô calculus. This research advances the formal verification of prob- abilistic algorithms in reinforcement learning.</p>
+    <p>This project formally verifies the Upper Confidence Bound (UCB) algorithm in Isabelle/HOL, focusing on its probabilistic guarantees and regret bounds. By leveraging advanced stochastic tools—such as martingales, concentration inequalities, and stopping times—it develops machine-checked proofs of UCB’s correctness. The work extends Isabelle/HOL’s probabilistic framework and explores verification of continuous-time bandit models via stochastic differential equations and Itô calculus. This research advances the formal verification of prob- abilistic algorithms in reinforcement learning.</p>
     <button onclick="alert('Coming soon: A Project Towards Formal Verification of Continuous-Time Bandit Algorithms Using Stochastic Calculus!')">Learn More</button>
 </div>
 
