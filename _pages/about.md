@@ -7,16 +7,27 @@ redirect_from:
   - /about/
   - /about.html
 ---
+<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 
 <p style="text-align:center; margin-top: 20px;">
 "Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!"
 
 
 </p>
+<div class="cv-toggle-container">
+    <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
+</div>
 
+<!-- Hidden PDF Viewer -->
+<div class="cv-container" id="cvContainer" style="display: none;">
+    <h2>My CV</h2>
+    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
+        This browser does not support PDFs. Please download the PDF to view it:
+        <a href="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
+    </iframe>
+</div>
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
-## Recent work
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
@@ -35,21 +46,8 @@ redirect_from:
 
 <!-- Intro Text -->
 
-<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
-
 <!-- CV Toggle Button -->
-<div class="cv-toggle-container">
-    <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
-</div>
 
-<!-- Hidden PDF Viewer -->
-<div class="cv-container" id="cvContainer" style="display: none;">
-    <h2>My CV</h2>
-    <iframe src="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf" width="100%" height="600px">
-        This browser does not support PDFs. Please download the PDF to view it:
-        <a href="https://arjfaber.github.io/files/Arjan_Faber_CV_Recent.pdf">Download PDF</a>.
-    </iframe>
-</div>
 
 <!-- Project Cards -->
 <div class="project-card">
