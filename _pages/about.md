@@ -11,24 +11,17 @@ redirect_from:
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
-<!-- Dark Mode Toggle -->
-<div style="text-align: center; margin-top: 20px;">
-    <button onclick="toggleDarkMode()" class="cv-toggle-btn">Toggle Dark Mode</button>
-</div>
-
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
         <div class="video active">
             <div>
                 <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/k-XBWFp1FAQ?enablejsapi=1" allowfullscreen></iframe>
-                <div class="video-caption">Demo 1: RL in Robotics</div>
             </div>
         </div>
         <div class="video">
             <div>
                 <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
-                <div class="video-caption">Demo 2: High-Performance Computing</div>
             </div>
         </div>
     </div>
