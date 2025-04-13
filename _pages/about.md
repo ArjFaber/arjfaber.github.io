@@ -11,14 +11,14 @@ redirect_from:
 
 <p style="text-align:center; margin-top: 20px;">
 "Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!"
-
-
 </p>
+
 <div class="cv-toggle-container">
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
 </div>
 
-## Featured Activity
+
+## Featured Activity👇
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
@@ -49,7 +49,7 @@ redirect_from:
 
 <!-- CV Toggle Button -->
 
-## Upcoming Projects
+## Upcoming Projects👇
 
 <!-- Project Cards -->
 <div class="project-card">
