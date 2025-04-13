@@ -9,15 +9,14 @@ redirect_from:
 ---
 
 <p style="text-align:center; margin-top: 20px;">
-"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for previews of upcoming projects. Cheers, Arjan!"
+"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!"
 
 
 </p>
-<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
-
+## Recent work
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
@@ -36,6 +35,7 @@ redirect_from:
 
 <!-- Intro Text -->
 
+<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
