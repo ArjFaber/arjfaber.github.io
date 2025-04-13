@@ -8,18 +8,21 @@ redirect_from:
   - /about.html
 ---
 
+<!-- Load YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
         <div class="video active">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/k-XBWFp1FAQ?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/k-XBWFp1FAQ?enablejsapi=1" allowfullscreen></iframe>
         </div>
         <div class="video">
-            <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
+            <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
         </div>
     </div>
-    <button class="btn prev" onclick="moveSlider(-1)" aria-label="Previous video">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)" aria-label="Next video">&#10095;</button>
+    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
 <!-- Intro Text -->
@@ -43,10 +46,8 @@ redirect_from:
 </div>
 
 <style>
-    /* CSS for the slider */
     .slider-container {
         max-width: 90%;
-        width: auto;
         overflow: hidden;
         position: relative;
         margin: 40px auto 20px auto;
@@ -65,14 +66,13 @@ redirect_from:
 
     .video {
         min-width: 100%;
-        width: 100%;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: transform 0.4s ease, opacity 0.4s ease;
         transform: scale(0.9);
         opacity: 0.6;
+        transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
     .video.active {
@@ -81,9 +81,8 @@ redirect_from:
         z-index: 2;
     }
 
-    /* Pop-out animation */
     @keyframes popOutIn {
-        0% { transform: scale(1.05); opacity: 1; }
+        0% { transform: scale(1.05); }
         50% { transform: scale(1.15); }
         100% { transform: scale(1.05); }
     }
@@ -100,7 +99,6 @@ redirect_from:
         border-radius: 10px;
     }
 
-    /* Slider buttons */
     .btn {
         position: absolute;
         top: 50%;
@@ -122,7 +120,6 @@ redirect_from:
         background-color: rgba(0, 0, 0, 0.8);
     }
 
-    /* CV toggle button */
     .cv-toggle-container {
         text-align: center;
         margin-top: 30px;
@@ -143,7 +140,6 @@ redirect_from:
         background-color: #0056b3;
     }
 
-    /* CV container */
     .cv-container {
         max-width: 90%;
         margin: 20px auto;
@@ -168,6 +164,7 @@ redirect_from:
 
     let autoSlideInterval;
     let isVideoPlaying = false;
+    let ytPlayers = [];
 
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
@@ -187,7 +184,7 @@ redirect_from:
             currentVideo.classList.remove('pop-animate');
             index = (index + direction + totalVideos) % totalVideos;
             updateSlider();
-        }, 1600); // Match the animation duration
+        }, 1600);
     }
 
     function autoSlide() {
@@ -200,7 +197,7 @@ redirect_from:
             currentVideo.classList.remove('pop-animate');
             index = (index + 1) % totalVideos;
             updateSlider();
-        }, 1600); // Slightly more than animation duration
+        }, 1600);
     }
 
     function startAutoSlide() {
@@ -214,11 +211,6 @@ redirect_from:
         autoSlideInterval = null;
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        startAutoSlide();
-        updateSlider();
-    });
-
     function toggleCV() {
         const cvContainer = document.getElementById('cvContainer');
         const button = document.querySelector('.cv-toggle-btn');
@@ -230,4 +222,32 @@ redirect_from:
             button.textContent = 'View CV';
         }
     }
+
+    // YouTube IFrame API callback
+    function onYouTubeIframeAPIReady() {
+        const iframes = document.querySelectorAll('.video-frame');
+        iframes.forEach((iframe, i) => {
+            ytPlayers[i] = new YT.Player(iframe, {
+                events: {
+                    'onStateChange': function (event) {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            isVideoPlaying = true;
+                            stopAutoSlide();
+                        } else if (
+                            event.data === YT.PlayerState.PAUSED ||
+                            event.data === YT.PlayerState.ENDED
+                        ) {
+                            isVideoPlaying = false;
+                            startAutoSlide();
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateSlider();
+        startAutoSlide();
+    });
 </script>
