@@ -8,6 +8,13 @@ redirect_from:
   - /about.html
 ---
 
+<p style="text-align:center; margin-top: 20px;">
+"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for previews of upcoming projects. Cheers, Arjan!"
+
+
+</p>
+<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
+
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -26,14 +33,9 @@ redirect_from:
 </div>
 
 <!-- Fun Fact Section -->
-<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 
 <!-- Intro Text -->
-<p style="text-align:center; margin-top: 20px;">
-"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for previews of upcoming projects. Cheers, Arjan!"
 
-
-</p>
 
 <!-- CV Toggle Button -->
 <div class="cv-toggle-container">
