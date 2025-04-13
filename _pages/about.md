@@ -541,13 +541,6 @@ redirect_from:
         clearInterval(autoSlideInterval);
         autoSlideInterval = null;
     }
-function displayFact() {
-    let fact = references[Math.floor(Math.random() * references.length)];
-    let factText = `${fact.title} (${fact.year}) - ${fact.authors}`;
-    
-    // Assuming you have a div with id 'factBar' to display the fact
-    document.getElementById('factBar').innerText = factText;
-}
 
     function toggleCV() {
         const cvContainer = document.getElementById('cvContainer');
@@ -565,11 +558,15 @@ function displayFact() {
         document.body.classList.toggle('dark-mode');
     }
 
-    function showRandomFact() {
-        document.getElementById('funFact').textContent = "💡 " + facts[Math.floor(Math.random() * facts.length)];
-    }
+   function showRandomFact() {
+    let fact = references[Math.floor(Math.random() * references.length)];
+    let factText = `${fact.title} (${fact.year}) - ${fact.authors}`;
+    document.getElementById('funFact').textContent = "💡 " + factText;
+  }
 
-    setInterval(showRandomFact, 6000);
+  setInterval(showRandomFact, 6000);
+
+   
 
     // YouTube IFrame API callback
     function onYouTubeIframeAPIReady() {
@@ -597,6 +594,6 @@ function displayFact() {
     document.addEventListener('DOMContentLoaded', function () {
         updateSlider();
         startAutoSlide();
-        displayFact();
+        showRandomFact();
     });
 </script>
