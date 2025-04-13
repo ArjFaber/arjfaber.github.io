@@ -31,7 +31,7 @@ redirect_from:
 <!-- Intro Text -->
 <p style="text-align:center; margin-top: 20px;">
   Hi, welcome to my website! It contains most of my academic related work to date.<br>
-  <a href="#cvContainer">Jump to CV</a> or check below for project previews!
+  Jump to CV for a summary of my work and check below for coming project previews!
 </p>
 
 <!-- CV Toggle Button -->
@@ -50,15 +50,9 @@ redirect_from:
 
 <!-- Project Cards -->
 <div class="project-card">
-    <h3>🤖 Robotic Grasping with RL</h3>
-    <p>Used deep reinforcement learning to teach a robotic arm to pick up objects with precision and efficiency.</p>
-    <button onclick="alert('Coming soon: Detailed project breakdown!')">Learn More</button>
-</div>
-
-<div class="project-card">
-    <h3>💻 HPC-Based Climate Modeling</h3>
-    <p>Simulated large-scale weather systems using high-performance clusters to improve forecast accuracy.</p>
-    <button onclick="alert('Coming soon: Interactive simulation link!')">Learn More</button>
+    <h3> Verifying the Upper Confidence Bound in Isabelle/HOL</h3>
+    <p>This project formally verifies the Upper Confidence Bound (UCB) algorithm in Isabelle/HOL, focusing on its probabilistic guarantees and regret bounds. By leveraging advanced stochastic tools—such as martingales, concentration inequalities, and stopping times—it de- velops machine-checked proofs of UCB’s correctness. The work extends Isabelle/HOL’s probabilistic framework and explores verification of continuous-time bandit models via stochastic differential equations and Itô calculus. This research advances the formal verification of prob- abilistic algorithms in reinforcement learning.</p>
+    <button onclick="alert('Coming soon: A Project Towards Formal Verification of Continuous-Time Bandit Algorithms Using Stochastic Calculus!')">Learn More</button>
 </div>
 
 <style>
