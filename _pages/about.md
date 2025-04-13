@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Arjan Faber – Research & Projects"
+title: "Arjan Faber – MSc student"
 author_profile: true
 description: "Specializing in Reinforcement Learning, High-Performance Computing, and Robotics."
 redirect_from: 
