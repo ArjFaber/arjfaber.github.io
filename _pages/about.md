@@ -30,8 +30,9 @@ redirect_from:
 
 <!-- Intro Text -->
 <p style="text-align:center; margin-top: 20px;">
-  Hi, welcome to my website! It contains most of my academic related work to date.<br>
-  Jump to CV for a summary of my work and check below for coming project previews!
+"Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for previews of upcoming projects. Cheers, Arjan!"
+
+
 </p>
 
 <!-- CV Toggle Button -->
