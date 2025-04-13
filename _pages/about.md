@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: ""
+title: "Arjan Faber – Research & Projects"
 author_profile: true
 description: "Specializing in Reinforcement Learning, High-Performance Computing, and Robotics."
 redirect_from: 
@@ -18,8 +18,8 @@ redirect_from:
             <iframe class="video-frame" src="https://www.youtube.com/embed/X8vEKe2i508?autoplay=0&mute=0" allowfullscreen></iframe>
         </div>
     </div>
-    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+    <button class="btn prev" onclick="moveSlider(-1)" aria-label="Previous video">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)" aria-label="Next video">&#10095;</button>
 </div>
 
 <!-- Intro Text -->
@@ -43,6 +43,7 @@ redirect_from:
 </div>
 
 <style>
+    /* CSS for the slider */
     .slider-container {
         max-width: 90%;
         width: auto;
@@ -80,6 +81,18 @@ redirect_from:
         z-index: 2;
     }
 
+    /* Pop-out animation */
+    @keyframes popOutIn {
+        0% { transform: scale(1.05); opacity: 1; }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1.05); }
+    }
+
+    .video.pop-animate {
+        animation: popOutIn 1.5s ease;
+        z-index: 2;
+    }
+
     .video-frame {
         width: 100%;
         max-width: 100%;
@@ -87,6 +100,7 @@ redirect_from:
         border-radius: 10px;
     }
 
+    /* Slider buttons */
     .btn {
         position: absolute;
         top: 50%;
@@ -108,6 +122,7 @@ redirect_from:
         background-color: rgba(0, 0, 0, 0.8);
     }
 
+    /* CV toggle button */
     .cv-toggle-container {
         text-align: center;
         margin-top: 30px;
@@ -128,6 +143,7 @@ redirect_from:
         background-color: #0056b3;
     }
 
+    /* CV container */
     .cv-container {
         max-width: 90%;
         margin: 20px auto;
@@ -162,17 +178,29 @@ redirect_from:
     }
 
     function moveSlider(direction) {
-        if (!isVideoPlaying) {
+        if (isVideoPlaying) return;
+
+        const currentVideo = videoElements[index];
+        currentVideo.classList.add('pop-animate');
+
+        setTimeout(() => {
+            currentVideo.classList.remove('pop-animate');
             index = (index + direction + totalVideos) % totalVideos;
             updateSlider();
-        }
+        }, 1600); // Match the animation duration
     }
 
     function autoSlide() {
-        if (!isVideoPlaying) {
+        if (isVideoPlaying) return;
+
+        const currentVideo = videoElements[index];
+        currentVideo.classList.add('pop-animate');
+
+        setTimeout(() => {
+            currentVideo.classList.remove('pop-animate');
             index = (index + 1) % totalVideos;
             updateSlider();
-        }
+        }, 1600); // Slightly more than animation duration
     }
 
     function startAutoSlide() {
