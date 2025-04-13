@@ -18,6 +18,7 @@ redirect_from:
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
 </div>
 
+## Featured Activity
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
@@ -48,6 +49,7 @@ redirect_from:
 
 <!-- CV Toggle Button -->
 
+## Upcoming Projects
 
 <!-- Project Cards -->
 <div class="project-card">
