@@ -15,14 +15,10 @@ redirect_from:
 <div class="slider-container">
     <div class="video-slider">
         <div class="video active">
-            <div>
                 <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/k-XBWFp1FAQ?enablejsapi=1" allowfullscreen></iframe>
-            </div>
         </div>
         <div class="video">
-            <div>
                 <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
-            </div>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
