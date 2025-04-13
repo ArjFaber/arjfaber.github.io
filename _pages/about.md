@@ -72,17 +72,20 @@ redirect_from:
     }
 
     .slider-container {
-        max-width: 100%;
-        height: 100%;
-        overflow: hidden;
-        position: relative;
-        margin: 40px auto 20px auto;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    max-width: 100%;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    margin: 40px auto 20px auto;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00ff00;  /* Neon green border */
+    position: relative;
+  }
 
     .video-slider {
         display: flex;
@@ -103,11 +106,11 @@ redirect_from:
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
-    .video.active {
-        transform: scale(1.05);
-        opacity: 1;
-        z-index: 2;
-    }
+   .video.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
+}
 
     @keyframes popOutIn {
         0% { transform: scale(1.05); }
@@ -120,14 +123,13 @@ redirect_from:
         z-index: 2;
     }
 
-    .video-frame {
-        width: 100%;
-        max-width: 100%;
-        height: 315px;
-        border: none;
-        border-radius: 10px;
-        
-    }
+   .video-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: #222;  /* Dark background for iframe */
+}
 
     .video-caption {
         text-align: center;
