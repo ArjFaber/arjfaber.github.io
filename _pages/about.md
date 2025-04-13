@@ -11,38 +11,24 @@ redirect_from:
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
-<!-- Dark Mode Toggle -->
-<div style="text-align: center; margin-top: 20px;">
-    <button onclick="toggleDarkMode()" class="cv-toggle-btn">Toggle Dark Mode</button>
-</div>
-
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
         <div class="video active">
-            <div>
-                <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/k-XBWFp1FAQ?enablejsapi=1" allowfullscreen></iframe>
-                <div class="video-caption">Demo 1: RL in Robotics</div>
-            </div>
+            <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/k-XBWFp1FAQ?enablejsapi=1" allowfullscreen></iframe>
         </div>
         <div class="video">
-            <div>
-                <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
-                <div class="video-caption">Demo 2: High-Performance Computing</div>
-            </div>
+            <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
-<!-- Fun Fact Section -->
-<div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
-
 <!-- Intro Text -->
 <p style="text-align:center; margin-top: 20px;">
   Hi, welcome to my website! It contains most of my academic related work to date.<br>
-  <a href="#cvContainer">Jump to CV</a> or check below for project previews!
+  See my CV below for a concise summary!
 </p>
 
 <!-- CV Toggle Button -->
@@ -59,31 +45,11 @@ redirect_from:
     </iframe>
 </div>
 
-<!-- Project Cards -->
-<div class="project-card">
-    <h3>🤖 Robotic Grasping with RL</h3>
-    <p>Used deep reinforcement learning to teach a robotic arm to pick up objects with precision and efficiency.</p>
-    <button onclick="alert('Coming soon: Detailed project breakdown!')">Learn More</button>
-</div>
-
-<div class="project-card">
-    <h3>💻 HPC-Based Climate Modeling</h3>
-    <p>Simulated large-scale weather systems using high-performance clusters to improve forecast accuracy.</p>
-    <button onclick="alert('Coming soon: Interactive simulation link!')">Learn More</button>
-</div>
-
 <style>
-    body.dark-mode {
-        background-color: #121212;
-        color: white;
-    }
-
-    .dark-mode .cv-container {
-        background: #1e1e1e;
-    }
-
     .slider-container {
         max-width: 90%;
+        width: 100%;
+        aspect-ratio: 16 / 9;
         overflow: hidden;
         position: relative;
         margin: 40px auto 20px auto;
@@ -96,13 +62,15 @@ redirect_from:
 
     .video-slider {
         display: flex;
-        width: 300%;
+        width: 100%;
+        height: 100%;
         transition: transform 0.5s ease-in-out;
     }
 
     .video {
-        min-width: 100%;
+        width: 100%;
         height: 100%;
+        flex-shrink: 0;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
@@ -131,16 +99,9 @@ redirect_from:
 
     .video-frame {
         width: 100%;
-        max-width: 100%;
-        height: 315px;
+        height: 100%;
+        border: none;
         border-radius: 10px;
-    }
-
-    .video-caption {
-        text-align: center;
-        font-size: 14px;
-        margin-top: 10px;
-        color: #555;
     }
 
     .btn {
@@ -198,32 +159,6 @@ redirect_from:
         text-align: center;
         margin-bottom: 15px;
     }
-
-    .fun-fact {
-        text-align: center;
-        margin-top: 25px;
-        font-style: italic;
-        color: #666;
-    }
-
-    .project-card {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 12px;
-        background: #f7f7f7;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-        text-align: center;
-    }
-
-    .project-card:hover {
-        transform: scale(1.02);
-    }
-
-    .project-card h3 {
-        margin-bottom: 10px;
-    }
 </style>
 
 <script>
@@ -235,13 +170,6 @@ redirect_from:
     let autoSlideInterval;
     let isVideoPlaying = false;
     let ytPlayers = [];
-
-    const facts = [
-        "Reinforcement Learning mimics how humans learn by reward!",
-        "The first neural network was proposed in 1943!",
-        "HPC clusters can simulate entire galaxies 🌌",
-        "Robots don’t get tired — just overheating CPUs 🧠🔥",
-    ];
 
     function updateSlider() {
         slider.style.transform = `translateX(-${index * 100}%)`;
@@ -300,17 +228,6 @@ redirect_from:
         }
     }
 
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
-
-    function showRandomFact() {
-        document.getElementById('funFact').textContent = "💡 " + facts[Math.floor(Math.random() * facts.length)];
-    }
-
-    setInterval(showRandomFact, 6000);
-
-    // YouTube IFrame API callback
     function onYouTubeIframeAPIReady() {
         const iframes = document.querySelectorAll('.video-frame');
         iframes.forEach((iframe, i) => {
@@ -336,6 +253,5 @@ redirect_from:
     document.addEventListener('DOMContentLoaded', function () {
         updateSlider();
         startAutoSlide();
-        showRandomFact();
     });
 </script>
