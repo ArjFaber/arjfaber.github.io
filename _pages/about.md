@@ -17,8 +17,6 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
     <button class="cv-toggle-btn" onclick="toggleCV()">View CV</button>
 </div>
 
-
-## Featured Activity👇
 <!-- Hidden PDF Viewer -->
 <div class="cv-container" id="cvContainer" style="display: none;">
     <h2>My CV</h2>
@@ -29,6 +27,8 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 </div>
 <!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
+
+## Featured Activity👇
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
