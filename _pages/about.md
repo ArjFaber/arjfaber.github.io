@@ -59,6 +59,9 @@ redirect_from:
     }
 
     .video {
+        min-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
         flex: 0 0 100%;
         display: flex;
         justify-content: center;
