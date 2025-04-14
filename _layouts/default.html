@@ -9,53 +9,47 @@ title: Home
 <html lang="en">
 
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>{{ page.title }}</title>
   {% include head.html %}
   {% include head/custom.html %}
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Link to Main CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
   <style>
-    /* Set the html and body to prevent double scrollbars */
     html, body {
       height: 100%;
       margin: 0;
-      overflow: hidden; /* Prevent scrolling on the whole page */
+      overflow: hidden;
     }
 
-    /* Fullscreen Video Styling */
     #video-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Keep it above everything */
-  overflow: hidden; /* Prevent any unwanted scrolling */
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-#intro-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centering */
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover; /* Fills the screen without distortion */
-}
+    #intro-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
 
-
-    /* Main content */
     #main-content {
       display: none;
       position: relative;
@@ -64,10 +58,9 @@ title: Home
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      z-index: 10; /* Make sure it's above the background video */
+      z-index: 10;
     }
 
-    /* Skip Button */
     .skip-button {
       position: absolute;
       top: 20px;
@@ -85,20 +78,17 @@ title: Home
       background-color: rgba(0, 0, 0, 1);
     }
 
-    /* Background Video */
     #background-video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensure the video covers the screen */
-      z-index: -1; /* Set to a lower value so it stays behind other content */
-      visibility: hidden; /* Initially hide the background video */
-  
+      object-fit: cover;
+      z-index: -1;
+      visibility: hidden;
     }
 
-    /* Overlay for content */
     #main-overlay {
       position: relative;
       width: 100%;
@@ -108,30 +98,27 @@ title: Home
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      background: rgba(255, 255, 255, 0); /* Transparent background */
+      background: rgba(255, 255, 255, 0);
       color: black;
       padding: 20px;
       z-index: 2;
-      overflow-y: auto; /* Allow scrolling */
+      overflow-y: auto;
       box-sizing: border-box;
-      flex-grow: 1; /* Allow the overlay to expand and take the remaining space */
+      flex-grow: 1;
     }
 
-    /* Ensure the content area can scroll when there's too much content */
     .content-area {
-      flex-grow: 1; /* Let the content area grow to take up available space */
-      overflow-y: auto; /* Make sure the content is scrollable */
+      flex-grow: 1;
+      overflow-y: auto;
       width: 100%;
-      padding-bottom: 50px; /* Space for the footer */
+      padding-bottom: 50px;
       z-index: 2;
     }
 
-    /* Make text more readable if necessary */
     h1, p {
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    /* Footer */
     .page__footer {
       width: 100%;
       padding: 20px;
@@ -140,8 +127,6 @@ title: Home
       text-align: right;
       z-index: 2;
     }
-
-
   </style>
 </head>
 
@@ -159,102 +144,77 @@ title: Home
   <!-- Main Content with Background Video B -->
   <div id="main-content">
     <!-- Background Video -->
-<video autoplay loop muted playsinline id="background-video">
-  <source id="video-source" src="" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+    <video autoplay muted playsinline id="background-video">
+      <source id="video-source" src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const videoSource = document.getElementById("video-source");
-    const mainOverlay = document.getElementById("main-overlay"); // Target the text container
-    const path = window.location.pathname;
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const videoSource = document.getElementById("video-source");
+        const backgroundVideo = document.getElementById("background-video");
+        const mainOverlay = document.getElementById("main-overlay");
+        const path = window.location.pathname;
 
-    // Define default video and font color
-
-    const videoFilesAbout = [
-      "background_1b.mp4",
-      "background_2b.mp4",
-      "background_3b.mp4",
-      "background_4b.mp4"
-      ];
-
-    const videoFiles_YLW = [
-      "background_2c.mp4",
-      ];
-    
-    let fontColor = "black"; // Default font color
-
-    const baseURL = "https://arjfaber.github.io/files/";
-    let videoURL = baseURL + videoFilesAbout[Math.floor(Math.random() * videoFilesAbout.length)];
-
-    const videoURLs = [];
-    const videoFiles = [
-            "background_1.mp4",
-            "background_1b.mp4",
-            "background_2.mp4",
-            "background_3.mp4",  // You can also add .mov or any other video formats
-            "background_4.mp4"
+        const videoFilesAbout = [
+          "background_1b.mp4",
+          "background_2b.mp4",
+          "background_3b.mp4",
+          "background_4b.mp4"
         ];
 
-        // Select a random video file
-    if (path.includes("/publications/")) {
-      videoURL = baseURL + videoFiles_YLW[Math.floor(Math.random() * videoFiles_YLW.length)];
-      fontColor = "black";
-    }
-    if (path.includes("/teaching")) {
-      videoURL = baseURL +  "projects.mp4";
-      fontColor = "black";
-    }
-    if (path.includes("paper-title-number-2")) {
-      videoURL = baseURL + "projects.mp4";
-      fontColor = "black"; // Change text color to white for better contrast
-      document.getElementById("background-video").playbackRate = 0.65; // 0.5x speed (half speed)
+        const videoFiles_YLW = [
+          "background_2c.mp4"
+        ];
 
-    }
-    if (path.includes("paper-title-number-1"))  {
-      videoURL = baseURL +  "projects.mp4" ;
-      fontColor = "black"; // Change text color to white for better contrast
-      
-    }
-     if (path.includes("paper-title-number-2"))  {
-      videoURL = baseURL  +  "projects.mp4";
-      fontColor = "black"; // Change text color to white for better contrast
-      
-    }
+        let fontColor = "black";
+        const baseURL = "https://arjfaber.github.io/files/";
+        let selectedFile = videoFilesAbout[Math.floor(Math.random() * videoFilesAbout.length)];
+        let videoURL = baseURL + selectedFile;
 
-    // Update video source
-    videoSource.src = videoURL;
-    document.getElementById("background-video").load(); // Reload video with new source
+        if (path.includes("/publications/")) {
+          selectedFile = videoFiles_YLW[Math.floor(Math.random() * videoFiles_YLW.length)];
+          videoURL = baseURL + selectedFile;
+        }
 
-    // Apply the font color change
-    mainOverlay.style.color = fontColor;
-    mainOverlay.style.size
-  });
-</script>
+        if (path.includes("/teaching") || path.includes("paper-title-number-1") || path.includes("paper-title-number-2")) {
+          selectedFile = "projects.mp4";
+          videoURL = baseURL + selectedFile;
 
+          if (path.includes("paper-title-number-2")) {
+            backgroundVideo.playbackRate = 0.65;
+          }
+        }
 
+        videoSource.src = videoURL;
+        backgroundVideo.load();
 
-    <!-- Overlay Content (Transparent background and black text) -->
+        // Apply loop conditionally
+        if (selectedFile === "projects.mp4") {
+          backgroundVideo.removeAttribute("loop");
+        } else {
+          backgroundVideo.setAttribute("loop", "");
+        }
+
+        if (mainOverlay) {
+          mainOverlay.style.color = fontColor;
+        }
+      });
+    </script>
+
     <div id="main-overlay">
       {% include masthead.html %}
-
-      <!-- Content that will scroll -->
       <div class="content-area">
         {{ content }}
       </div>
-
-      <!-- Footer -->
       <div class="page__footer">
         <footer>
           {% include footer/custom.html %}
           {% include footer.html %}
         </footer>
       </div>
-
       {% include scripts.html %}
     </div>
-
   </div>
 
   <script>
@@ -265,15 +225,13 @@ title: Home
       const skipButton = document.getElementById("skip-button");
       const backgroundVideo = document.getElementById("background-video");
 
-      // Function to hide intro video and show main content
       function goToMainPage() {
-        sessionStorage.setItem("seenIntro", "true");  // Store session data
-        videoContainer.style.display = "none"; // Hide intro video
-        backgroundVideo.style.visibility = "visible"; // Show background video
-        mainContent.style.display = "flex"; // Show main content
+        sessionStorage.setItem("seenIntro", "true");
+        videoContainer.style.display = "none";
+        backgroundVideo.style.visibility = "visible";
+        mainContent.style.display = "flex";
       }
 
-      // Check if the intro video has been seen
       if (sessionStorage.getItem("seenIntro") === "true") {
         goToMainPage();
       } else {
@@ -281,7 +239,6 @@ title: Home
         video.addEventListener("ended", goToMainPage);
       }
 
-      // Ensure intro video plays muted if autoplay is blocked
       video.play().catch(error => {
         console.error("Autoplay prevented:", error);
         video.muted = true;
@@ -291,5 +248,4 @@ title: Home
   </script>
 
 </body>
-
 </html>
