@@ -52,7 +52,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     margin: 40px auto 20px auto;
     border-radius: 15px;
-    background-color: #f8f8f8; /* Ibis white */
+    background-color: rgba(0, 0, 0, 0); /* Ibis white */
     box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.3);
     border: 2px solid #00ff00; /* Green LED border */
     display: flex;
