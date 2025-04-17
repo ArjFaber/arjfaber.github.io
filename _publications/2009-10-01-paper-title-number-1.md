@@ -21,7 +21,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 ### Featured Footage
 
-<div class="slider-container">
+<div class="slider-container" id="sliderContainer" style="visibility: hidden;">
   <div class="video-slider" id="videoSlider">
     <div class="video active">
       <video width="640" height="360" muted loop playsinline>
@@ -58,6 +58,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden; /* Hide initially */
   }
 
   .video-slider {
@@ -207,8 +208,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }, 8000); // Check every 8 seconds
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  // Ensure videos and buttons are loaded before displaying
+  window.onload = () => {
+    document.getElementById('sliderContainer').style.visibility = 'visible'; // Make content visible after loading
     updateSlider();
     startAutoSlideCheck();
-  });
+  }
 </script>
