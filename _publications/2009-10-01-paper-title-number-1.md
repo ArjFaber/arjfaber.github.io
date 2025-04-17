@@ -165,42 +165,34 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
   }
 
-  // Play/pause video and toggle play button visibility
-  function playVideo(videoIndex) {
-    const video = videos[videoIndex];
-    const wrapper = wrappers[videoIndex];
-    const playButton = wrapper.querySelector('.play-btn');
+  // Toggle play/pause from button
+  function toggleVideo(btn) {
+    const wrapper = btn.closest('.video');
+    const video = wrapper.querySelector('video');
+    
+    // Pause all other videos
+    videos.forEach((v, i) => {
+      if (v !== video) {
+        v.pause();
+        wrappers[i].classList.remove('playing');
+        wrappers[i].querySelector('.play-btn').innerHTML = '&#9658;';
+      }
+    });
 
     if (video.paused) {
       video.play();
-      wrapper.classList.remove('paused');
       wrapper.classList.add('playing');
-      playButton.innerHTML = '&#10074;&#10074;'; // Pause icon
-
+      wrapper.classList.remove('paused');
+      btn.innerHTML = '&#10074;&#10074;'; // pause icon
     } else {
       video.pause();
       wrapper.classList.remove('playing');
       wrapper.classList.add('paused');
-      playButton.innerHTML = '&#9658;'; // Play icon
-
+      btn.innerHTML = '&#9658;'; // play icon
     }
   }
 
-  // Add/remove play button based on video state
-  videos.forEach((video, i) => {
-    video.addEventListener('play', () => {
-      wrappers[i].classList.remove('paused');
-      wrappers[i].classList.add('playing');
-    });
-    video.addEventListener('pause', () => {
-      if (i === index) {
-        wrappers[i].classList.add('paused');
-        wrappers[i].classList.remove('playing');
-      }
-    });
-  });
-
-  // Auto-slide logic if video is paused
+  // Auto slide to next video if current one is paused too long
   function startAutoSlideCheck() {
     setInterval(() => {
       const currentVideo = wrappers[index].querySelector('video');
@@ -209,19 +201,38 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
         currentWrapper.classList.add('paused');
 
-        // Wait for zoom animation to finish (~2s), then slide
         setTimeout(() => {
-          currentWrapper.classList.remove('paused');
-          moveSlider(1);
-        }, 1600); // Zoom animation duration
+          // Don't auto-slide if user just paused it manually
+          if (currentVideo.paused) {
+            currentWrapper.classList.remove('paused');
+            moveSlider(1);
+          }
+        }, 1600);
       }
-    }, 8000); // Check every 8 seconds
+    }, 8000);
   }
 
-  // Ensure videos and buttons are loaded before displaying
+  // Ensure buttons update with video state
+  videos.forEach((video, i) => {
+    const btn = wrappers[i].querySelector('.play-btn');
+
+    video.addEventListener('play', () => {
+      wrappers[i].classList.add('playing');
+      wrappers[i].classList.remove('paused');
+      btn.innerHTML = '&#10074;&#10074;';
+    });
+
+    video.addEventListener('pause', () => {
+      wrappers[i].classList.remove('playing');
+      wrappers[i].classList.add('paused');
+      btn.innerHTML = '&#9658;';
+    });
+  });
+
   window.onload = () => {
-    document.getElementById('sliderContainer').style.visibility = 'visible'; // Make content visible after loading
+    document.getElementById('sliderContainer').style.visibility = 'visible';
     updateSlider();
     startAutoSlideCheck();
-  }
+  };
 </script>
+
