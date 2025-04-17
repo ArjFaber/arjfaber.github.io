@@ -149,110 +149,122 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 <script>
   let index = 0;
-  const slider = document.querySelector('.video-slider');
-  const wrappers = document.querySelectorAll('.video');
-  const videos = document.querySelectorAll('.video video');
-  const total = wrappers.length;
+const slider = document.querySelector('.video-slider');
+const wrappers = document.querySelectorAll('.video');
+const videos = document.querySelectorAll('.video video');
+const total = wrappers.length;
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    wrappers.forEach((wrapper, i) => {
-      wrapper.classList.toggle('active', i === index);
-    });
-  }
+let autoSlideInterval; // Declare a global variable for the auto slide interval
 
-  function moveSlider(dir) {
-    index = (index + dir + total) % total;
-    updateSlider();
-  }
+function updateSlider() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
+  wrappers.forEach((wrapper, i) => {
+    wrapper.classList.toggle('active', i === index);
+  });
+}
 
-  function toggleVideo(button) {
-    const wrapper = button.closest('.video');
-    const video = wrapper.querySelector('video');
+function moveSlider(dir) {
+  index = (index + dir + total) % total;
+  updateSlider();
+}
 
-    if (video.paused) {
-      video.play();
-      wrapper.classList.add('playing');
-      button.innerHTML = '&#10074;&#10074;'; // Pause icon
-    } else {
-      video.pause();
-      wrapper.classList.remove('playing');
-      button.innerHTML = '&#9658;'; // Play icon
+function startAutoSlideCheck() {
+  clearInterval(autoSlideInterval); // Clear any existing interval
+
+  // Start the auto-slide interval
+  autoSlideInterval = setInterval(() => {
+    const currentVideo = wrappers[index].querySelector('video');
+    const currentWrapper = wrappers[index];
+
+    if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
+      currentWrapper.classList.add('paused');
+
+      setTimeout(() => {
+        // If still paused after 1.6 seconds, auto-slide to next video
+        if (currentVideo.paused) {
+          currentWrapper.classList.remove('paused');
+          moveSlider(1);
+        } else {
+          currentWrapper.classList.remove('paused');
+        }
+      }, 1600); // 1.6 second grace period
     }
+  }, 5000); // Check every 5 seconds
+}
+
+// Toggle play/pause from button
+function toggleVideo(button) {
+  const wrapper = button.closest('.video');
+  const video = wrapper.querySelector('video');
+
+  if (video.paused) {
+    video.play();
+    wrapper.classList.add('playing');
+    button.innerHTML = '&#10074;&#10074;'; // Pause icon
+    startAutoSlideCheck(); // Restart auto slide check when video is played
+  } else {
+    video.pause();
+    wrapper.classList.remove('playing');
+    button.innerHTML = '&#9658;'; // Play icon
+    startAutoSlideCheck(); // Restart auto slide check when video is paused
   }
+}
 
-  function setupAutoHideControls() {
-    wrappers.forEach((wrapper) => {
-      const button = wrapper.querySelector('.play-btn');
-      let hideTimeout;
+// Auto-hide play/pause button after 5 seconds of inactivity
+function setupAutoHideControls() {
+  wrappers.forEach((wrapper) => {
+    const button = wrapper.querySelector('.play-btn');
+    let hideTimeout;
 
-      const showControls = () => {
-        button.style.opacity = '1';
-        button.style.pointerEvents = 'auto';
+    const showControls = () => {
+      button.style.opacity = '1';
+      button.style.pointerEvents = 'auto';
 
-        clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => {
-          button.style.opacity = '0';
-          button.style.pointerEvents = 'none';
-        }, 5000);
-      };
-
-      wrapper.addEventListener('mousemove', showControls);
-      wrapper.addEventListener('mouseenter', showControls);
-      wrapper.addEventListener('mouseleave', () => {
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
         button.style.opacity = '0';
         button.style.pointerEvents = 'none';
-      });
+      }, 5000); // 5 seconds
+    };
 
-      // Start with hidden controls
+    wrapper.addEventListener('mousemove', showControls);
+    wrapper.addEventListener('mouseenter', showControls);
+    wrapper.addEventListener('mouseleave', () => {
       button.style.opacity = '0';
       button.style.pointerEvents = 'none';
     });
-  }
 
-  function startAutoSlideCheck() {
-    setInterval(() => {
-      const currentVideo = wrappers[index].querySelector('video');
-      const currentWrapper = wrappers[index];
+    // Initialize controls hidden
+    button.style.opacity = '0';
+    button.style.pointerEvents = 'none';
+  });
+}
 
-      if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
-        currentWrapper.classList.add('paused');
+window.onload = () => {
+  document.getElementById('sliderContainer').style.visibility = 'visible';
+  updateSlider();
+  startAutoSlideCheck();
+  setupAutoHideControls(); // 🧩 Add this call
+};
 
-        setTimeout(() => {
-          if (currentVideo.paused) {
-            currentWrapper.classList.remove('paused');
-            moveSlider(1);
-          } else {
-            currentWrapper.classList.remove('paused');
-          }
-        }, 1600);
-      }
-    }, 8000);
-  }
+// Ensure buttons update with video state
+videos.forEach((video, i) => {
+  const btn = wrappers[i].querySelector('.play-btn');
 
-  window.onload = () => {
-    document.getElementById('sliderContainer').style.visibility = 'visible';
-    updateSlider();
-    setupAutoHideControls();
-    startAutoSlideCheck();
+  video.addEventListener('play', () => {
+    wrappers[i].classList.add('playing');
+    wrappers[i].classList.remove('paused');
+    btn.innerHTML = '&#10074;&#10074;';
+  });
 
-    // Update play/pause button based on video state
-    videos.forEach((video, i) => {
-      const btn = wrappers[i].querySelector('.play-btn');
+  video.addEventListener('pause', () => {
+    wrappers[i].classList.remove('playing');
+    wrappers[i].classList.add('paused');
+    btn.innerHTML = '&#9658;';
+    startAutoSlideCheck(); // Restart auto slide check when paused
+  });
+});
 
-      video.addEventListener('play', () => {
-        wrappers[i].classList.add('playing');
-        wrappers[i].classList.remove('paused');
-        btn.innerHTML = '&#10074;&#10074;';
-      });
-
-      video.addEventListener('pause', () => {
-        wrappers[i].classList.remove('playing');
-        wrappers[i].classList.add('paused');
-        btn.innerHTML = '&#9658;';
-      });
-    });
-  };
 </script>
 
 
