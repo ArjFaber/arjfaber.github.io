@@ -28,17 +28,20 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <source src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+      <div class="play-btn" onclick="playVideo(0)">&#9658;</div> <!-- Play button -->
     </div>
     <div class="video">
       <video width="640" height="360" muted loop playsinline>
         <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+      <div class="play-btn" onclick="playVideo(1)">&#9658;</div> <!-- Play button -->
     </div>
   </div>
   <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
   <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
+
 
 ![KUKA Robot Image](https://arjfaber.github.io/files/UT.png)
 
@@ -83,6 +86,46 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 1;
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
 }
+  .video {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 20px;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  display: none; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+.play-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.video.playing .play-btn {
+  display: none; /* Hide button when video is playing */
+}
+
+.video.paused .play-btn {
+  display: block; /* Show button when video is paused */
+}
+
 
     @keyframes popOutIn {
         0% { transform: scale(1.05); }
@@ -159,9 +202,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   100% { transform: scale(1); }
 }
 </style>
-
 <script>
-  let index = 0;
+let index = 0;
   const slider = document.querySelector('.video-slider');
   const wrappers = document.querySelectorAll('.video');
   const videos = document.querySelectorAll('.video video');
@@ -179,19 +221,38 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
   }
 
-  // Add/remove zoom animation based on video state
+  // Play/pause video and toggle play button visibility
+  function playVideo(videoIndex) {
+    const video = videos[videoIndex];
+    const wrapper = wrappers[videoIndex];
+    const playButton = wrapper.querySelector('.play-btn');
+
+    if (video.paused) {
+      video.play();
+      wrapper.classList.remove('paused');
+      wrapper.classList.add('playing');
+    } else {
+      video.pause();
+      wrapper.classList.remove('playing');
+      wrapper.classList.add('paused');
+    }
+  }
+
+  // Add/remove play button based on video state
   videos.forEach((video, i) => {
     video.addEventListener('play', () => {
       wrappers[i].classList.remove('paused');
+      wrappers[i].classList.add('playing');
     });
     video.addEventListener('pause', () => {
       if (i === index) {
         wrappers[i].classList.add('paused');
+        wrappers[i].classList.remove('playing');
       }
     });
   });
 
-  // One-time zoom before sliding
+  // Auto-slide logic if video is paused
   function startAutoSlideCheck() {
     setInterval(() => {
       const currentVideo = wrappers[index].querySelector('video');
@@ -206,7 +267,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
           moveSlider(1);
         }, 2000);
       }
-    }, 5000); // Check every 8 seconds
+    }, 8000); // Check every 8 seconds
   }
 
   document.addEventListener('DOMContentLoaded', () => {
