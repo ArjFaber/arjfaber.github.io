@@ -86,22 +86,23 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
   }
 
-  .play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 36px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    padding: 20px;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0.8;
-    display: block; /* Ensure button is visible */
-    transition: opacity 0.3s ease;
-  }
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 20px;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  display: block; /* <-- always show by default */
+  transition: opacity 0.3s ease;
+}
+
 
   .play-btn:hover {
     background-color: rgba(0, 0, 0, 0.9);
@@ -169,10 +170,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       video.play();
       wrapper.classList.remove('paused');
       wrapper.classList.add('playing');
+      playButton.innerHTML = '&#10074;&#10074;'; // Pause icon
+
     } else {
       video.pause();
       wrapper.classList.remove('playing');
       wrapper.classList.add('paused');
+      playButton.innerHTML = '&#9658;'; // Play icon
+
     }
   }
 
