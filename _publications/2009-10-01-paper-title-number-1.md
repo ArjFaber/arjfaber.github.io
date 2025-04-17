@@ -48,21 +48,26 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     overflow: hidden;
     aspect-ratio: 16 / 9;
     position: relative;
-    margin: 40px auto;
+    margin: 40px auto 20px auto;
     border-radius: 15px;
-    background: linear-gradient(145deg, #1f1f1f, #333);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);
-    border: 2px solid #00ff00;
+    background-color: #f8f8f8; /* Ibis white */
+    box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.3);
+    border: 2px solid #00ff00; /* Green LED border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .video-slider {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    height: 100%;
     width: 100%;
+    transition: transform 0.5s ease-in-out;
   }
 
   .video {
     min-width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,27 +76,36 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   .video.active {
-    transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7);
+  }
+
+  .video.paused {
+    animation: zoomPulse 2s infinite ease-in-out;
+    z-index: 2;
+  }
+
+  @keyframes zoomPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
   }
 
   .btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
     font-size: 18px;
     border-radius: 50%;
-    z-index: 2;
+    z-index: 3;
   }
 
-  .prev { left: 10px; }
-  .next { right: 10px; }
+  .prev { left: 5px; }
+  .next { right: 5px; }
 
   .btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
@@ -101,54 +115,52 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <script>
   let index = 0;
   const slider = document.querySelector('.video-slider');
-  const videos = document.querySelectorAll('.video');
-  const totalVideos = videos.length;
-  const videoTags = document.querySelectorAll('video');
-  let autoSlideTimer;
+  const videos = document.querySelectorAll('.video video');
+  const wrappers = document.querySelectorAll('.video');
+  const total = wrappers.length;
 
   function updateSlider() {
     slider.style.transform = `translateX(-${index * 100}%)`;
-    videos.forEach((v, i) => {
-      v.classList.toggle('active', i === index);
+    wrappers.forEach((wrapper, i) => {
+      wrapper.classList.toggle('active', i === index);
+    });
+    applyPausedAnimation();
+  }
+
+  function moveSlider(dir) {
+    index = (index + dir + total) % total;
+    updateSlider();
+  }
+
+  function applyPausedAnimation() {
+    wrappers.forEach((wrapper, i) => {
+      const vid = wrapper.querySelector('video');
+      if (i === index && vid.paused) {
+        wrapper.classList.add('paused');
+      } else {
+        wrapper.classList.remove('paused');
+      }
     });
   }
 
-  function moveSlider(direction) {
-    index = (index + direction + totalVideos) % totalVideos;
-    updateSlider();
-    resetAutoSlide();
-  }
-
-  function autoSlide() {
-    if (![...videoTags].some(video => !video.paused)) {
-      index = (index + 1) % totalVideos;
-      updateSlider();
-    }
-    autoSlideTimer = setTimeout(autoSlide, 6000);
-  }
-
-  function resetAutoSlide() {
-    clearTimeout(autoSlideTimer);
-    autoSlideTimer = setTimeout(autoSlide, 6000);
-  }
-
-  function attachPlayPauseListeners() {
-    videoTags.forEach(video => {
-      video.addEventListener('play', () => {
-        clearTimeout(autoSlideTimer);
-      });
-      video.addEventListener('pause', () => {
-        resetAutoSlide();
-      });
-      video.addEventListener('ended', () => {
-        resetAutoSlide();
-      });
+  videos.forEach((video, i) => {
+    video.addEventListener('play', () => {
+      wrappers[i].classList.remove('paused');
     });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    updateSlider();
-    attachPlayPauseListeners();
-    resetAutoSlide();
+    video.addEventListener('pause', () => {
+      if (i === index) {
+        wrappers[i].classList.add('paused');
+      }
+    });
   });
+
+  // Auto-slide if current video is paused
+  let autoSlideInterval = setInterval(() => {
+    const currentVideo = wrappers[index].querySelector('video');
+    if (currentVideo.paused) {
+      moveSlider(1);
+    }
+  }, 3000); // Slide every 7s when paused
+
+  document.addEventListener('DOMContentLoaded', updateSlider);
 </script>
