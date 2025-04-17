@@ -112,14 +112,19 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     display: none; /* Hide button when video is playing */
   }
 
-  @keyframes zoomPulseOnce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-  }
+  @keyframes popOutIn {
+        0% { transform: scale(1.05); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1.05); }
+    }
+
+    .video.pop-animate {
+        animation: popOutIn 1.5s ease;
+        z-index: 2;
+    }
 
   .video.paused {
-    animation: zoomPulseOnce 2s ease;
+    animation: popOutIn 2s ease;
     z-index: 2;
   }
 
