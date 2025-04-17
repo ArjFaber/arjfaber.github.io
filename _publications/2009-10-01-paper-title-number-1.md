@@ -79,16 +79,17 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 1;
   }
 
-  .video.paused {
-    animation: zoomPulse 2s infinite ease-in-out;
-    z-index: 2;
-  }
+ .video.paused {
+  animation: zoomPulseOnce 2s ease;
+  z-index: 2;
+}
 
-  @keyframes zoomPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-    100% { transform: scale(1); }
-  }
+@keyframes zoomPulseOnce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 
   .btn {
     position: absolute;
@@ -115,8 +116,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <script>
   let index = 0;
   const slider = document.querySelector('.video-slider');
-  const videos = document.querySelectorAll('.video video');
   const wrappers = document.querySelectorAll('.video');
+  const videos = document.querySelectorAll('.video video');
   const total = wrappers.length;
 
   function updateSlider() {
@@ -124,7 +125,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     wrappers.forEach((wrapper, i) => {
       wrapper.classList.toggle('active', i === index);
     });
-    applyPausedAnimation();
   }
 
   function moveSlider(dir) {
@@ -132,17 +132,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
   }
 
-  function applyPausedAnimation() {
-    wrappers.forEach((wrapper, i) => {
-      const vid = wrapper.querySelector('video');
-      if (i === index && vid.paused) {
-        wrapper.classList.add('paused');
-      } else {
-        wrapper.classList.remove('paused');
-      }
-    });
-  }
-
+  // Add/remove zoom animation based on video state
   videos.forEach((video, i) => {
     video.addEventListener('play', () => {
       wrappers[i].classList.remove('paused');
@@ -154,13 +144,26 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     });
   });
 
-  // Auto-slide if current video is paused
-  let autoSlideInterval = setInterval(() => {
-    const currentVideo = wrappers[index].querySelector('video');
-    if (currentVideo.paused) {
-      moveSlider(1);
-    }
-  }, 3000); // Slide every 7s when paused
+  // One-time zoom before sliding
+  function startAutoSlideCheck() {
+    setInterval(() => {
+      const currentVideo = wrappers[index].querySelector('video');
+      const currentWrapper = wrappers[index];
 
-  document.addEventListener('DOMContentLoaded', updateSlider);
+      if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
+        currentWrapper.classList.add('paused');
+
+        // Wait for zoom animation to finish (~2s), then slide
+        setTimeout(() => {
+          currentWrapper.classList.remove('paused');
+          moveSlider(1);
+        }, 2000);
+      }
+    }, 5000); // Check every 8 seconds
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateSlider();
+    startAutoSlideCheck();
+  });
 </script>
