@@ -109,7 +109,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   .video.playing .play-btn {
-    display: none; /* Hide button when video is playing */
+    display: block; /* Hide button when video is playing */
   }
 
   @keyframes popOutIn {
@@ -166,31 +166,21 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   // Toggle play/pause from button
-  function toggleVideo(btn) {
-    const wrapper = btn.closest('.video');
-    const video = wrapper.querySelector('video');
-    
-    // Pause all other videos
-    videos.forEach((v, i) => {
-      if (v !== video) {
-        v.pause();
-        wrappers[i].classList.remove('playing');
-        wrappers[i].querySelector('.play-btn').innerHTML = '&#9658;';
-      }
-    });
+function toggleVideo(button) {
+  const wrapper = button.closest('.video');
+  const video = wrapper.querySelector('video');
 
-    if (video.paused) {
-      video.play();
-      wrapper.classList.add('playing');
-      wrapper.classList.remove('paused');
-      btn.innerHTML = '&#10074;&#10074;'; // pause icon
-    } else {
-      video.pause();
-      wrapper.classList.remove('playing');
-      wrapper.classList.add('paused');
-      btn.innerHTML = '&#9658;'; // play icon
-    }
+  if (video.paused) {
+    video.play();
+    wrapper.classList.add('playing');
+    button.innerHTML = '&#10074;&#10074;'; // Pause icon
+  } else {
+    video.pause();
+    wrapper.classList.remove('playing');
+    button.innerHTML = '&#9658;'; // Play icon
   }
+}
+
 
   // Auto slide to next video if current one is paused too long
   function startAutoSlideCheck() {
