@@ -58,6 +58,75 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     align-items: center;
   }
 
+  
+    .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .video {
+        min-width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1);
+        opacity: 0.6;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+   .video.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
+}
+
+    @keyframes popOutIn {
+        0% { transform: scale(1.05); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1.05); }
+    }
+
+    .video.pop-animate {
+        animation: popOutIn 1.5s ease;
+        z-index: 2;
+    }
+
+   .video-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: #222;  /* Dark background for iframe */
+}
+
+    .video-caption {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 10px;
+        color: #555;
+    }
+
+    .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 50%;
+        z-index: 3;
+    }
+
+    .prev { left: 5px; }
+    .next { right: 5px; }
+
   .video-slider {
     display: flex;
     height: 100%;
@@ -89,28 +158,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-
-
-  .btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
-    z-index: 3;
-  }
-
-  .prev { left: 5px; }
-  .next { right: 5px; }
-
-  .btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
 </style>
 
 <script>
