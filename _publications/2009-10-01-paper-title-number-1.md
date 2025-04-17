@@ -225,24 +225,29 @@ window.onload = () => {
 };
 
   // Auto slide to next video if current one is paused too long
-  function startAutoSlideCheck() {
-    setInterval(() => {
-      const currentVideo = wrappers[index].querySelector('video');
-      const currentWrapper = wrappers[index];
+function startAutoSlideCheck() {
+  setInterval(() => {
+    const currentVideo = wrappers[index].querySelector('video');
+    const currentWrapper = wrappers[index];
 
-      if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
-        currentWrapper.classList.add('paused');
+    // Only start auto-slide process if not already flagged as paused
+    if (currentVideo.paused && !currentWrapper.classList.contains('paused')) {
+      currentWrapper.classList.add('paused');
 
-        setTimeout(() => {
-          // Don't auto-slide if user just paused it manually
-          if (currentVideo.paused) {
-            currentWrapper.classList.remove('paused');
-            moveSlider(1);
-          }
-        }, 1600);
-      }
-    }, 8000);
-  }
+      setTimeout(() => {
+        // Double-check: still paused after timeout?
+        if (currentVideo.paused) {
+          currentWrapper.classList.remove('paused');
+          moveSlider(1); // Move to next video
+        } else {
+          // User resumed playing within 1.6s — cancel auto-slide
+          currentWrapper.classList.remove('paused');
+        }
+      }, 1600); // 1.6 seconds grace period
+    }
+  }, 5000); // Check every 8 seconds
+}
+
 
   // Ensure buttons update with video state
   videos.forEach((video, i) => {
