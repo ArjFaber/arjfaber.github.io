@@ -28,14 +28,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <source src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <div class="play-btn" onclick="playVideo(0)">&#9658;</div> <!-- Play button -->
+      <button class="play-btn" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
     </div>
     <div class="video">
       <video width="640" height="360" muted loop playsinline preload="auto" id="video2">
         <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <div class="play-btn" onclick="playVideo(1)">&#9658;</div> <!-- Play button -->
+    <button class="play-btn" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
     </div>
   </div>
   <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
