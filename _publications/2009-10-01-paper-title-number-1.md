@@ -98,10 +98,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   padding: 20px;
   cursor: pointer;
   z-index: 2;
-  opacity: 0.8;
-  display: block; /* <-- always show by default */
-  transition: opacity 0.3s ease;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
+
 
 
   .play-btn:hover {
@@ -181,6 +182,47 @@ function toggleVideo(button) {
   }
 }
 
+function setupAutoHideControls() {
+  wrappers.forEach((wrapper) => {
+    const button = wrapper.querySelector('.play-btn');
+    let hideTimeout;
+
+    const showControls = () => {
+      button.style.opacity = '1';
+      button.style.pointerEvents = 'auto';
+
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        button.style.opacity = '0';
+        button.style.pointerEvents = 'none';
+      }, 5000); // 5 seconds
+    };
+
+    wrapper.addEventListener('mousemove', showControls);
+    wrapper.addEventListener('mouseenter', showControls);
+    wrapper.addEventListener('mouseleave', () => {
+      button.style.opacity = '0';
+      button.style.pointerEvents = 'none';
+    });
+
+    // Initialize controls hidden
+    button.style.opacity = '0';
+    button.style.pointerEvents = 'none';
+  });
+}
+  window.onload = () => {
+  document.getElementById('sliderContainer').style.visibility = 'visible';
+  updateSlider();
+  startAutoSlideCheck();
+  setupAutoHideControls(); // 🧩 Add this call
+};
+
+window.onload = () => {
+  document.getElementById('sliderContainer').style.visibility = 'visible';
+  updateSlider();
+  startAutoSlideCheck();
+  setupAutoHideControls(); // 🧩 Add this call
+};
 
   // Auto slide to next video if current one is paused too long
   function startAutoSlideCheck() {
