@@ -2,13 +2,13 @@
 title: 'A Universal Translator for Social Behavior in Healthcare Robotics via Reinforcement Learning'
 collection: publications
 category: manuscripts
-permalink: /publication/harmony-social-robotics-2024
-excerpt: 'This paper presents a reinforcement learning framework for enabling socially intelligent behaviors in service robots within healthcare environments.'
+permalink: /publication/2009-10-01-paper-title-number-1
+excerpt: 'This paper is about the implementation of a machine learning module for service robots in hospitals.'
 date: 2024-07-28
 venue: 'University of Twente'
 slidesurl: 'https://arjfaber.github.io/teaching/'
 paperurl: 'https://arjfaber.github.io/files/HARMONY_UT_ML_Module_Report.pdf'
-citation: 'Faber, A., et al. (2024). A Universal Translator for Social Behavior in Healthcare Robotics via Reinforcement Learning. University of Twente.'
+citation: 'Faber, A. et al.(2024)'
 ---
 
 This research focuses on developing socially aware robotics using reinforcement learning (RL) and artificial neural networks (ANNs). Our goal is to enable robots to understand and respond to social cues, such as gestures, speech, and facial expressions, in a context-sensitive manner.
