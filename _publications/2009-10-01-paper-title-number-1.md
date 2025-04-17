@@ -24,14 +24,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <div class="slider-container" id="sliderContainer" style="visibility: hidden;">
   <div class="video-slider" id="videoSlider">
     <div class="video active">
-      <video width="640" height="360" muted loop playsinline preload="auto">
+      <video width="640" height="360" muted loop playsinline preload="auto" id="video1">
         <source src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="play-btn" onclick="playVideo(0)">&#9658;</div> <!-- Play button -->
     </div>
     <div class="video">
-      <video width="640" height="360" muted loop playsinline preload="auto">
+      <video width="640" height="360" muted loop playsinline preload="auto" id="video2">
         <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -99,7 +99,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     cursor: pointer;
     z-index: 2;
     opacity: 0.8;
-    display: none; /* Initially hidden */
+    display: block; /* Ensure button is visible */
     transition: opacity 0.3s ease;
   }
 
@@ -214,11 +214,4 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
     startAutoSlideCheck();
   }
-
-  // Start video play once enough data is buffered
-  videos.forEach((video) => {
-    video.addEventListener('canplay', () => {
-      video.play();
-    });
-  });
 </script>
