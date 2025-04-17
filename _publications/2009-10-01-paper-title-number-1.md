@@ -24,13 +24,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <div class="slider-container">
   <div class="video-slider" id="videoSlider">
     <div class="video active">
-      <video width="640" height="360" controls autoplay muted loop>
+      <video width="640" height="360" controls muted>
         <source src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
     <div class="video">
-      <video width="640" height="360" controls autoplay muted loop>
+      <video width="640" height="360" controls muted>
         <source src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -72,12 +72,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     justify-content: center;
     align-items: center;
     opacity: 0.6;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(0.95);
+    transition: transform 0.6s ease, opacity 0.6s ease;
   }
 
   .video.active {
     transform: scale(1.05);
     opacity: 1;
+    z-index: 2;
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7);
   }
 
