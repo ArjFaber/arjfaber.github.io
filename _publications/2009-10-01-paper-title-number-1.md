@@ -41,15 +41,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
       <button class="play-btn">&#9658;</button>
     </div>
-  </div>
+</div>
 
-  <!-- Modal -->
-  <div class="video-modal" id="videoModal">
-    <div class="modal-content">
-      <video controls autoplay id="modalVideo"></video>
-      <span class="close-btn">&times;</span>
-    </div>
+<!-- Modal -->
+<div class="video-modal" id="videoModal">
+  <div class="modal-content">
+    <video controls autoplay id="modalVideo"></video>
+    <span class="close-btn">&times;</span>
   </div>
+</div>
 
 <style>
   body {
@@ -179,7 +179,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     color: #00ffcc;
     cursor: pointer;
   }
-    
 </style>
 
 <script>
@@ -199,5 +198,21 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       }
     });
 
-    
+    tile.addEventListener("click", () => {
+      const modal = document.getElementById("videoModal");
+      const modalVideo = document.getElementById("modalVideo");
+
+      // Set the video source
+      modalVideo.src = src;
+      modal.style.display = "flex";
+    });
+  });
+
+  document.querySelector(".close-btn").addEventListener("click", () => {
+    const modal = document.getElementById("videoModal");
+    const modalVideo = document.getElementById("modalVideo");
+    modal.style.display = "none";
+    modalVideo.pause();
+    modalVideo.src = "";
+  });
 </script>
