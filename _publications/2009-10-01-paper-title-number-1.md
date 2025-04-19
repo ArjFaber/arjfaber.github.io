@@ -162,8 +162,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
     .modal-content {
       position: relative;
-      max-width: 90%;
-      width: 800px;
+      max-width: 75%;
+      width: 75%;
     }
 
     .modal-content video {
