@@ -82,29 +82,31 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     pointer-events: none;
   }
 
+  /* Slider Container */
   .slider-container {
     max-width: 100%;
-    height:  500px;
+    height: 500px; /* Set height for proper display */
     position: relative;
     margin: 40px auto;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
     border: 2px solid #00ff9e;
-    height: 500px; /* Set height for proper display */
     background-color: #000; /* For better visibility */
   }
 
+  /* Slider Content */
   .video-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
     z-index: 1;
   }
 
+  /* Video Styling for Each Slider Video */
   .video {
     min-width: 100%;
     width: 100%;
-    height: 100%;
+    height: 100%; /* Make sure the video fills the height */
     position: relative;
     display: flex;
     justify-content: center;
@@ -112,45 +114,39 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 0.7;
     transition: all 0.4s ease;
     filter: grayscale(20%);
-    will-change: transform;
+    will-change: transform; /* Optimize for smooth animations */
   }
 
+  /* Active Video Styling with Zoom and Glow */
   .video.active {
     opacity: 1;
-    transform: scale(1.08);
+    transform: scale(1.08); /* Zoom effect */
     filter: grayscale(0%);
-    box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6);
-    animation: glow 1.5s infinite alternate;
+    box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6); /* Glow effect */
+    animation: glow 1.5s infinite alternate; /* Glowing effect */
   }
 
+  /* Keyframes for Glow Animation */
   @keyframes glow {
     0% {
-      box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+      box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Faint glow */
     }
     100% {
-      box-shadow: 0px 0px 40px rgba(0, 255, 255, 1);
+      box-shadow: 0px 0px 40px rgba(0, 255, 255, 1); /* Stronger glow */
     }
   }
 
-  .video:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 35px rgba(0, 255, 180, 0.4);
+  /* Hover Zoom Effect for Static Video Cards */
+  .video-card:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+    box-shadow: 0 20px 40px rgba(0, 255, 180, 0.4), 0 0 30px #00ffcc; /* Glow effect */
   }
 
-  .video video,
-  .video-card video {
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    transition: all 0.4s ease;
-    pointer-events: none;
-  }
-
-  /* Apply transition to the actual video content */
+  /* Hover Zoom Effect on Videos in Slider */
   .video:hover video,
   .video-card:hover video {
-    transform: scale(1.1) rotateX(1deg);
-    box-shadow: 0 12px 35px rgba(0, 255, 180, 0.4);
+    transform: scale(1.1) rotateX(1deg); /* Slight zoom and rotation */
+    box-shadow: 0 12px 35px rgba(0, 255, 180, 0.4); /* Glow effect */
   }
 
   .play-btn {
@@ -225,18 +221,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.8s ease-out;
-    will-change: transform;
   }
 
   .video-card.show {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  /* Static Video Hover Zoom */
-  .video-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 40px rgba(0, 255, 180, 0.4), 0 0 30px #00ffcc;
   }
 </style>
 
@@ -250,6 +239,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     const total = wrappers.length;
     let index = 0;
     let autoSlideInterval;
+
+    // Initially set the first video as active
+    wrappers[0].classList.add("active");
 
     function updateSlider() {
       slider.style.transform = `translateX(-${index * 100}%)`;
@@ -303,11 +295,25 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     document.querySelectorAll(".video-card").forEach((card) => {
       observer.observe(card);
     });
+
+    // Static video controls
+    document.querySelectorAll(".video-card").forEach((card) => {
+      const video = card.querySelector("video");
+      const btn = card.querySelector(".play-btn");
+
+      btn.addEventListener("click", () => toggleVideo(btn, video));
+      video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
+      video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
+    });
+
+    // Slider controls
+    document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
+    document.querySelector(".next").addEventListener("click", () => moveSlider(1));
   });
 </script>
