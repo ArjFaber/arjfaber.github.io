@@ -70,6 +70,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .video-tile {
     position: relative;
+    object-fit: contain;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
@@ -80,7 +81,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   .video-tile video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Use object-fit: cover for the grid */
+    object-fit: contain; /* Use object-fit: cover for the grid */
     display: block;
     filter: grayscale(20%);
     transition: all 0.4s ease;
@@ -149,8 +150,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    object-fit: contain;
     background: rgba(10, 10, 10, 0.95);
     display: none;
     justify-content: center;
@@ -160,9 +160,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .modal-content {
     position: relative;
-    max-width: 90%; /* Prevents videos from being too wide */
-    max-height: 80%; /* Prevents videos from being too tall */
-    width: 800px; /* You can adjust based on your preference */
+    object-fit: contain;
     height: auto;
   }
 
