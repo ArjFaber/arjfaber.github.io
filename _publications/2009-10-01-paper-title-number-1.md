@@ -44,30 +44,59 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 
 ## Kuka Robot Recovery Documentation
-<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: nowrap;">
-
-  <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka1_.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka2_.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka3_.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
+<div class="video-grid">
+  <div class="video-card">
+    <video muted preload="none">
+      <source src="https://arjfaber.github.io/files/kuka1_.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-card">
+    <video muted preload="none">
+      <source src="https://arjfaber.github.io/files/kuka2_.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-card">
+    <video muted preload="none">
+      <source src="https://arjfaber.github.io/files/kuka3_.mp4" type="video/mp4">
+    </video>
+  </div>
 </div>
+
 
 
 [Kuka setup tutorial](https://github.com/ArjFaber/Harmony_UT/wiki)
 
 ![KUKA Robot Image](https://arjfaber.github.io/files/UT.png)
 <style>
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .video-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+  }
+
+  .video-card.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .video-card video {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .video-card video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
   .slider-container {
     max-width: 100%;
     overflow: hidden;
@@ -288,6 +317,19 @@ videos.forEach((video, i) => {
   });
 });
 
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  document.querySelectorAll('.video-card').forEach(card => {
+    observer.observe(card);
+  });
 </script>
 
 
