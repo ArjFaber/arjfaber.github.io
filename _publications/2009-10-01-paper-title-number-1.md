@@ -25,7 +25,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4"></video>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4">
+    <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
       <button class="play-btn">&#9658;</button>
     </div>
@@ -68,6 +68,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
+.video-tile.tall-fit video {
+  object-fit: contain;
+  background-color: #000; /* optional for letterboxing */
+}
   .video-tile {
     position: relative;
     border-radius: 15px;
