@@ -68,10 +68,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
-.video-tile.tall-fit video {
-  object-fit: contain;
-  background-color: #000; /* optional for letterboxing */
-}
+  .video-tile.tall-fit video {
+    object-fit: contain;
+    background-color: #000; /* optional for letterboxing */
+  }
+
   .video-tile {
     position: relative;
     border-radius: 15px;
@@ -184,36 +185,62 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     
 </style>
 
-  <script>
-    document.querySelectorAll(".video-tile").forEach(tile => {
-      const btn = tile.querySelector(".play-btn");
-      const video = tile.querySelector("video");
-      const src = tile.dataset.src;
+<script>
+  document.querySelectorAll(".video-tile").forEach(tile => {
+    const btn = tile.querySelector(".play-btn");
+    const video = tile.querySelector("video");
+    const src = tile.dataset.src;
 
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (video.paused) {
-          video.play();
-          btn.innerHTML = "&#10074;&#10074;";
-        } else {
-          video.pause();
-          btn.innerHTML = "&#9658;";
-        }
-      });
-
-      tile.addEventListener("click", () => {
-        const modal = document.getElementById("videoModal");
-        const modalVideo = document.getElementById("modalVideo");
-        modalVideo.src = src;
-        modal.style.display = "flex";
-      });
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = "&#10074;&#10074;";
+      } else {
+        video.pause();
+        btn.innerHTML = "&#9658;";
+      }
     });
 
-    document.querySelector(".close-btn").addEventListener("click", () => {
+    tile.addEventListener("click", () => {
       const modal = document.getElementById("videoModal");
       const modalVideo = document.getElementById("modalVideo");
-      modal.style.display = "none";
-      modalVideo.pause();
-      modalVideo.src = "";
+
+      // Reset classes for every click
+      modalVideo.classList.remove("tall-video", "phone-video");
+
+      // Check if it's the "ML Module" video
+      if (src.includes("Harmony_ML_Module_Final-2.mp4")) {
+        modalVideo.classList.add("tall-video");
+      } else {
+        // For other videos, check if the aspect ratio is more "portrait" than "landscape"
+        const videoElement = document.createElement('video');
+        videoElement.src = src;
+        
+        // Wait until the video is loaded to get the dimensions
+        videoElement.onloadedmetadata = function () {
+          const videoAspectRatio = videoElement.videoHeight / videoElement.videoWidth;
+          if (videoAspectRatio > 1) {  // Portrait orientation (taller than wide)
+            modalVideo.classList.add("phone-video");
+          }
+          
+          // Set the video source after checking the aspect ratio
+          modalVideo.src = src;
+          modal.style.display = "flex";
+        };
+      }
     });
-  </script>
+  });
+
+  document.querySelector(".close-btn").addEventListener("click", () => {
+    const modal = document.getElementById("videoModal");
+    const modalVideo = document.getElementById("modalVideo");
+    modal.style.display = "none";
+    modalVideo.pause();
+    modalVideo.src = "";
+    modalVideo.classList.remove("tall-video", "phone-video"); // Clean up classes
+  });
+</script>
+
+
+ 
