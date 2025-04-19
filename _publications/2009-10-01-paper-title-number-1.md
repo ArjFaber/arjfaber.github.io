@@ -117,6 +117,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     will-change: transform; /* Optimize for smooth animations */
   }
 
+  /* Specific style for the first video in the slider */
+  .video:first-child video {
+    object-fit: cover;  /* Ensures the video covers the container without stretching */
+    height: 100%;
+    width: 100%;
+    object-position: center;  /* Centers the video in the container */
+    transform: scale(1.2);  /* Slightly scale up the video for better fit */
+  }
+
   /* Active Video Styling with Zoom and Glow */
   .video.active {
     opacity: 1;
@@ -240,9 +249,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     let index = 0;
     let autoSlideInterval;
 
-    // Initially set the first video as active
-    wrappers[0].classList.add("active");
-
     function updateSlider() {
       slider.style.transform = `translateX(-${index * 100}%)`;
       wrappers.forEach((wrapper, i) => {
@@ -311,9 +317,5 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
       video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
     });
-
-    // Slider controls
-    document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
-    document.querySelector(".next").addEventListener("click", () => moveSlider(1));
   });
 </script>
