@@ -82,7 +82,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     pointer-events: none;
   }
 
-  /* Slider Container */
   .slider-container {
     max-width: 100%;
     height: 500px; /* Set height for proper display */
@@ -92,64 +91,42 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
     border: 2px solid #00ff9e;
-    background-color: #000; /* For better visibility */
+    background-color: #000;
   }
 
-  /* Slider Content */
   .video-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
     z-index: 1;
   }
 
-  /* Video Styling for Each Slider Video */
- /* Specific style for the first video in the slider */
-.video:first-child video {
-  object-fit: contain;  /* Ensure video fits within the container */
-  height: 100%;
-  width: 100%;
-  object-position: center;  /* Keeps the video centered in the container */
-}
+  .video {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+    filter: grayscale(20%);
+    will-change: transform;
+  }
 
-/* Ensure all videos inside the slider container fit */
-.video video {
-  object-fit: contain;  /* Make sure all videos fit the container */
-  width: 100%;           /* Fill the width of the container */
-  height: 100%;          /* Fill the height of the container */
-  object-position: center; /* Center the video content */
-}
-
-
-  /* Active Video Styling with Zoom and Glow */
   .video.active {
     opacity: 1;
-    transform: scale(1.08); /* Zoom effect */
+    transform: scale(1.04);
     filter: grayscale(0%);
-    box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6); /* Glow effect */
-    animation: glow 1.5s infinite alternate; /* Glowing effect */
+    box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6);
   }
 
-  /* Keyframes for Glow Animation */
-  @keyframes glow {
-    0% {
-      box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Faint glow */
-    }
-    100% {
-      box-shadow: 0px 0px 40px rgba(0, 255, 255, 1); /* Stronger glow */
-    }
-  }
-
-  /* Hover Zoom Effect for Static Video Cards */
-  .video-card:hover {
-    transform: scale(1.05); /* Zoom effect on hover */
-    box-shadow: 0 20px 40px rgba(0, 255, 180, 0.4), 0 0 30px #00ffcc; /* Glow effect */
-  }
-
-  /* Hover Zoom Effect on Videos in Slider */
-  .video:hover video,
-  .video-card:hover video {
-    transform: scale(1.1) rotateX(1deg); /* Slight zoom and rotation */
-    box-shadow: 0 12px 35px rgba(0, 255, 180, 0.4); /* Glow effect */
+  .video video {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    transition: all 0.4s ease;
   }
 
   .play-btn {
@@ -311,5 +288,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
       video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
     });
+
+    // Slider controls
+    document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
+    document.querySelector(".next").addEventListener("click", () => moveSlider(1));
   });
 </script>
