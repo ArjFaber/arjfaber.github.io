@@ -108,13 +108,29 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 0.7;
     transition: all 0.4s ease;
     filter: grayscale(20%);
+    will-change: transform;
   }
 
   .video.active {
     opacity: 1;
-    transform: scale(1.04);
+    transform: scale(1.08);
     filter: grayscale(0%);
     box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6);
+    animation: glow 1.5s infinite alternate;
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+    }
+    100% {
+      box-shadow: 0px 0px 40px rgba(0, 255, 255, 1);
+    }
+  }
+
+  .video:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 35px rgba(0, 255, 180, 0.4);
   }
 
   .video video,
@@ -126,9 +142,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     pointer-events: none;
   }
 
+  /* Apply transition to the actual video content */
   .video:hover video,
   .video-card:hover video {
-    transform: scale(1.05) rotateX(1deg);
+    transform: scale(1.1) rotateX(1deg);
     box-shadow: 0 12px 35px rgba(0, 255, 180, 0.4);
   }
 
@@ -204,11 +221,18 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.8s ease-out;
+    will-change: transform;
   }
 
   .video-card.show {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Static Video Hover Zoom */
+  .video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 255, 180, 0.4), 0 0 30px #00ffcc;
   }
 </style>
 
@@ -275,25 +299,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
 
     document.querySelectorAll(".video-card").forEach((card) => {
       observer.observe(card);
     });
-
-    // Static video controls
-    document.querySelectorAll(".video-card").forEach((card) => {
-      const video = card.querySelector("video");
-      const btn = card.querySelector(".play-btn");
-
-      btn.addEventListener("click", () => toggleVideo(btn, video));
-      video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
-      video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
-    });
-
-    // Slider controls
-    document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
-    document.querySelector(".next").addEventListener("click", () => moveSlider(1));
   });
 </script>
