@@ -108,19 +108,22 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     pointer-events: none;
   }
 
-  .play-btn {
-    position: absolute;
-    font-size: 48px;
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-radius: 50%;
-    padding: 10px 16px;
-    cursor: pointer;
-    z-index: 2;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-  }
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  padding: 10px 16px;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
 
   .video:hover .play-btn,
   .video-card:hover .play-btn {
