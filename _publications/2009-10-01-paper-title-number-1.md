@@ -56,13 +56,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka2_.mp4" type="video/mp4">
     </video>
-       <button class="play-btn-2" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
+       <button class="play-btn" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
   </div>
   <div class="video-card">
     <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka3_.mp4" type="video/mp4">
     </video>
-    <button class="play-btn-2" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
+    <button class="play-btn" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
 
   </div>
 </div>
@@ -139,51 +139,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 1;
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
   }
-.play-btn-2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  padding: 20px;
-  cursor: pointer;
-  z-index: 2;
-  opacity: 0; /* Hidden by default */
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-  .play-btn-2:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  .video.playing .play-btn-2 {
-    display: block; /* Hide button when video is playing */
-  }
-  .play-btn-2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  padding: 20px;
-  cursor: pointer;
-  z-index: 2;
-  opacity: 0; /* Hidden by default */
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-  .play-btn-2:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  .video.playing .play-btn-2 {
-    display: block; /* Hide button when video is playing */
-  }
-
 
   
   @keyframes popOutIn {
