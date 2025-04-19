@@ -80,7 +80,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   .video-tile video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Maintain aspect ratio */
+    object-fit: cover; /* Use object-fit: cover for the grid */
     display: block;
     filter: grayscale(20%);
     transition: all 0.4s ease;
@@ -160,12 +160,16 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .modal-content {
     position: relative;
-    max-width: 90%;
-    width: 800px;
+    max-width: 90%; /* Prevents videos from being too wide */
+    max-height: 80%; /* Prevents videos from being too tall */
+    width: 800px; /* You can adjust based on your preference */
+    height: auto;
   }
 
   .modal-content video {
     width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures video stays within modal dimensions */
     border-radius: 10px;
   }
 
