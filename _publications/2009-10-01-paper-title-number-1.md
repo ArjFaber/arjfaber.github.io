@@ -199,21 +199,5 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       }
     });
 
-    tile.addEventListener("click", () => {
-      const modal = document.getElementById("videoModal");
-      const modalVideo = document.getElementById("modalVideo");
-
-      // Set the video source
-      modalVideo.src = src;
-      modal.style.display = "flex";
-    });
-  });
-
-  document.querySelector(".close-btn").addEventListener("click", () => {
-    const modal = document.getElementById("videoModal");
-    const modalVideo = document.getElementById("modalVideo");
-    modal.style.display = "none";
-    modalVideo.pause();
-    modalVideo.src = "";
-  });
+    
 </script>
