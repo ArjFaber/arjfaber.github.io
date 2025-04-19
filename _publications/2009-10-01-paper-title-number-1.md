@@ -18,20 +18,20 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 ### 🚀 Featured Footage
 <div class="video-wall">
+   <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
+    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
+    <div class="video-meta">
+      <h4>Unofficial final demo</h4>
+    </div>
+      <span class="badge">NEW</span>
+    <button class="play-btn">&#9658;</button>
+  </div>
+  
   <div class="video-tile featured" data-src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4"></video>
     <div class="video-meta">
       <h4>Data gathering</h4>
       <p>Leveraging Kuka's camera's and sensor input</p>
-    </div>
-    <span class="badge">NEW</span>
-    <button class="play-btn">&#9658;</button>
-  </div>
-
-  <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
-    <div class="video-meta">
-      <h4>Unofficial final demo</h4>
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
@@ -58,7 +58,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
     <div class="video-meta">
       <h4>Finetuning Kuka controls (iii)</h4>
-      <p>Velocity and jerk minimization test</p>
+      <p>Velocity and responsiveness test</p>
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
