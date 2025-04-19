@@ -40,7 +40,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
     <div class="video-meta">
       <h4>Finetuning Kuka controls (i)</h4>
-      <p>Initial PID experiments for arm control</p>
+      <p>Initial experiments for remote control</p>
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
