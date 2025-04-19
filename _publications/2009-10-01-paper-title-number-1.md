@@ -69,8 +69,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
 
     .video-tile {
-        width: 50%;
-        height: 50%
+        width: 75%;
+        height: 75%
       position: relative;
       border-radius: 15px;
       overflow: hidden;
@@ -80,8 +80,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
 
     .video-tile video {
-      width: 80%;
-      height: 80%;
+      width: 75%;
+      height: 75%;
       object-fit: cover;
       display: block;
       filter: grayscale(20%);
