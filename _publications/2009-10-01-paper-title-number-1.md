@@ -101,9 +101,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   .video {
-    min-width: 100%;
-    width: 100%;
-    height: 100%;
     position: relative;
     display: flex;
     justify-content: center;
