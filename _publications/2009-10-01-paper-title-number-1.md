@@ -19,10 +19,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 ---
 
-### Featured Footage
+### 🚀 Featured Footage
 
 <!-- SLIDER SECTION -->
-<div class="slider-container" id="sliderContainer">
+<div class="slider-container tech-bg" id="sliderContainer">
   <div class="video-slider" id="videoSlider">
     <div class="video active">
       <video muted loop playsinline preload="auto" id="video1">
@@ -39,8 +39,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <button class="play-btn">&#9658;</button>
     </div>
   </div>
-  <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-  <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+  <button class="btn prev slide-in">&#10094;</button>
+  <button class="btn next slide-in">&#10095;</button>
 </div>
 
 <!-- STATIC VIDEO GRID SECTION -->
@@ -66,23 +66,37 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   </div>
 </div>
 
-<!-- SHARED STYLES FOR ALL -->
+<!-- STYLES -->
 <style>
+  /* Matrix-style animated background */
+  .tech-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #001100 0%, #000000 100%);
+    opacity: 0.7;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .slider-container {
     max-width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
     margin: 40px auto;
     border-radius: 15px;
-    background-color: black;
-    box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.3);
-    border: 2px solid #00ff00;
     overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
+    border: 2px solid #00ff9e;
   }
 
   .video-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    z-index: 1;
   }
 
   .video {
@@ -91,57 +105,88 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.6;
+    opacity: 0.7;
     transition: all 0.4s ease;
+    filter: grayscale(20%);
   }
 
   .video.active {
     opacity: 1;
-    transform: scale(1.03);
-    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.6);
+    transform: scale(1.04);
+    filter: grayscale(0%);
+    box-shadow: 0px 0px 35px rgba(0, 255, 100, 0.6);
   }
 
-  .video video, .video-card video {
+  .video video,
+  .video-card video {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 16px;
+    transition: all 0.4s ease;
     pointer-events: none;
   }
 
-.play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 50%;
-  padding: 10px 16px;
-  cursor: pointer;
-  z-index: 2;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
+  .video:hover video,
+  .video-card:hover video {
+    transform: scale(1.05) rotateX(1deg);
+    box-shadow: 0 12px 35px rgba(0, 255, 180, 0.4);
+  }
+
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 48px;
+    color: #00ffcc;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #00ffcc;
+    border-radius: 50%;
+    padding: 10px 16px;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px #00ffd5;
+  }
 
   .video:hover .play-btn,
   .video-card:hover .play-btn {
     opacity: 1;
+    animation: pulseGlow 1.2s infinite ease-in-out;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 15px #00ffd5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 25px #00ffcc;
+    }
   }
 
   .btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    border: none;
-    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ffcc;
+    color: #00ffe1;
     font-size: 24px;
     border-radius: 50%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     cursor: pointer;
     z-index: 10;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #00ffcc;
+    color: black;
+    transform: scale(1.1) translateY(-50%);
   }
 
   .prev { left: 10px; }
@@ -165,90 +210,90 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 1;
     transform: translateY(0);
   }
-
-  .video-card video:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-  }
 </style>
 
-<!-- SCRIPTS -->
+<!-- SCRIPT -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector('.video-slider');
-  const wrappers = document.querySelectorAll('.video');
-  const videos = document.querySelectorAll('.video video');
-  const buttons = document.querySelectorAll('.video .play-btn');
-  const total = wrappers.length;
-  let index = 0;
-  let autoSlideInterval;
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.querySelector(".video-slider");
+    const wrappers = document.querySelectorAll(".video");
+    const videos = document.querySelectorAll(".video video");
+    const buttons = document.querySelectorAll(".video .play-btn");
+    const total = wrappers.length;
+    let index = 0;
+    let autoSlideInterval;
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    wrappers.forEach((wrapper, i) => {
-      wrapper.classList.toggle('active', i === index);
-    });
-  }
-
-  function moveSlider(dir) {
-    index = (index + dir + total) % total;
-    updateSlider();
-  }
-
-  function toggleVideo(btn, video) {
-    if (video.paused) {
-      video.play();
-      btn.innerHTML = '&#10074;&#10074;';
-    } else {
-      video.pause();
-      btn.innerHTML = '&#9658;';
+    function updateSlider() {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      wrappers.forEach((wrapper, i) => {
+        wrapper.classList.toggle("active", i === index);
+      });
     }
-  }
 
-  // Attach play button toggle to slider videos
-  buttons.forEach((btn, i) => {
-    const video = videos[i];
-    btn.addEventListener('click', () => toggleVideo(btn, video));
-    video.addEventListener('play', () => btn.innerHTML = '&#10074;&#10074;');
-    video.addEventListener('pause', () => btn.innerHTML = '&#9658;');
-  });
+    function moveSlider(dir) {
+      index = (index + dir + total) % total;
+      updateSlider();
+    }
 
-  function startAutoSlideCheck() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(() => {
-      const currentVideo = wrappers[index].querySelector('video');
-      if (currentVideo.paused) {
-        moveSlider(1);
+    function toggleVideo(btn, video) {
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = "&#10074;&#10074;";
+      } else {
+        video.pause();
+        btn.innerHTML = "&#9658;";
       }
-    }, 7000);
-  }
+    }
 
-  updateSlider();
-  startAutoSlideCheck();
-
-  // Fade-in animations for static video grid
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
+    // Toggle video play/pause on slider
+    buttons.forEach((btn, i) => {
+      const video = videos[i];
+      btn.addEventListener("click", () => toggleVideo(btn, video));
+      video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
+      video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
     });
-  }, { threshold: 0.2 });
 
-  document.querySelectorAll('.video-card').forEach(card => {
-    observer.observe(card);
+    function startAutoSlideCheck() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(() => {
+        const currentVideo = wrappers[index].querySelector("video");
+        if (currentVideo.paused) {
+          moveSlider(1);
+        }
+      }, 7000);
+    }
+
+    updateSlider();
+    startAutoSlideCheck();
+
+    // Fade-in animations for static video grid
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll(".video-card").forEach((card) => {
+      observer.observe(card);
+    });
+
+    // Static video controls
+    document.querySelectorAll(".video-card").forEach((card) => {
+      const video = card.querySelector("video");
+      const btn = card.querySelector(".play-btn");
+
+      btn.addEventListener("click", () => toggleVideo(btn, video));
+      video.addEventListener("play", () => (btn.innerHTML = "&#10074;&#10074;"));
+      video.addEventListener("pause", () => (btn.innerHTML = "&#9658;"));
+    });
+
+    // Slider controls
+    document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
+    document.querySelector(".next").addEventListener("click", () => moveSlider(1));
   });
-
-  // Static KUKA video play buttons
-  document.querySelectorAll('.video-card').forEach(card => {
-    const video = card.querySelector('video');
-    const btn = card.querySelector('.play-btn');
-
-    btn.addEventListener('click', () => toggleVideo(btn, video));
-
-    video.addEventListener('play', () => btn.innerHTML = '&#10074;&#10074;');
-    video.addEventListener('pause', () => btn.innerHTML = '&#9658;');
-  });
-});
 </script>
