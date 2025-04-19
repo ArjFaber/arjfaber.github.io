@@ -112,14 +112,12 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     align-items: center;
     visibility: hidden; /* Hide initially */
   }
-
   .video-slider {
     display: flex;
     height: 100%;
     width: 100%;
     transition: transform 0.5s ease-in-out;
   }
-
   .video {
     min-width: 100%;
     height: 100%;
@@ -131,13 +129,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 0.6;
     transition: transform 0.4s ease, opacity 0.4s ease;
   }
-
   .video.active {
     transform: scale(1.05);
     opacity: 1;
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
   }
-
 .play-btn {
   position: absolute;
   top: 50%;
@@ -154,33 +150,25 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   pointer-events: none;
   transition: opacity 0.5s ease;
 }
-
-
-
   .play-btn:hover {
     background-color: rgba(0, 0, 0, 0.9);
   }
-
   .video.playing .play-btn {
     display: block; /* Hide button when video is playing */
   }
-
   @keyframes popOutIn {
         0% { transform: scale(1.05); }
         50% { transform: scale(1.15); }
         100% { transform: scale(1.05); }
     }
-
     .video.pop-animate {
         animation: popOutIn 1.5s ease;
         z-index: 2;
     }
-
   .video.paused {
     animation: popOutIn 2s ease;
     z-index: 2;
   }
-
   .btn {
     position: absolute;
     top: 50%;
@@ -194,13 +182,12 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     border-radius: 50%;
     z-index: 3;
   }
-
   .prev { left: 5px; }
   .next { right: 5px; }
 </style>
 
 <script>
-  let index = 0;
+let index = 0;
 const slider = document.querySelector('.video-slider');
 const wrappers = document.querySelectorAll('.video');
 const videos = document.querySelectorAll('.video video');
@@ -327,9 +314,11 @@ videos.forEach((video, i) => {
     threshold: 0.2
   });
 
+  window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.video-card').forEach(card => {
     observer.observe(card);
   });
+});
 </script>
 
 
