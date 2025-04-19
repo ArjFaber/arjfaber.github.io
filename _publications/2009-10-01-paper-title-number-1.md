@@ -91,6 +91,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
     border: 2px solid #00ff9e;
+    height: 500px; /* Set height for proper display */
+    background-color: #000; /* For better visibility */
   }
 
   .video-slider {
@@ -136,7 +138,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   .video video,
   .video-card video {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 16px;
     transition: all 0.4s ease;
     pointer-events: none;
