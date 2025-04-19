@@ -84,7 +84,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .slider-container {
     max-width: 100%;
-    height: 500px; /* Set height for proper display */
+    height: 100%; /* Set height for proper display */
     position: relative;
     margin: 40px auto;
     border-radius: 15px;
