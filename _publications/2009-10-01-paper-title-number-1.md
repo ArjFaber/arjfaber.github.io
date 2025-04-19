@@ -42,8 +42,31 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
-![KUKA Robot Image](https://arjfaber.github.io/files/UT.png)
 
+## Kuka Robot Recovery Documentation
+
+<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+
+  <video width="320" height="240" controls>
+    <source src="https://arjfaber.github.io/files/kuka1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <video width="320" height="240" controls>
+    <source src="https://arjfaber.github.io/files/kuka2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <video width="320" height="240" controls>
+    <source src="https://arjfaber.github.io/files/kuka3.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+</div>
+
+[Kuka setup tutorial](https://github.com/ArjFaber/Harmony_UT/wiki)
+
+![KUKA Robot Image](https://arjfaber.github.io/files/UT.png)
 <style>
   .slider-container {
     max-width: 100%;
