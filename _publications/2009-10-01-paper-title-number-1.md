@@ -1,5 +1,5 @@
 ---
-title: "Designing an adaptive ML Module for Social Behavior Acquisition of Service Robots"
+title: "Designing an Adaptive ML Module for Social Behavior Acquisition of Service Robots"
 collection: publications
 category: manuscripts
 permalink: /publication/2009-10-01-paper-title-number-1
