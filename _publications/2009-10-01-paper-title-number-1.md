@@ -103,28 +103,22 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   /* Video Styling for Each Slider Video */
-  .video {
-    min-width: 100%;
-    width: 100%;
-    height: 100%; /* Make sure the video fills the height */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.7;
-    transition: all 0.4s ease;
-    filter: grayscale(20%);
-    will-change: transform; /* Optimize for smooth animations */
-  }
+ /* Specific style for the first video in the slider */
+.video:first-child video {
+  object-fit: contain;  /* Ensure video fits within the container */
+  height: 100%;
+  width: 100%;
+  object-position: center;  /* Keeps the video centered in the container */
+}
 
-  /* Specific style for the first video in the slider */
-  .video:first-child video {
-    object-fit: cover;  /* Ensures the video covers the container without stretching */
-    height: 100%;
-    width: 100%;
-    object-position: center;  /* Centers the video in the container */
-    transform: scale(1.2);  /* Slightly scale up the video for better fit */
-  }
+/* Ensure all videos inside the slider container fit */
+.video video {
+  object-fit: contain;  /* Make sure all videos fit the container */
+  width: 100%;           /* Fill the width of the container */
+  height: 100%;          /* Fill the height of the container */
+  object-position: center; /* Center the video content */
+}
+
 
   /* Active Video Styling with Zoom and Glow */
   .video.active {
