@@ -1,10 +1,10 @@
 ---
-title: "Harmony Assignment"
+title: "Designing an adaptive ML Module for Social Behavior Acquisition of Service Robots"
 collection: publications
 category: manuscripts
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'This paper introduces an adaptive ML module for service robots in complex hospital environments.'
-date: 2021-01-01
+date: 2024-08-01
 venue: 'University of Twente (Human Interaction Group)'
 paperurl: 'http://arjfaber.github.io/files/HARMONY_UT_ML_MODULE_Report.pdf'
 slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset'
