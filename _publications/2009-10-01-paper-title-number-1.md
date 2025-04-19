@@ -48,17 +48,17 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
 
   <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka1.mp4" type="video/mp4">
+    <source src="https://arjfaber.github.io/files/kuka1_.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka2.mp4" type="video/mp4">
+    <source src="https://arjfaber.github.io/files/kuka2_.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <video width="320" height="240" controls>
-    <source src="https://arjfaber.github.io/files/kuka3.mp4" type="video/mp4">
+    <source src="https://arjfaber.github.io/files/kuka3_.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
