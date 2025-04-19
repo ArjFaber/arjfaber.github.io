@@ -46,17 +46,17 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 ## Kuka Robot Recovery Documentation
 <div class="video-grid">
   <div class="video-card">
-    <video muted preload="none">
+    <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka1_.mp4" type="video/mp4">
     </video>
   </div>
   <div class="video-card">
-    <video muted preload="none">
+    <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka2_.mp4" type="video/mp4">
     </video>
   </div>
   <div class="video-card">
-    <video muted preload="none">
+    <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka3_.mp4" type="video/mp4">
     </video>
   </div>
