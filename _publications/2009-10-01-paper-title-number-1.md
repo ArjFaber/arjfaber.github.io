@@ -49,7 +49,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <video preload="auto">
       <source src="https://arjfaber.github.io/files/kuka1_.mp4" type="video/mp4">
     </video>
-    <button class="play-btn-2" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
+    <button class="play-btn" onclick="toggleVideo(this)">&#9658;</button> <!-- play icon -->
 
   </div>
   <div class="video-card">
