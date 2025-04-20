@@ -5,7 +5,7 @@ category: manuscripts
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'This paper introduces an adaptive ML module for service robots in complex hospital environments.'
 date: 2024-08-01
-venue: 'University of Twente (Human Interaction Group)'
+venue: 'University of Twente (Human Media Interaction Group)'
 paperurl: 'http://arjfaber.github.io/files/HARMONY_UT_ML_MODULE_Report.pdf'
 slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset'
 citation: 'Faber A. et al. (2024)'
