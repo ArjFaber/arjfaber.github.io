@@ -11,6 +11,11 @@ slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpd
 citation: 'Faber A. (2021)'
 ---
 
+<video width="640" height="360" controls autoplay loop muted>
+  <source src="http://arjfaber.github.io/files/anim_frontpage.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 This research compares traditional and machine learning approaches to estimate credit default swap (CDS) spreads for illiquid entities. It finds that **artificial neural networks (ANNs)** outperform benchmark models, while **Bayesian neural networks (BNNs)** and some tree-based methods struggle with overfitting.
 
 📄 [Read the Full Thesis (PDF)](http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf)  
