@@ -177,12 +177,11 @@ title: Home
         if (path.includes("/teaching") || path.includes("paper-title-number-1")) {
           selectedFile = "projects.mp4";
           videoURL = baseURL + selectedFile;
-
-          if (path.includes("paper-title-number-2")) {
+        };
+        if (path.includes("paper-title-number-2")) {
             selectedFile = "";
-            videoURL = baseURL;
-          }
-        }
+            videoURL = baseURL + selectedFile;
+          };
 
         videoSource.src = videoURL;
         backgroundVideo.load();
