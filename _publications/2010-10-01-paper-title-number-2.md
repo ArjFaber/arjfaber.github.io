@@ -27,7 +27,7 @@ After the 2008 financial crisis, estimating CDS spreads became critical—especi
 - **Cross-Section Method** (benchmark)
 - **Artificial Neural Network (ANN)**
 - **Bayesian Neural Network (BNN)**
-- ** K-Nearest Neighbours (K-NN)**
+- **K-Nearest Neighbours (K-NN)**
 - **Regression Trees**
 - **Random Forests**
 
@@ -35,21 +35,8 @@ Data includes CDS spreads for over 2,000 entities on selected trading days in 20
 
 ## Bayesian Neural Network in TensorFlow
 
-This section provides a walkthrough of a custom BNN model implemented using **TensorFlow** and **TensorFlow Probability**. The goal: to estimate predictive uncertainty in CDS spreads. See also the [BNN Code and tutorial on my GitHub page](https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset)
+This section provides a walkthrough of a custom BNN model implemented using **TensorFlow** and **TensorFlow Probability** on a weather dataset. See also the [BNN Code and tutorial on my GitHub page](https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset)
 
-##  Model Performance
-
-### Example Results (RMSE per Fold)
-
-| Dataset   | Fold 1   | Fold 2   | Fold 3   | Mean RMSE |
-|-----------|----------|----------|----------|-----------|
-| Dataset 1 | 0.26696  | 0.27278  | 0.25661  | 0.26545   |
-| Dataset 2 | 2.82490  | 0.82044  | 1.20805  | 1.61780   |
-| Dataset 3 | 0.27719  | 0.22709  | 0.22254  | **0.24227**|
-| Dataset 4 | 0.53035  | 1.20390  | 0.65294  | 0.79573   |
-
-✳️ **Best Performance:** Dataset 3  
-❗ **Most Variability:** Dataset 2
 
 ---
 
