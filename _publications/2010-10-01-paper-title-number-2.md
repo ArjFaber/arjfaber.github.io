@@ -11,10 +11,6 @@ slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpd
 citation: 'Faber A. (2021)'
 ---
 
-# Comparing Machine Learning Methods for Proxying CDS Spreads
-
-## TL;DR
-
 This research compares traditional and machine learning approaches to estimate credit default swap (CDS) spreads for illiquid entities. It finds that **artificial neural networks (ANNs)** outperform benchmark models, while **Bayesian neural networks (BNNs)** and some tree-based methods struggle with overfitting.
 
 📄 [Read the Full Thesis (PDF)](http://arjfaber.github.io/files/BSc_thesis_Arjan_Faber.pdf)  
@@ -31,53 +27,33 @@ After the 2008 financial crisis, estimating CDS spreads became critical—especi
 - **Cross-Section Method** (benchmark)
 - **Artificial Neural Network (ANN)**
 - **Bayesian Neural Network (BNN)**
+- ** K-Nearest Neighbours (K-NN)**
 - **Regression Trees**
 - **Random Forests**
 
 Data includes CDS spreads for over 2,000 entities on selected trading days in 2018, 2019, and 2020.
 
-## Key Findings
+## Bayesian Neural Network in TensorFlow
 
-- ✅ **ANNs consistently outperform** the benchmark cross-section model.
-- ❌ **BNNs underperform**, possibly due to training complexity and over-regularization.
-- ⚠️ **Regression trees & random forests** show a tendency to overfit.
-- 📉 Liquidity proxies (like number of contributors, composite depth) **do not enhance** model accuracy significantly.
-- 🧠 Using **LIME explanations**, credit ratings (especially underrepresented classes) were identified as the most influential features.
+This section provides a walkthrough of a custom BNN model implemented using **TensorFlow** and **TensorFlow Probability**. The goal: to estimate predictive uncertainty in CDS spreads. See also the [BNN Code and tutorial on my GitHub page](https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset)
 
----
-
-## 📦 Bayesian Neural Network in TensorFlow
-
-This section provides a walkthrough of a custom BNN model implemented using **TensorFlow** and **TensorFlow Probability**. The goal: to estimate predictive uncertainty in CDS spreads.
-
-### Highlights
-
-- Hard-coded BNN using custom BayesianDenseLayer
-- Uses **Flipout sampling** for efficient stochastic gradient estimates
-- Includes **KL divergence** loss for regularization
-- Predicts both **mean and variance** for regression tasks
-
-📘 See the [BNN Code and tutorial on my GitHub page](https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset)
-
----
-
-## 📈 Model Performance
+##  Model Performance
 
 ### Example Results (RMSE per Fold)
 
-| Dataset | Fold 1 | Fold 2 | Fold 3 | Mean RMSE |
-|--------|--------|--------|--------|-----------|
-| Dataset 1 | 0.26696 | 0.27278 | 0.25661 | 0.26545 |
-| Dataset 2 | 2.82490 | 0.82044 | 1.20805 | 1.61780 |
-| Dataset 3 | 0.27719 | 0.22709 | 0.22254 | **0.24227** |
-| Dataset 4 | 0.53035 | 1.20390 | 0.65294 | 0.79573 |
+| Dataset   | Fold 1   | Fold 2   | Fold 3   | Mean RMSE |
+|-----------|----------|----------|----------|-----------|
+| Dataset 1 | 0.26696  | 0.27278  | 0.25661  | 0.26545   |
+| Dataset 2 | 2.82490  | 0.82044  | 1.20805  | 1.61780   |
+| Dataset 3 | 0.27719  | 0.22709  | 0.22254  | **0.24227**|
+| Dataset 4 | 0.53035  | 1.20390  | 0.65294  | 0.79573   |
 
 ✳️ **Best Performance:** Dataset 3  
 ❗ **Most Variability:** Dataset 2
 
 ---
 
-## 🔮 Key Takeaways
+##  Key Takeaways
 
 - ANNs are a robust and reliable method for proxying CDS spreads
 - BNNs require careful tuning and more data to be competitive
@@ -89,6 +65,3 @@ This section provides a walkthrough of a custom BNN model implemented using **Te
 ## 📌 Citation
 
 > Faber, A. (2021). *Comparing Machine Learning Methods for Proxying CDS Spreads*. University of Groningen.
-
----
-
