@@ -170,20 +170,17 @@ title: Home
         let selectedFile = videoFilesAbout[Math.floor(Math.random() * videoFilesAbout.length)];
         let videoURL = baseURL + selectedFile;
 
-        if (path.includes("/publications/2009-10-01-paper-title-number-1")) {
+        if (path.includes("/publications") {
           selectedFile = videoFiles_YLW[Math.floor(Math.random() * videoFiles_YLW.length)];
           videoURL = baseURL + selectedFile;
-        }
-        if (path.includes("/publication/2010-10-01-paper-title-number-2") {
-          selectedFile = "";
-          videoURL = baseURL + selectedFile;
-        }
-        if (path.includes("/teaching") || path.includes("paper-title-number-1") || path.includes("paper-title-number-2")) {
+       
+        if (path.includes("/teaching") || path.includes("paper-title-number-1")) {
           selectedFile = "projects.mp4";
           videoURL = baseURL + selectedFile;
 
           if (path.includes("paper-title-number-2")) {
-            backgroundVideo.playbackRate = 0.65;
+            selectedFile = "";
+            videoURL = baseURL;
           }
         }
 
