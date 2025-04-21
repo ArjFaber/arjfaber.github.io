@@ -170,18 +170,17 @@ title: Home
         let selectedFile = videoFilesAbout[Math.floor(Math.random() * videoFilesAbout.length)];
         let videoURL = baseURL + selectedFile;
 
-        if (path.includes("/publications") {
+        if (path == "https://arjfaber.github.io/publications") {
           selectedFile = videoFiles_YLW[Math.floor(Math.random() * videoFiles_YLW.length)];
           videoURL = baseURL + selectedFile;
        
-        if (path.includes("/teaching") || path.includes("paper-title-number-1")) {
+        else if (path == "https://arjfaber.github.io/publications/paper-title-number-1") {
           selectedFile = "projects.mp4";
           videoURL = baseURL + selectedFile;
-        };
-        if (path.includes("paper-title-number-2")) {
-            selectedFile = "";
-            videoURL = baseURL + selectedFile;
-          };
+        }
+        else {
+          videoURL = ""
+        }
 
         videoSource.src = videoURL;
         backgroundVideo.load();
