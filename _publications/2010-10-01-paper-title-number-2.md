@@ -37,6 +37,11 @@ After the 2008 financial crisis, estimating CDS spreads became critical—especi
 - **Regression Trees**
 - **Random Forests**
 
+<video width="120%" autoplay loop muted playsinline>
+  <source src="http://arjfaber.github.io/files/tree_horizontal_line_merge-2-2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 Data includes CDS spreads for over 2,000 entities on selected trading days in 2018, 2019, and 2020.
 
 ## Bayesian Neural Network in TensorFlow
