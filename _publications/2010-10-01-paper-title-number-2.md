@@ -92,13 +92,3 @@ This section provides a walkthrough of a custom BNN model implemented using **Te
 
 ---
 
-## Want to Learn More?
-
-💬 Let me know if you’d like:
-- A full walkthrough of the codebase
-- An explanation of how variational inference works in BNNs  
-- Help deploying this as a blog post or academic page
-
----
-
-Let me know if you'd like this turned into a **GitHub Pages/Jekyll project template** or need the structure for `index.md`, `_config.yml`, etc. I can help package it up!
