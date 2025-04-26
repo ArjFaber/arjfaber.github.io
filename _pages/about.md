@@ -9,9 +9,8 @@ redirect_from:
 ---
 <div id="funFact" class="fun-fact">🤔 Fun fact loading...</div>
 <div class="project-card">
-
-<p style="text-align:center; margin-top: 20px;">
 <h3> Welcome to my website!</h3>
+<p style="text-align:center; margin-top: 20px;">
 Hi, welcome to my website! Here you'll find most of my academic work to date. Jump to the CV below for a summary of my experience, and scroll down further for recent projects and previews of upcoming projects. Cheers, Arjan!
 </p>
 </div>
