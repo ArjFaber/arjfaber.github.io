@@ -205,7 +205,7 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
         margin: 20px auto;
         padding: 20px;
         border-radius: 12px;
-        background: #f7f7f7;
+        background: rgba(247, 247, 247, 0.85);;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         transition: transform 0.2s;
         text-align: center;
