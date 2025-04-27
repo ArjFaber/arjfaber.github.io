@@ -356,49 +356,37 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-function updateSlider() {
-  slider.style.transform = `translateX(-${index * 100}%)`;
-  videoElements.forEach((vid, i) => {
-    vid.classList.toggle('active', i === index);
-  });
-}
+<script>
+  let index = 0;
+  const slider = document.querySelector(".video-slider");
+  const videoElements = document.querySelectorAll(".video-tile");
+  const totalVideos = videoElements.length;
+  let isVideoPlaying = false;
 
-function moveSlider(direction) {
-  if (isVideoPlaying) return;
-  const currentVideo = videoElements[index];
-  currentVideo.classList.add('pop-animate');
-  setTimeout(() => {
-    currentVideo.classList.remove('pop-animate');
-    index = (index + direction + totalVideos) % totalVideos;
-    updateSlider();
-  }, 1600);
-}
+  function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
 
-function autoSlide() {
-  if (isVideoPlaying) return;
-  const currentVideo = videoElements[index];
-  currentVideo.classList.add('pop-animate');
-  setTimeout(() => {
-    currentVideo.classList.remove('pop-animate');
-    index = (index + 1) % totalVideos;
-    updateSlider();
-  }, 1600);
-}
-
-function startAutoSlide() {
-  if (!autoSlideInterval && !isVideoPlaying) {
-    autoSlideInterval = setInterval(autoSlide, 5000);
+    videoElements.forEach((vid, i) => {
+      vid.classList.toggle('active', i === index);
+    });
   }
-}
 
-function stopAutoSlide() {
-  clearInterval(autoSlideInterval);
-  autoSlideInterval = null;
-}
+  function moveSlider(direction) {
+    if (isVideoPlaying) return;
 
-document.addEventListener('DOMContentLoaded', function () {
-  updateSlider();
-  startAutoSlide();
-});
+    const currentVideo = videoElements[index];
+    currentVideo.classList.add('pop-animate');
+
+    setTimeout(() => {
+      currentVideo.classList.remove('pop-animate');
+      index = (index + direction + totalVideos) % totalVideos;
+      updateSlider();
+    }, 400);  // Faster animation (optional)
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateSlider();
+  });
+</script>
 </script>
 
