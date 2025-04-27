@@ -108,25 +108,33 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     transition: opacity 0.3s ease;
   }
+.video-slider {
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 800% 800%;
+  animation: gradientBG 10s ease infinite;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 100, 150, 0.6);
+}
 
-   .video-slider {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        transition: transform 0.5s ease-in-out;
-    }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
    .video-slide video {
   width: 100%;
   height: 100%;
   object-fit: contain; /* or 'cover' if you want full filling */
 }
 .video-slide {
-  flex: 0 0 100%; /* Take up 100% of the slider container */
-  max-width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+ flex: 0 0 100%;
 }
    .video-slide.active {
     transform: scale(1.05);
@@ -245,20 +253,21 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     margin-top: 10px;
   }
 
-  .dot-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #00ffcc;
-    opacity: 0.5;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
+.dot-indicator {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+  transition: transform 0.3s, background 0.3s;
+}
 
-  .dot-indicator.active {
-    opacity: 1;
-    transform: scale(1.3);
-    box-shadow: 0 0 8px rgba(0, 255, 200, 0.7); /* Glowing effect */
-  }
+.dot-indicator.active {
+  background: #ff7eb3;
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(255,126,179,0.8);
+}
 </style>
 
 <script>
