@@ -54,6 +54,12 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 </div>
 
+<!-- Glowing Dots Indicator -->
+<div class="dot-indicator-container">
+  <div class="dot-indicator"></div>
+  <div class="dot-indicator"></div>
+  <div class="dot-indicator"></div>
+</div>
 
 <!-- Slider to move between videos -->
 <div class="slider">
@@ -102,6 +108,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     transition: opacity 0.3s ease;
   }
+
    .video-slider {
         display: flex;
         height: 100%;
@@ -221,6 +228,29 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     color: #00ffcc;
     cursor: pointer;
   }
+
+  /* Styling for the glowing dots */
+  .dot-indicator-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .dot-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #00ffcc;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .dot-indicator.active {
+    opacity: 1;
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(0, 255, 200, 0.7); /* Glowing effect */
+  }
 </style>
 
 <script>
@@ -228,6 +258,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   const slider = document.querySelector('.video-slider');
   const videoElements = document.querySelectorAll('.video-slide');
   const totalVideos = videoElements.length;
+  const dots = document.querySelectorAll('.dot-indicator'); // Glowing dots
 
   let autoSlideInterval;
   let isVideoPlaying = false;
@@ -280,11 +311,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   });
 
   function updateSlider() {
-    slider.style.transform = translateX(-${index * 100}%);
+    slider.style.transform = `translateX(-${index * 100}%)`;
     videoElements.forEach((vid, i) => {
       vid.classList.toggle('active', i === index);
     });
-     rangeInput.value = index; 
+    // Update dot indicators
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
   }
 
   function moveSlider(direction) {
@@ -324,23 +358,25 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }, 1600);
   }
 
-   const rangeInput = document.getElementById('video-slider');
+  const rangeInput = document.getElementById('video-slider');
 
-rangeInput.addEventListener('input', (e) => {
-  index = parseInt(e.target.value);
-  updateSlider();
-  stopAutoSlide(); // stop auto if user interacts
-});
-   rangeInput.addEventListener('input', (e) => {
-  index = parseInt(e.target.value);
-  updateSlider();
-  stopAutoSlide(); // stop immediately when user interacts
-  
-  // Restart auto-slide after 6 seconds of inactivity
-  setTimeout(() => {
-    startAutoSlide();
-  }, 6000);
-});
+  rangeInput.addEventListener('input', (e) => {
+    index = parseInt(e.target.value);
+    updateSlider();
+    stopAutoSlide(); // stop auto if user interacts
+  });
+
+  rangeInput.addEventListener('input', (e) => {
+    index = parseInt(e.target.value);
+    updateSlider();
+    stopAutoSlide(); // stop immediately when user interacts
+    
+    // Restart auto-slide after 6 seconds of inactivity
+    setTimeout(() => {
+      startAutoSlide();
+    }, 6000);
+  });
+
   document.addEventListener('DOMContentLoaded', function () {
     updateSlider();
     startAutoSlide();
