@@ -36,32 +36,29 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="play-btn">&#9658;</button>
   </div>
 </div>
-
-<div class="dot-indicator-container">
-    <!-- First video slide -->
+<div class="slider-container">
+  <div class="video-slider"> 
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-      <button class="play-btn">&#9658;</button>
-      <div class="dot-indicator"></div> <!-- Dot for first slide -->
+       <button class="play-btn">&#9658;</button>
     </div>
-    <!-- Second video slide -->
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-      <button class="play-btn">&#9658;</button>
-      <div class="dot-indicator"></div> <!-- Dot for second slide -->
+        <button class="play-btn">&#9658;</button>
     </div>
-    <!-- Third video slide -->
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-      <button class="play-btn">&#9658;</button>
-      <div class="dot-indicator"></div> <!-- Dot for third slide -->
+        <button class="play-btn">&#9658;</button>
     </div>
-</div> <!-- .dot-indicator-container -->
+  </div> <!-- .video-slider -->
 
-<!-- Optional for additional styling or controls, ensure you have relevant classes defined in your CSS for .video-slide, .play-btn, .dot-indicator -->
+</div>
 
- 
 
+<!-- Slider to move between videos -->
+<div class="slider">
+  <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
+</div>
 
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
@@ -105,7 +102,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     transition: opacity 0.3s ease;
   }
-
    .video-slider {
         display: flex;
         height: 100%;
@@ -225,29 +221,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     color: #00ffcc;
     cursor: pointer;
   }
-
-  /* Styling for the glowing dots */
-  .dot-indicator-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .dot-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #00ffcc;
-    opacity: 0.5;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .dot-indicator.active {
-    opacity: 1;
-    transform: scale(1.3);
-    box-shadow: 0 0 8px rgba(0, 255, 200, 0.7); /* Glowing effect */
-  }
 </style>
 
 <script>
@@ -255,7 +228,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   const slider = document.querySelector('.video-slider');
   const videoElements = document.querySelectorAll('.video-slide');
   const totalVideos = videoElements.length;
-  const dots = document.querySelectorAll('.dot-indicator'); // Glowing dots
 
   let autoSlideInterval;
   let isVideoPlaying = false;
@@ -308,14 +280,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   });
 
   function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
+    slider.style.transform = translateX(-${index * 100}%);
     videoElements.forEach((vid, i) => {
       vid.classList.toggle('active', i === index);
     });
-    // Update dot indicators
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
+     rangeInput.value = index; 
   }
 
   function moveSlider(direction) {
@@ -355,34 +324,23 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }, 1600);
   }
 
-  const rangeInput = document.getElementById('video-slider');
+   const rangeInput = document.getElementById('video-slider');
 
-  rangeInput.addEventListener('input', (e) => {
-    index = parseInt(e.target.value);
-    updateSlider();
-    stopAutoSlide(); // stop auto if user interacts
-  });
-
-  rangeInput.addEventListener('input', (e) => {
-    index = parseInt(e.target.value);
-    updateSlider();
-    stopAutoSlide(); // stop immediately when user interacts
-    
-    // Restart auto-slide after 6 seconds of inactivity
-    setTimeout(() => {
-      startAutoSlide();
-    }, 6000);
-  });
-
-  // Add event listener for dots to manually change video and pause auto-slide
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      index = i;
-      updateSlider();
-      stopAutoSlide(); // Pause auto-slide when dot is clicked
-    });
-  });
-
+rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // stop auto if user interacts
+});
+   rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // stop immediately when user interacts
+  
+  // Restart auto-slide after 6 seconds of inactivity
+  setTimeout(() => {
+    startAutoSlide();
+  }, 6000);
+});
   document.addEventListener('DOMContentLoaded', function () {
     updateSlider();
     startAutoSlide();
