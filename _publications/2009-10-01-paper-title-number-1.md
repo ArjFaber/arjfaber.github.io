@@ -41,7 +41,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
  <div class="slider-container">
   <div class="video-slider">
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+    <div class="video" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
@@ -49,7 +49,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       </div>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    <div class="video-active" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
@@ -57,7 +57,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       </div>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+    <div class="video" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (iii)</h4>
@@ -113,6 +113,49 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     border: 2px solid #00ff00;  /* Neon green border */
     position: relative;
   }
+      }
+
+    .slider-container {
+    max-width: 100%;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    margin: 40px auto 20px auto;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00ff00;  /* Neon green border */
+    position: relative;
+  }
+
+    .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .video {
+        min-width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1);
+        opacity: 0.6;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+   .video.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
+}
+
 
     .video-slider {
         display: flex;
