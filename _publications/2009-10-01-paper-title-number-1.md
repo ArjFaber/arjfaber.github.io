@@ -39,40 +39,39 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="play-btn">&#9658;</button>
   </div>
 
-  <div class="slider-container">
-    <div class="video-slider">
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (i)</h4>
-          <p>Initial experiments for remote control</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+ <div class="slider-container">
+  <div class="video-slider">
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (i)</h4>
+        <p>Initial experiments for remote control</p>
       </div>
-
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (ii)</h4>
-          <p>Trajectory smoothing improvements</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+      <button class="play-btn">&#9658;</button>
+    </div>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (ii)</h4>
+        <p>Trajectory smoothing improvements</p>
       </div>
-
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (iii)</h4>
-          <p>Velocity and responsiveness test</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+      <button class="play-btn">&#9658;</button>
+    </div>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (iii)</h4>
+        <p>Velocity and responsiveness test</p>
       </div>
+      <button class="play-btn">&#9658;</button>
     </div>
   </div>
 
+  <!-- Buttons must be inside slider-container -->
   <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
   <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
-</div>
+
+</div> 
 
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
@@ -132,6 +131,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         background-color: rgba(0, 0, 0, 0.8);
     }
   .video-tile {
+    flex: 0 0 100%;
     position: relative;
     border-radius: 15px;
     overflow: hidden;
