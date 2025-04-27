@@ -61,10 +61,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   <div class="dot-indicator"></div>
 </div>
 
-<!-- Slider to move between videos -->
-<div class="slider">
-  <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
-</div>
 
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
@@ -375,6 +371,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     setTimeout(() => {
       startAutoSlide();
     }, 6000);
+  });
+
+  // Add event listener for dots to manually change video and pause auto-slide
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      index = i;
+      updateSlider();
+      stopAutoSlide(); // Pause auto-slide when dot is clicked
+    });
   });
 
   document.addEventListener('DOMContentLoaded', function () {
