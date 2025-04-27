@@ -38,14 +38,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </div>
 
 <div class="slider-container">
-    <div class="video-slider"> 
+  <div class="video-slider"> 
     <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
-    <div class="video active" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    </div> <!-- properly closed -->
+    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
@@ -59,15 +60,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <p>Velocity and responsiveness test</p>
       </div>
     </div>
-       </div>
-       <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
- 
- </div>
-  <!-- Slider to move between videos -->
-  <div class="slider">
-    <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
-  </div>
+  </div> <!-- .video-slider -->
+  <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+  <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+</div>
+
+<!-- Slider to move between videos -->
+<div class="slider">
+  <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
 </div>
 
 <!-- Modal -->
@@ -244,7 +244,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <script>
   let index = 0;
   const slider = document.querySelector('.video-slider');
-  const videoElements = document.querySelectorAll('.video');
+  const videoElements = document.querySelectorAll('.video-slide');
   const totalVideos = videoElements.length;
 
   let autoSlideInterval;
