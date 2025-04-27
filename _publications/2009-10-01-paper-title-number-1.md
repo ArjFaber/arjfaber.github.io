@@ -117,6 +117,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     border: 2px solid #00ff00;
     aspect-ratio: 16 / 9;
     position: relative;
+    flex-direction: column;
   }
 
   .video-slider {
@@ -124,8 +125,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     height: 100%;
     width: 100%;
     transition: transform 0.5s ease-in-out;
+    flex-grow: 1;
   }
- .video-slide {
+
+  .video-slide {
     position: relative;
     width: 100%;
     height: 100%;
@@ -140,7 +143,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .progress-bar-container {
     position: absolute;
-    bottom: 10px;
+    bottom: -10px; /* Move the progress bar below the video */
     left: 0;
     right: 0;
     height: 4px;
@@ -161,44 +164,31 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     opacity: 1;
   }
 
-  .play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 42px;
-    color: #00ffcc;
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid #00ffcc;
-    border-radius: 50%;
-    padding: 12px 16px;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  .video-slide:hover .play-btn {
-    opacity: 1;
-    animation: pulseGlow 1.5s infinite ease-in-out;
-  }
-  
-  /* Pulse glow animation */
-  @keyframes pulseGlow {
-    0%, 100% {
-      transform: translate(-50%, -50%) scale(1);
-      box-shadow: 0 0 15px #00ffd5;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.1);
-      box-shadow: 0 0 25px #00ffcc;
-    }
-  }
-
-  .video_slide video {
+  .video-slide video {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  .btn-container {
+    position: absolute;
+    bottom: 20px; /* Position buttons below the video */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+    z-index: 10;
+  }
+
+  .btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #00ffcc;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
   }
 
   .btn:hover {
@@ -279,55 +269,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     50% {
       transform: translate(-50%, -50%) scale(1.1);
       box-shadow: 0 0 25px #00ffcc;
-    }
-  }
-
-  .video-meta {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 12px 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
-    z-index: 2;
-  }
-
-  .video-meta h4,
-  .video-meta p {
-    margin: 0;
-    color: #00ffcc;
-    text-shadow: 0 0 6px rgba(0,0,0,0.6);
-  }
-
-  .video-meta h4 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .video-meta p {
-    font-size: 14px;
-    margin-top: 4px;
-  }
-
-  .badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ff4081;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    z-index: 3;
-  }
-
-  @media (max-width: 600px) {
-    .video-meta h4 {
-      font-size: 16px;
-    }
-    .video-meta p {
-      font-size: 12px;
     }
   }
 
@@ -421,7 +362,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
   });
 
- document.querySelectorAll(".video-slide").forEach(tile => {
+  document.querySelectorAll(".video-slide").forEach(tile => {
     const video = tile.querySelector("video");
     const progressBar = tile.querySelector(".progress-bar");
     const playBtn = tile.querySelector(".play-btn");
@@ -454,5 +395,20 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       tile.querySelector(".progress-bar-container").style.visibility = 'hidden';
     });
   });
-</script>
 
+  // Slider functionality
+  let currentSlideIndex = 0;
+
+  function moveSlider(direction) {
+    const slides = document.querySelectorAll('.video_slide');
+    const totalSlides = slides.length;
+
+    // Calculate the new index
+    currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
+
+    // Move the slider
+    const slider = document.querySelector('.video-slider');
+    const offset = -(currentSlideIndex * 100);  // Each slide takes 100% width of the slider container
+    slider.style.transform = `translateX(${offset}%)`;
+  }
+</script>
