@@ -40,12 +40,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   <div class="video-slider"> 
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+       <button class="play-btn">&#9658;</button>
     </div>
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+        <button class="play-btn">&#9658;</button>
     </div>
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+        <button class="play-btn">&#9658;</button>
     </div>
   </div> <!-- .video-slider -->
 
