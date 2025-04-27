@@ -10,6 +10,7 @@ paperurl: 'http://arjfaber.github.io/files/HARMONY_UT_ML_MODULE_Report.pdf'
 slidesurl: 'https://github.com/ArjFaber/Bayesian_Neural_Network/wiki/Post-%5BUpdated-10-November-2024%5D-A-hard-coded-BNN-solution-implemented-for-a-Seattle-weather-dataset'
 citation: 'Faber A. et al. (2024)'
 ---
+
 This research focuses on developing socially aware robotics using reinforcement learning (RL) and artificial neural networks (ANNs). Our goal is to enable robots to understand and respond to social cues, such as gestures, speech, and facial expressions, in a context-sensitive manner.
 
 We implemented Deep Q-Learning (DQN) to optimize decision-making in human-robot interactions. Additionally, we developed a predictive model for sound classification, addressing class imbalance with random oversampling, label simplification, and confidence interval adjustments. These improvements enhanced the model’s accuracy and generalization.
@@ -17,51 +18,60 @@ We implemented Deep Q-Learning (DQN) to optimize decision-making in human-robot 
 Future work includes exploring Bayesian neural networks, SMOTE for data balancing, and real-time learning, aiming to refine socially intelligent robotic behavior.
 
 ### 🚀 Featured Footage
+
+<!-- Video Wall Section -->
 <div class="video-wall">
-   <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
+  <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
     <div class="video-meta">
       <h4>Unofficial final demo</h4>
     </div>
-      <span class="badge">NEW</span>
+    <span class="badge">NEW</span>
     <button class="play-btn">&#9658;</button>
   </div>
-  
+
   <div class="video-tile featured" data-src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_Data_Collection.mp4"></video>
     <div class="video-meta">
       <h4>Data gathering</h4>
-      <p>Leveraging Kuka's camera's and sensor input</p>
+      <p>Leveraging Kuka's cameras and sensor input</p>
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
 
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (i)</h4>
-      <p>Initial experiments for remote control</p>
+  <div class="slider-container">
+    <div class="video-slider">
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (i)</h4>
+          <p>Initial experiments for remote control</p>
+        </div>
+        <button class="play-btn">&#9658;</button>
+      </div>
+
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (ii)</h4>
+          <p>Trajectory smoothing improvements</p>
+        </div>
+        <button class="play-btn">&#9658;</button>
+      </div>
+
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (iii)</h4>
+          <p>Velocity and responsiveness test</p>
+        </div>
+        <button class="play-btn">&#9658;</button>
+      </div>
     </div>
-    <button class="play-btn">&#9658;</button>
   </div>
 
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (ii)</h4>
-      <p>Trajectory smoothing improvements</p>
-    </div>
-    <button class="play-btn">&#9658;</button>
-  </div>
-
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (iii)</h4>
-      <p>Velocity and responsiveness test</p>
-    </div>
-    <button class="play-btn">&#9658;</button>
-  </div>
+  <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+  <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
 <!-- Modal -->
@@ -72,6 +82,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   </div>
 </div>
 
+<!-- Styles -->
 <style>
   body {
     background: #000;
@@ -88,7 +99,38 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     margin-top: 40px;
     z-index: 1;
   }
+    .slider-container {
+    max-width: 100%;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    margin: 40px auto 20px auto;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00ff00;  /* Neon green border */
+    position: relative;
+  }
 
+    .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+ .video.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
+}.prev { left: 5px; }
+    .next { right: 5px; }
+
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
   .video-tile {
     position: relative;
     border-radius: 15px;
@@ -250,43 +292,112 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 </style>
 
+
+<!-- Scripts -->
 <script>
-  document.querySelectorAll(".video-tile").forEach(tile => {
-    const btn = tile.querySelector(".play-btn");
-    const video = tile.querySelector("video");
-    const src = tile.dataset.src;
+let index = 0;
+let slider = document.querySelector('.video-slider');
+let videoElements = document.querySelectorAll('.video-slider .video-tile');
+let totalVideos = videoElements.length;
+let isVideoPlaying = false;
+let autoSlideInterval = null;
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "&#10074;&#10074;";
-      } else {
-        video.pause();
-        btn.innerHTML = "&#9658;";
-      }
-    });
+document.querySelectorAll(".video-tile").forEach(tile => {
+  const btn = tile.querySelector(".play-btn");
+  const video = tile.querySelector("video");
+  const src = tile.dataset.src;
 
-    tile.addEventListener("click", () => {
-      const modal = document.getElementById("videoModal");
-      const modalVideo = document.getElementById("modalVideo");
-
-      modalVideo.src = src;
-      modal.style.display = "flex";
-    });
-
-    tile.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        tile.click();
-      }
-    });
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (video.paused) {
+      video.play();
+      btn.innerHTML = "&#10074;&#10074;";
+    } else {
+      video.pause();
+      btn.innerHTML = "&#9658;";
+    }
   });
 
-  document.querySelector(".close-btn").addEventListener("click", () => {
+  tile.addEventListener("click", () => {
     const modal = document.getElementById("videoModal");
     const modalVideo = document.getElementById("modalVideo");
-    modal.style.display = "none";
-    modalVideo.pause();
-    modalVideo.src = "";
+
+    modalVideo.src = src;
+    modalVideo.load();
+    modalVideo.play();
+    modal.style.display = "flex";
   });
-</script> 
+
+  tile.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      tile.click();
+    }
+  });
+});
+
+document.querySelector(".close-btn").addEventListener("click", () => {
+  const modal = document.getElementById("videoModal");
+  const modalVideo = document.getElementById("modalVideo");
+  modal.style.display = "none";
+  modalVideo.pause();
+  modalVideo.src = "";
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById("videoModal");
+    const modalVideo = document.getElementById("modalVideo");
+    if (modal.style.display === "flex") {
+      modal.style.display = "none";
+      modalVideo.pause();
+      modalVideo.src = "";
+    }
+  }
+});
+
+function updateSlider() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
+  videoElements.forEach((vid, i) => {
+    vid.classList.toggle('active', i === index);
+  });
+}
+
+function moveSlider(direction) {
+  if (isVideoPlaying) return;
+  const currentVideo = videoElements[index];
+  currentVideo.classList.add('pop-animate');
+  setTimeout(() => {
+    currentVideo.classList.remove('pop-animate');
+    index = (index + direction + totalVideos) % totalVideos;
+    updateSlider();
+  }, 1600);
+}
+
+function autoSlide() {
+  if (isVideoPlaying) return;
+  const currentVideo = videoElements[index];
+  currentVideo.classList.add('pop-animate');
+  setTimeout(() => {
+    currentVideo.classList.remove('pop-animate');
+    index = (index + 1) % totalVideos;
+    updateSlider();
+  }, 1600);
+}
+
+function startAutoSlide() {
+  if (!autoSlideInterval && !isVideoPlaying) {
+    autoSlideInterval = setInterval(autoSlide, 5000);
+  }
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = null;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  updateSlider();
+  startAutoSlide();
+});
+</script>
+
