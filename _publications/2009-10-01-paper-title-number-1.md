@@ -245,29 +245,48 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     cursor: pointer;
   }
 
-  /* Styling for the glowing dots */
-  .dot-indicator-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-  }
+/* Styling for the glowing dots */
+.dot-indicator-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
 
 .dot-indicator {
   width: 12px;
   height: 12px;
-  margin: 0 5px;
-  background: white;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
-  transition: transform 0.3s, background 0.3s;
+  background-color: #00ffcc; /* Default color */
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dot-indicator.active {
-  background: #ff7eb3;
-  transform: scale(1.4);
-  box-shadow: 0 0 12px rgba(255,126,179,0.8);
+/* Each dot gets a different active glow */
+.dot-indicator:nth-child(1).active {
+  opacity: 1;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.7); /* Red glow for the first video */
 }
+
+.dot-indicator:nth-child(2).active {
+  opacity: 1;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.7); /* Green glow for the second video */
+}
+
+.dot-indicator:nth-child(3).active {
+  opacity: 1;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(0, 0, 255, 0.7); /* Blue glow for the third video */
+}
+
+/* Default active dot glow (if needed for any other use) */
+.dot-indicator.active {
+  box-shadow: 0 0 8px rgba(0, 255, 200, 0.7); /* Default glow */
+}
+
+
 </style>
 
 <script>
