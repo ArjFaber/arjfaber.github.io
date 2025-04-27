@@ -39,43 +39,40 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 <div class="slider-container">
     <div class="video-slider">
-  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (i)</h4>
-      <p>Initial experiments for remote control</p>
+        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+            <div class="video-meta">
+                <h4>Finetuning Kuka controls (i)</h4>
+                <p>Initial experiments for remote control</p>
+            </div>
+            <button class="play-btn">&#9658;</button>
+        </div>
+        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+            <div class="video-meta">
+                <h4>Finetuning Kuka controls (ii)</h4>
+                <p>Trajectory smoothing improvements</p>
+            </div>
+            <button class="play-btn">&#9658;</button>
+        </div>
+        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+            <div class="video-meta">
+                <h4>Finetuning Kuka controls (iii)</h4>
+                <p>Velocity and responsiveness test</p>
+            </div>
+            <button class="play-btn">&#9658;</button>
+        </div>
     </div>
-    <button class="play-btn">&#9658;</button>
-  </div>
-
-  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (ii)</h4>
-      <p>Trajectory smoothing improvements</p>
-    </div>
-    <button class="play-btn">&#9658;</button>
-  </div>
-
-  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
-    <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-    <div class="video-meta">
-      <h4>Finetuning Kuka controls (iii)</h4>
-      <p>Velocity and responsiveness test</p>
-    </div>
-    <button class="play-btn">&#9658;</button>
-  </div>
- </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
-
 
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
   <div class="modal-content">
     <video controls autoplay id="modalVideo"></video>
-     <h4>Press Esc to close</h4>
+    <h4>Press Esc to close</h4>
     <span class="close-btn">&times;</span>
   </div>
 </div>
@@ -97,8 +94,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
-/* Make sure the slider container has a fixed aspect ratio */
-.slider-container {
+  .slider-container {
     max-width: 100%;
     overflow: hidden;
     position: relative;
@@ -110,39 +106,39 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     justify-content: center;
     align-items: center;
     border: 2px solid #00ff00;
-    aspect-ratio: 16 / 9; /* 16:9 aspect ratio */
+    aspect-ratio: 16 / 9;
     position: relative;
-}
-     .video-slider {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        transition: transform 0.5s ease-in-out;
-    }
+  }
 
-    .video_slide {
-        min-width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: scale(1);
-        opacity: 0.6;
-        transition: transform 0.4s ease, opacity 0.4s ease;
-    }
+  .video-slider {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
 
+  .video_slide {
+    min-width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+    opacity: 0.6;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
 
-.video_slide video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Keep the video aspect ratio intact */
-}
+  .video_slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-   
-    .btn:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
+  .btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
   .video-tile {
     position: relative;
     border-radius: 15px;
@@ -281,12 +277,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     width: 100%;
     height: 100%;
   }
-.video-modal h4 {
-  color: #00ffcc;  /* Ensure text is visible */
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: center;
-}
+
+  .video-modal h4 {
+    color: #00ffcc;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
   .modal-content {
     position: relative;
     max-width: 90%;
@@ -308,6 +306,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     cursor: pointer;
   }
 </style>
+
 <script>
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
@@ -355,41 +354,36 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       modalVideo.src = "";
     }
   });
-let currentIndex = 0;  // Start with the first video
-const videos = document.querySelectorAll(".video_slide");
-const slider = document.querySelector(".video-slider");
 
-function moveSlider(direction) {
-  const totalVideos = videos.length;
-  currentIndex += direction;  // Move left or right
+  let currentIndex = 0;
+  const videos = document.querySelectorAll(".video_slide");
+  const slider = document.querySelector(".video-slider");
 
-  if (currentIndex < 0) {
-    currentIndex = totalVideos - 1;  // If we're at the first video, go to the last one
-  } else if (currentIndex >= totalVideos) {
-    currentIndex = 0;  // If we're at the last video, go to the first one
+  function moveSlider(direction) {
+    const totalVideos = videos.length;
+    currentIndex += direction;
+
+    if (currentIndex < 0) {
+      currentIndex = totalVideos - 1;
+    } else if (currentIndex >= totalVideos) {
+      currentIndex = 0;
+    }
+
+    const offset = -currentIndex * 100;
+    slider.style.transform = `translateX(${offset}%)`;
   }
 
-  // Adjust the position of the slider by setting the transform property
-  const offset = -currentIndex * 100;  // Each video is taking up 100% of the width
-  slider.style.transform = `translateX(${offset}%)`;  // Apply the slide effect
-}
+  moveSlider(0);
 
-// Initialize the slider to the first video
-moveSlider(0); // Make sure it starts at the first video
+  document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
+  document.querySelector(".next").addEventListener("click", () => moveSlider(1));
 
-// Move to previous or next video when clicking buttons
-document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
-document.querySelector(".next").addEventListener("click", () => moveSlider(1));
-
-// Optional: Add keyboard support for left and right arrow keys to navigate the slider
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") {
-    moveSlider(-1);  // Move to previous video
-  } else if (e.key === "ArrowRight") {
-    moveSlider(1);  // Move to next video
-  }
-});
-
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      moveSlider(-1);
+    } else if (e.key === "ArrowRight") {
+      moveSlider(1);
+    }
+  });
 </script>
-
 
