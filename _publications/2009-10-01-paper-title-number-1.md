@@ -35,6 +35,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
+</div>
+
 <div class="slider-container">
     <div class="video-slider">
   <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
@@ -67,7 +69,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
-</div>
+
+
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
   <div class="modal-content">
@@ -111,35 +114,25 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
 }
 
-/* Make sure each video slide takes up full container width */
 .video-slider {
-    display: flex;
-    height: 100%;  /* Make sure the height is 100% of the container */
-    width: 100%;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
-/* Ensure each video slide takes up full width and maintains aspect ratio */
 .video_slide {
-    width: 100%; /* Ensure each slide takes up 100% of the container */
-    height: 100%; /* Ensure the height is also 100% */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%; /* Ensure each slide takes up 100% of the container */
+  height: 100%; /* Ensure the height is also 100% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .video_slide video {
-    width: 100%;  /* Ensure video fills the width */
-    height: 100%;  /* Ensure video fills the height */
-    object-fit: contain;  /* Maintain aspect ratio while covering the container */
-}
-
-/* Optional: Styling for the prev/next buttons */
-.prev {
-    left: 5px;
-}
-.next {
-    right: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keep the video aspect ratio intact */
 }
 
    
@@ -377,6 +370,9 @@ function moveSlider(direction) {
   slider.style.transform = `translateX(${offset}%)`;  // Apply the slide effect
 }
 
+// Initialize the slider to the first video
+moveSlider(0); // Make sure it starts at the first video
+
 // Move to previous or next video when clicking buttons
 document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
 document.querySelector(".next").addEventListener("click", () => moveSlider(1));
@@ -388,7 +384,8 @@ document.addEventListener("keydown", (e) => {
   } else if (e.key === "ArrowRight") {
     moveSlider(1);  // Move to next video
   }
-});   
+});
+
 </script>
 
 
