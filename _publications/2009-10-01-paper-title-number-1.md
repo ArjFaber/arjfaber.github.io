@@ -287,93 +287,111 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </style>
 
 <script>
-  document.querySelectorAll(".video-tile").forEach(tile => {
-    const btn = tile.querySelector(".play-btn");
-    const video = tile.querySelector("video");
-    const src = tile.dataset.src;
+ <script>
+const slider = document.querySelector(".video-slider");
+const videoElements = document.querySelectorAll(".video-slider .video-tile");
+let index = 0;
+const totalVideos = videoElements.length;
+let autoSlideInterval = null;
+let isVideoPlaying = false;
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "&#10074;&#10074;";
-      } else {
-        video.pause();
-        btn.innerHTML = "&#9658;";
-      }
-    });
+// Tile behavior
+document.querySelectorAll(".video-tile").forEach(tile => {
+  const btn = tile.querySelector(".play-btn");
+  const video = tile.querySelector("video");
+  const src = tile.dataset.src;
 
-    tile.addEventListener("click", () => {
-      const modal = document.getElementById("videoModal");
-      const modalVideo = document.getElementById("modalVideo");
-
-      modalVideo.src = src;
-      modal.style.display = "flex";
-    });
-
-    tile.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        tile.click();
-      }
-    });
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (video.paused) {
+      video.play();
+      btn.innerHTML = "&#10074;&#10074;";
+    } else {
+      video.pause();
+      btn.innerHTML = "&#9658;";
+    }
   });
 
-  document.querySelector(".close-btn").addEventListener("click", () => {
+  tile.addEventListener("click", (e) => {
+    if (e.target.classList.contains('play-btn')) return;
     const modal = document.getElementById("videoModal");
     const modalVideo = document.getElementById("modalVideo");
-    modal.style.display = "none";
-    modalVideo.pause();
-    modalVideo.src = "";
+
+    modalVideo.src = src;
+    modalVideo.load();
+    modalVideo.play();
+    modal.style.display = "flex";
   });
 
-   
-
-    function updateSlider() {
-        slider.style.transform = translateX(-${index * 100}%);
-
-        videoElements.forEach((vid, i) => {
-            vid.classList.toggle('active', i === index);
-        });
+  tile.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      tile.click();
     }
+  });
+});
 
-    function moveSlider(direction) {
-        if (isVideoPlaying) return;
+// Modal close button
+document.querySelector(".close-btn").addEventListener("click", () => {
+  closeModal();
+});
 
-        const currentVideo = videoElements[index];
-        currentVideo.classList.add('pop-animate');
-
-        setTimeout(() => {
-            currentVideo.classList.remove('pop-animate');
-            index = (index + direction + totalVideos) % totalVideos;
-            updateSlider();
-        }, 1600);
+// Modal close ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById("videoModal");
+    if (modal.style.display === "flex") {
+      closeModal();
     }
+  }
+});
 
-    function autoSlide() {
-        if (isVideoPlaying) return;
+// Modal closing function
+function closeModal() {
+  const modal = document.getElementById("videoModal");
+  const modalVideo = document.getElementById("modalVideo");
+  modal.style.display = "none";
+  modalVideo.pause();
+  modalVideo.src = "";
+}
 
-        const currentVideo = videoElements[index];
-        currentVideo.classList.add('pop-animate');
+// Move the slider manually
+function moveSlider(direction) {
+  if (isVideoPlaying) return;
+  index = (index + direction + totalVideos) % totalVideos;
+  updateSlider();
+}
 
-        setTimeout(() => {
-            currentVideo.classList.remove('pop-animate');
-            index = (index + 1) % totalVideos;
-            updateSlider();
-        }, 1600);
-    }
+// Update the slider display
+function updateSlider() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
 
-    function startAutoSlide() {
-        if (!autoSlideInterval && !isVideoPlaying) {
-            autoSlideInterval = setInterval(autoSlide, 5000);
-        }
-    }
+  videoElements.forEach((vid, i) => {
+    vid.classList.toggle('active', i === index);
+  });
+}
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    }
-      document.addEventListener('DOMContentLoaded', function () {
-        updateSlider();
-        startAutoSlide();;
-    });
-</script> 
+// Automatic slider (optional)
+function autoSlide() {
+  if (isVideoPlaying) return;
+  index = (index + 1) % totalVideos;
+  updateSlider();
+}
+
+function startAutoSlide() {
+  if (!autoSlideInterval && !isVideoPlaying) {
+    autoSlideInterval = setInterval(autoSlide, 5000);
+  }
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = null;
+}
+
+// Start when DOM ready
+document.addEventListener('DOMContentLoaded', function () {
+  updateSlider();
+  startAutoSlide();
+});
+</script>
+
