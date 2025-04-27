@@ -76,6 +76,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </div>
 
 <style>
+  b<style>
   body {
     background: #000;
     color: #00ffcc;
@@ -108,33 +109,26 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     transition: opacity 0.3s ease;
   }
-.video-slider {
-  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-  background-size: 800% 800%;
-  animation: gradientBG 10s ease infinite;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 100, 150, 0.6);
-}
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+   .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
    .video-slide video {
   width: 100%;
   height: 100%;
   object-fit: contain; /* or 'cover' if you want full filling */
 }
 .video-slide {
-   flex: 0 0 100%; /* Take up 100% of the slider container */
-   max-width: 100%;
-   height: auto;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
+  flex: 0 0 100%; /* Take up 100% of the slider container */
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
    .video-slide.active {
     transform: scale(1.05);
     opacity: 1;
