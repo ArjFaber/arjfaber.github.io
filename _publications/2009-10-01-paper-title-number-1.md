@@ -46,6 +46,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
                 <p>Initial experiments for remote control</p>
             </div>
             <button class="play-btn">&#9658;</button>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
         </div>
         <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
             <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
@@ -54,6 +57,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
                 <p>Trajectory smoothing improvements</p>
             </div>
             <button class="play-btn">&#9658;</button>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
         </div>
         <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
             <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
@@ -62,6 +68,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
                 <p>Velocity and responsiveness test</p>
             </div>
             <button class="play-btn">&#9658;</button>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
@@ -116,9 +125,9 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     width: 100%;
     transition: transform 0.5s ease-in-out;
   }
-
-  .video_slide {
-    min-width: 100%;
+ .video-slide {
+    position: relative;
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -127,6 +136,63 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     transform: scale(1);
     opacity: 0.6;
     transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  .progress-bar-container {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: #00ffcc;
+    width: 0%;
+  }
+
+  .video-slide:hover .progress-bar-container {
+    visibility: visible; /* Show when hovering */
+    opacity: 1;
+  }
+
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    color: #00ffcc;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #00ffcc;
+    border-radius: 50%;
+    padding: 12px 16px;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .video-slide:hover .play-btn {
+    opacity: 1;
+    animation: pulseGlow 1.5s infinite ease-in-out;
+  }
+  
+  /* Pulse glow animation */
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 15px #00ffd5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 25px #00ffcc;
+    }
   }
 
   .video_slide video {
@@ -355,35 +421,38 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
   });
 
-  let currentIndex = 0;
-  const videos = document.querySelectorAll(".video_slide");
-  const slider = document.querySelector(".video-slider");
+ document.querySelectorAll(".video-slide").forEach(tile => {
+    const video = tile.querySelector("video");
+    const progressBar = tile.querySelector(".progress-bar");
+    const playBtn = tile.querySelector(".play-btn");
 
-  function moveSlider(direction) {
-    const totalVideos = videos.length;
-    currentIndex += direction;
+    // Play/pause button functionality
+    playBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        video.play();
+        playBtn.innerHTML = "&#10074;&#10074;"; // Pause symbol
+      } else {
+        video.pause();
+        playBtn.innerHTML = "&#9658;"; // Play symbol
+      }
+    });
 
-    if (currentIndex < 0) {
-      currentIndex = totalVideos - 1;
-    } else if (currentIndex >= totalVideos) {
-      currentIndex = 0;
-    }
+    // Progress bar update functionality
+    video.addEventListener("timeupdate", () => {
+      const progress = (video.currentTime / video.duration) * 100;
+      progressBar.style.width = `${progress}%`;
+    });
 
-    const offset = -currentIndex * 100;
-    slider.style.transform = `translateX(${offset}%)`;
-  }
+    // Show the progress bar when mouse hovers over the video
+    tile.addEventListener("mouseenter", () => {
+      tile.querySelector(".progress-bar-container").style.visibility = 'visible';
+    });
 
-  moveSlider(0);
-
-  document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
-  document.querySelector(".next").addEventListener("click", () => moveSlider(1));
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      moveSlider(-1);
-    } else if (e.key === "ArrowRight") {
-      moveSlider(1);
-    }
+    // Hide the progress bar when mouse leaves the video
+    tile.addEventListener("mouseleave", () => {
+      tile.querySelector(".progress-bar-container").style.visibility = 'hidden';
+    });
   });
 </script>
 
