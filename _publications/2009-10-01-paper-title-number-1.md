@@ -98,7 +98,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
    .slider-container {
     max-width: 100%;
-    aspect-ration: 16/9;
+    aspect-ratio: 16/9;
     overflow: hidden;
     position: relative;
     margin: 40px auto 20px auto;
