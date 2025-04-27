@@ -37,7 +37,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   </div>
 <div class="slider-container">
     <div class="video-slider">
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
     <div class="video-meta">
       <h4>Finetuning Kuka controls (i)</h4>
@@ -46,7 +46,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="play-btn">&#9658;</button>
   </div>
 
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
     <div class="video-meta">
       <h4>Finetuning Kuka controls (ii)</h4>
@@ -55,7 +55,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="play-btn">&#9658;</button>
   </div>
 
-  <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+  <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
     <div class="video-meta">
       <h4>Finetuning Kuka controls (iii)</h4>
@@ -115,6 +115,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         width: 100%;
         transition: transform 0.5s ease-in-out;
     }
+   .video_slide {
+   /* Default styles for each individual video within the slider */
+   width: 100%; /* Ensure each slide takes up 100% of the container */
+   display: flex; /* Align video content within */
+   justify-content: center; /* Center video horizontally */
+   align-items: center; /* Center video vertically */
+}
  .video.active {
     transform: scale(1.05);
     opacity: 1;
@@ -337,6 +344,36 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       modalVideo.src = "";
     }
   });
+let currentIndex = 0;  // Start with the first video
+const videos = document.querySelectorAll(".video_slide");
+const slider = document.querySelector(".video-slider");
+
+function moveSlider(direction) {
+  const totalVideos = videos.length;
+  currentIndex += direction;  // Move left or right
+
+  if (currentIndex < 0) {
+    currentIndex = totalVideos - 1;  // If we're at the first video, go to the last one
+  } else if (currentIndex >= totalVideos) {
+    currentIndex = 0;  // If we're at the last video, go to the first one
+  }
+
+  // Adjust the position of the slider by setting the transform property
+  const offset = -currentIndex * 100;  // Each video is taking up 100% of the width
+  slider.style.transform = `translateX(${offset}%)`;  // Apply the slide effect
+}
+
+// Optional: Add keyboard support for left and right arrow keys to navigate the slider
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") {
+    moveSlider(-1);  // Move to previous video
+  } else if (e.key === "ArrowRight") {
+    moveSlider(1);  // Move to next video
+  }
+});
+
+
+   
 </script>
 
 
