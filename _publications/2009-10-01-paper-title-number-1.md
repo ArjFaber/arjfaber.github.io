@@ -20,7 +20,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 ---
 
 ### 🚀 Featured Footage
-<!-- your first video wall (unchanged) -->
 <div class="video-wall">
   <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
@@ -43,37 +42,32 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 ---
 
-<!-- horizontal slider with arrows + auto-scroll -->
-<div class="slider-wrapper">
-  <button class="arrow left">&#10094;</button>
 
-  <div class="slider-horizontal" id="videoSlider">
-    <div class="slider-track">
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (i)</h4>
-          <p>Initial experiments for remote control</p>
-        </div>
+<!-- Simple horizontal slider -->
+<div class="slider-horizontal" id="videoSlider">
+  <div class="slider-track">
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (i)</h4>
+        <p>Initial experiments for remote control</p>
       </div>
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (ii)</h4>
-          <p>Trajectory smoothing improvements</p>
-        </div>
+    </div>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (ii)</h4>
+        <p>Trajectory smoothing improvements</p>
       </div>
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (iii)</h4>
-          <p>Velocity and responsiveness test</p>
-        </div>
+    </div>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (iii)</h4>
+        <p>Velocity and responsiveness test</p>
       </div>
     </div>
   </div>
-
-  <button class="arrow right">&#10095;</button>
 </div>
 
 <!-- Modal -->
@@ -84,37 +78,149 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   </div>
 </div>
 
-<!-- CSS & JS -->
 <style>
-/* --(same styles as before: .video-wall, .video-tile, .featured, .play-btn, .slider-wrapper, .arrow buttons, etc.)-- */
-/* copy everything from previous message */
+/* Base page */
+body {
+  background: #000;
+  color: #00ffcc;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+/* Standard video wall */
+.video-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+/* Horizontal slider basic */
+.slider-horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 20px;
+}
+
+/* Common for video tiles */
+.video-tile {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  min-width: 300px;
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.video-tile video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%);
+  transition: all 0.4s ease;
+}
+
+.video-tile:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 255, 150, 0.5);
+}
+
+.video-tile:hover video {
+  filter: grayscale(0%);
+}
+
+.video-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+  z-index: 2;
+}
+
+.video-meta h4, .video-meta p {
+  margin: 0;
+  color: #00ffcc;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+.video-meta h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.video-meta p {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff4081;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Modal styling */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(10, 10, 10, 0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.modal-content video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 36px;
+  color: #00ffcc;
+  cursor: pointer;
+}
 </style>
 
 <script>
-// Video Modal Logic
+// Modal Logic
 document.querySelectorAll(".video-tile").forEach(tile => {
-  const btn = tile.querySelector(".play-btn");
-  const video = tile.querySelector("video");
-  const src = tile.dataset.src;
-
-  if (btn) {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "&#10074;&#10074;";
-      } else {
-        video.pause();
-        btn.innerHTML = "&#9658;";
-      }
-    });
-  }
-
   tile.addEventListener("click", () => {
     const modal = document.getElementById("videoModal");
     const modalVideo = document.getElementById("modalVideo");
-
-    modalVideo.src = src;
+    modalVideo.src = tile.dataset.src;
     modal.style.display = "flex";
   });
 
@@ -132,35 +238,4 @@ document.querySelector(".close-btn").addEventListener("click", () => {
   modalVideo.pause();
   modalVideo.src = "";
 });
-
-// Arrow Button Manual Scroll
-const slider = document.getElementById('videoSlider');
-document.querySelector('.left').addEventListener('click', () => {
-  slider.scrollBy({ left: -300, behavior: 'smooth' });
-});
-document.querySelector('.right').addEventListener('click', () => {
-  slider.scrollBy({ left: 300, behavior: 'smooth' });
-});
-
-// 🚀 Auto-Sliding Logic
-let autoScroll;
-function startAutoScroll() {
-  autoScroll = setInterval(() => {
-    if ((slider.scrollLeft + slider.offsetWidth) >= slider.scrollWidth) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      slider.scrollBy({ left: 2, behavior: 'smooth' });
-    }
-  }, 30); // speed of auto-slide (lower = faster)
-}
-
-function stopAutoScroll() {
-  clearInterval(autoScroll);
-}
-
-slider.addEventListener('mouseenter', stopAutoScroll);
-slider.addEventListener('mouseleave', startAutoScroll);
-
-// Start auto-scrolling immediately
-startAutoScroll();
 </script>
