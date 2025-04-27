@@ -60,6 +60,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <p>Velocity and responsiveness test</p>
       </div>
     </div>
+     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
   </div>
 
   <!-- Slider to move between videos -->
@@ -94,31 +96,30 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
-  
-   .slider-container {
+  .slider-container {
     max-width: 100%;
     overflow: hidden;
+    aspect-ratio: 16 / 9;
     position: relative;
     margin: 40px auto 20px auto;
     border-radius: 15px;
-    background: linear-gradient(145deg, #1f1f1f, #333);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);
+    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #00ff00;
-    aspect-ratio: 16 / 9;
+    border: 2px solid #00ff00;  /* Neon green border */
     position: relative;
-    flex-direction: column;
   }
 
   .video-slider {
     display: flex;
+    height: 100%;
     width: 100%;
     transition: transform 0.5s ease-in-out;
   }
 
-  .video_slide {
+  .video-slide {
     position: relative;
     width: 100%;
     height: 100%;
@@ -132,94 +133,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-
-  .btn-container {
-    position: absolute;
-    bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 10px;
-    z-index: 10;
-  }
-
-  .btn {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #00ffcc;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
-  }
-
-  .btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-
-  /* Slider for switching videos */
-  .slider {
-    width: 80%;
-    margin: 20px auto;
-    height: 5px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .slider input {
-    width: 100%;
-    height: 5px;
-    background: #00ffcc;
-    border: none;
-    border-radius: 5px;
-    appearance: none;
-    outline: none;
-    cursor: pointer;
-  }
-
-  .slider input::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #00ffcc;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .slider input::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #00ffcc;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .btn-container {
-    position: absolute;
-    bottom: 20px; /* Position buttons below the video */
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 10px;
-    z-index: 10;
-  }
-
-  .btn {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #00ffcc;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
-  }
-
-  .btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
   }
 
   .video-tile {
@@ -248,21 +161,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .video-tile:hover video {
     filter: grayscale(0%);
-  }
-
-  .featured {
-    animation: pulseFeature 4s infinite alternate ease-in-out;
-  }
-
-  @keyframes pulseFeature {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 0 25px rgba(0, 255, 150, 0.4);
-    }
-    100% {
-      transform: scale(1.05);
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
-    }
   }
 
   .play-btn {
@@ -342,6 +240,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </style>
 
 <script>
+  let index = 0;
+  const slider = document.querySelector('.video-slider');
+  const videoElements = document.querySelectorAll('.video');
+  const totalVideos = videoElements.length;
+
+  let autoSlideInterval;
+  let isVideoPlaying = false;
+
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
   const closeBtn = document.querySelector(".close-btn");
@@ -389,15 +295,53 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
   });
 
- 
-   const videoSlider = document.getElementById("video-slider");
-  const videoSlides = document.querySelectorAll(".video_slide");
-  const videoSliderContainer = document.querySelector(".video-slider");
+  function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    videoElements.forEach((vid, i) => {
+      vid.classList.toggle('active', i === index);
+    });
+  }
 
-  // Update the video slider and switch videos based on slider value
-  videoSlider.addEventListener("input", function () {
-    const slideIndex = parseInt(videoSlider.value);
-    const newTransformValue = -100 * slideIndex + "%";
-    videoSliderContainer.style.transform = `translateX(${newTransformValue})`;
+  function moveSlider(direction) {
+    if (isVideoPlaying) return;
+
+    const currentVideo = videoElements[index];
+    currentVideo.classList.add('pop-animate');
+
+    setTimeout(() => {
+      currentVideo.classList.remove('pop-animate');
+      index = (index + direction + totalVideos) % totalVideos;
+      updateSlider();
+    }, 1600);
+  }
+
+  function startAutoSlide() {
+    if (!autoSlideInterval && !isVideoPlaying) {
+      autoSlideInterval = setInterval(autoSlide, 5000);
+    }
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
+  }
+
+  function autoSlide() {
+    if (isVideoPlaying) return;
+
+    const currentVideo = videoElements[index];
+    currentVideo.classList.add('pop-animate');
+
+    setTimeout(() => {
+      currentVideo.classList.remove('pop-animate');
+      index = (index + 1) % totalVideos;
+      updateSlider();
+    }, 1600);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateSlider();
+    startAutoSlide();
   });
 </script>
+
