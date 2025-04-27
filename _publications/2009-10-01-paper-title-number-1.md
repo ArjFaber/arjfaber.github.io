@@ -100,7 +100,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     margin: 40px auto 20px auto;
     border-radius: 15px;
-    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
+    background: linear-gradient(145deg, #00ffcc, #000);  /* Dark futuristic gradient */
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
     display: flex;
     justify-content: center;
