@@ -49,7 +49,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       </div>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video active" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    <div class="video " data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
@@ -343,7 +343,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <script>
 let index = 0;
 const slider = document.querySelector(".video-slider");
-const videoElements = document.querySelectorAll(".video-slider .video-tile");
+const videoElements = document.querySelectorAll(".video-slider .video");
 const totalVideos = videoElements.length;
 let isVideoPlaying = false;
 
