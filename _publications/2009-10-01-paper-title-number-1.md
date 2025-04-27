@@ -292,17 +292,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     cursor: pointer;
   }
 </style>
-
-
 <!-- Scripts -->
 <script>
 let index = 0;
-let slider = document.querySelector('.video-slider');
-let videoElements = document.querySelectorAll('.video-slider .video-tile');
-let totalVideos = videoElements.length;
+const slider = document.querySelector(".video-slider");
+const videoElements = document.querySelectorAll(".video-slider .video-tile");
+const totalVideos = videoElements.length;
 let isVideoPlaying = false;
-let autoSlideInterval = null;
 
+// Open modal
 document.querySelectorAll(".video-tile").forEach(tile => {
   const btn = tile.querySelector(".play-btn");
   const video = tile.querySelector("video");
@@ -312,10 +310,10 @@ document.querySelectorAll(".video-tile").forEach(tile => {
     e.stopPropagation();
     if (video.paused) {
       video.play();
-      btn.innerHTML = "&#10074;&#10074;";
+      btn.innerHTML = "&#10074;&#10074;"; // Pause icon
     } else {
       video.pause();
-      btn.innerHTML = "&#9658;";
+      btn.innerHTML = "&#9658;"; // Play icon
     }
   });
 
@@ -336,6 +334,7 @@ document.querySelectorAll(".video-tile").forEach(tile => {
   });
 });
 
+// Close modal
 document.querySelector(".close-btn").addEventListener("click", () => {
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
@@ -344,6 +343,7 @@ document.querySelector(".close-btn").addEventListener("click", () => {
   modalVideo.src = "";
 });
 
+// Close modal with ESC
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     const modal = document.getElementById("videoModal");
@@ -356,37 +356,31 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-<script>
-  let index = 0;
-  const slider = document.querySelector(".video-slider");
-  const videoElements = document.querySelectorAll(".video-tile");
-  const totalVideos = videoElements.length;
-  let isVideoPlaying = false;
+// Move slider manually
+function updateSlider() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-
-    videoElements.forEach((vid, i) => {
-      vid.classList.toggle('active', i === index);
-    });
-  }
-
-  function moveSlider(direction) {
-    if (isVideoPlaying) return;
-
-    const currentVideo = videoElements[index];
-    currentVideo.classList.add('pop-animate');
-
-    setTimeout(() => {
-      currentVideo.classList.remove('pop-animate');
-      index = (index + direction + totalVideos) % totalVideos;
-      updateSlider();
-    }, 400);  // Faster animation (optional)
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateSlider();
+  videoElements.forEach((vid, i) => {
+    vid.classList.toggle('active', i === index);
   });
+}
+
+function moveSlider(direction) {
+  if (isVideoPlaying) return;
+
+  const currentVideo = videoElements[index];
+  currentVideo.classList.add('pop-animate');
+
+  setTimeout(() => {
+    currentVideo.classList.remove('pop-animate');
+    index = (index + direction + totalVideos) % totalVideos;
+    updateSlider();
+  }, 400);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  updateSlider();
+});
 </script>
-</script>
+
 
