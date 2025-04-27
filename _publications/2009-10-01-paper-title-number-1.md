@@ -284,144 +284,151 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 <script>
   let index = 0;
-  const slider = document.querySelector('.video-slider');
-  const videoElements = document.querySelectorAll('.video-slide');
-  const totalVideos = videoElements.length;
-  const dots = document.querySelectorAll('.dot-indicator'); // Glowing dots
+const slider = document.querySelector('.video-slider');
+const videoElements = document.querySelectorAll('.video-slide');
+const totalVideos = videoElements.length;
+const dots = document.querySelectorAll('.dot-indicator'); // Glowing dots
 
-  let autoSlideInterval;
-  let isVideoPlaying = false;
+let autoSlideInterval;
+let isVideoPlaying = false; // Flag to check if video is playing
 
-  const modal = document.getElementById("videoModal");
-  const modalVideo = document.getElementById("modalVideo");
-  const closeBtn = document.querySelector(".close-btn");
+const modal = document.getElementById("videoModal");
+const modalVideo = document.getElementById("modalVideo");
+const closeBtn = document.querySelector(".close-btn");
 
-  document.querySelectorAll(".video-tile").forEach(tile => {
-    const btn = tile.querySelector(".play-btn");
-    const video = tile.querySelector("video");
-    const src = tile.dataset.src;
+document.querySelectorAll(".video-tile").forEach(tile => {
+  const btn = tile.querySelector(".play-btn");
+  const video = tile.querySelector("video");
+  const src = tile.dataset.src;
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "&#10074;&#10074;"; // Pause symbol
-      } else {
-        video.pause();
-        btn.innerHTML = "&#9658;"; // Play symbol
-      }
-    });
-
-    tile.addEventListener("click", () => {
-      modalVideo.src = src;
-      modal.style.display = "flex";
-      modalVideo.play();
-    });
-
-    tile.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        tile.click();
-      }
-    });
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (video.paused) {
+      video.play();
+      btn.innerHTML = "&#10074;&#10074;"; // Pause symbol
+    } else {
+      video.pause();
+      btn.innerHTML = "&#9658;"; // Play symbol
+    }
   });
-  closeBtn.addEventListener("click", () => {
+
+  tile.addEventListener("click", () => {
+    modalVideo.src = src;
+    modal.style.display = "flex";
+    modalVideo.play();
+    isVideoPlaying = true; // Set flag when video is playing
+  });
+
+  tile.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      tile.click();
+    }
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+  modalVideo.pause();
+  modalVideo.src = "";
+  isVideoPlaying = false; // Reset flag when modal is closed
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.style.display === "flex") {
     modal.style.display = "none";
     modalVideo.pause();
     modalVideo.src = "";
+    isVideoPlaying = false; // Reset flag when modal is closed
+  }
+});
+
+function updateSlider() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
+  videoElements.forEach((vid, i) => {
+    vid.classList.toggle('active', i === index);
   });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.style.display === "flex") {
-      modal.style.display = "none";
-      modalVideo.pause();
-      modalVideo.src = "";
-    }
+  // Update dot indicators
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
   });
+  rangeInput.value = index;
+}
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-    videoElements.forEach((vid, i) => {
-      vid.classList.toggle('active', i === index);
-    });
-    // Update dot indicators
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
-   rangeInput.value = index;
-  }
+function moveSlider(direction) {
+  if (isVideoPlaying) return; // Prevent sliding when a video is playing
 
-  function moveSlider(direction) {
-    if (isVideoPlaying) return;
+  const currentVideo = videoElements[index];
+  currentVideo.classList.add('pop-animate');
 
-    const currentVideo = videoElements[index];
-    currentVideo.classList.add('pop-animate');
-
-    setTimeout(() => {
-      currentVideo.classList.remove('pop-animate');
-      index = (index + direction + totalVideos) % totalVideos;
-      updateSlider();
-    }, 1600);
-  }
-
-  function startAutoSlide() {
-    if (!autoSlideInterval && !isVideoPlaying) {
-      autoSlideInterval = setInterval(autoSlide, 5000);
-    }
-  }
-
-  function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = null;
-  }
-
-  function autoSlide() {
-    if (isVideoPlaying) return;
-
-    const currentVideo = videoElements[index];
-    currentVideo.classList.add('pop-animate');
-
-    setTimeout(() => {
-      currentVideo.classList.remove('pop-animate');
-      index = (index + 1) % totalVideos;
-      updateSlider();
-    }, 1600);
-  }
-
-  const rangeInput = document.getElementById('video-slider');
-
-  rangeInput.addEventListener('input', (e) => {
-    index = parseInt(e.target.value);
+  setTimeout(() => {
+    currentVideo.classList.remove('pop-animate');
+    index = (index + direction + totalVideos) % totalVideos;
     updateSlider();
-    stopAutoSlide(); // stop auto if user interacts
-  });
+  }, 1600);
+}
 
-  rangeInput.addEventListener('input', (e) => {
-    index = parseInt(e.target.value);
-    updateSlider();
-    stopAutoSlide(); // stop immediately when user interacts
-    
-    // Restart auto-slide after 6 seconds of inactivity
-    setTimeout(() => {
-      startAutoSlide();
-    }, 6000);
-  });
+function startAutoSlide() {
+  if (!autoSlideInterval && !isVideoPlaying) {
+    autoSlideInterval = setInterval(autoSlide, 5000);
+  }
+}
 
-  document.addEventListener('DOMContentLoaded', function () {
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = null;
+}
+
+function autoSlide() {
+  if (isVideoPlaying) return; // Prevent auto-sliding when a video is playing
+
+  const currentVideo = videoElements[index];
+  currentVideo.classList.add('pop-animate');
+
+  setTimeout(() => {
+    currentVideo.classList.remove('pop-animate');
+    index = (index + 1) % totalVideos;
     updateSlider();
+  }, 1600);
+}
+
+const rangeInput = document.getElementById('video-slider');
+
+rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // Stop auto-slide when user interacts
+});
+
+rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // Stop immediately when user interacts
+
+  // Restart auto-slide after 6 seconds of inactivity
+  setTimeout(() => {
     startAutoSlide();
-  });
- document.querySelectorAll('.video-slide').forEach(slide => {
+  }, 6000);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  updateSlider();
+  startAutoSlide();
+});
+
+document.querySelectorAll('.video-slide').forEach(slide => {
   const video = slide.querySelector('video');
   const playBtn = slide.querySelector('.play-btn');
 
   playBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent triggering the slide click
+    e.stopPropagation(); // Prevent triggering the slide click
     if (video.paused) {
       video.play();
       playBtn.innerHTML = "&#10074;&#10074;"; // Pause icon
+      isVideoPlaying = true; // Set flag when video is playing
     } else {
       video.pause();
       playBtn.innerHTML = "&#9658;"; // Play icon
+      isVideoPlaying = false; // Set flag when video is paused
     }
   });
 
@@ -431,6 +438,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       modalVideo.src = src;
       modal.style.display = "flex";
       modalVideo.play();
+      isVideoPlaying = true; // Set flag when video is playing in modal
     } else {
       console.warn('No video source found for modal');
     }
@@ -441,7 +449,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       slide.click();
     }
   });
+
+  // Video ended event to reset flag
+  video.addEventListener('ended', () => {
+    isVideoPlaying = false; // Reset flag when video ends
+    startAutoSlide(); // Restart auto-slide after video ends
+  });
 });
-
-
 </script>
