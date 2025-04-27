@@ -41,7 +41,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
  <div class="slider-container">
   <div class="video-slider">
-    <div class="video" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+    <div class="video tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
@@ -49,7 +49,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       </div>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video " data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    <div class="video tile " data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
@@ -57,7 +57,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       </div>
       <button class="play-btn">&#9658;</button>
     </div>
-    <div class="video" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+    <div class="video tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (iii)</h4>
@@ -149,12 +149,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         opacity: 0.6;
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
-
-   .video.active {
-    transform: scale(1.05);
-    opacity: 1;
-    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
-}
 
 
     .video-slider {
