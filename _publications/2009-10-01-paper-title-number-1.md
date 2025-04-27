@@ -39,20 +39,20 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 <div class="slider-container">
     <div class="video-slider"> 
-    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
-    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    <div class="video active" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
         <p>Trajectory smoothing improvements</p>
       </div>
     </div>
-    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (iii)</h4>
@@ -112,28 +112,30 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     position: relative;
     transition: opacity 0.3s ease;
   }
-  .video-slider {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    transition: transform 0.5s ease-in-out;
-    object-fit: contain;
-  }
+   .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
 
-  .video-slide {
-    position: relative;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    object-fit: contain;
-  }
+   .video-slide {
+        min-width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1);
+        opacity: 0.6;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
-  .video-slide video {
-    width: 100%;
-    height: 100%;
-    
-  }
+   .video.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
+}
 
   .video-tile {
     position: relative;
