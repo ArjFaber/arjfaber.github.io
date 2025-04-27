@@ -52,8 +52,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     </div>
   </div> <!-- .video-slider -->
 
-  <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-  <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
 
 
@@ -123,7 +121,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
-   .video.active {
+   .video-slide.active {
     transform: scale(1.05);
     opacity: 1;
     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
@@ -333,6 +331,23 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }, 1600);
   }
 
+   const rangeInput = document.getElementById('video-slider');
+
+rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // stop auto if user interacts
+});
+   rangeInput.addEventListener('input', (e) => {
+  index = parseInt(e.target.value);
+  updateSlider();
+  stopAutoSlide(); // stop immediately when user interacts
+  
+  // Restart auto-slide after 6 seconds of inactivity
+  setTimeout(() => {
+    startAutoSlide();
+  }, 6000);
+});
   document.addEventListener('DOMContentLoaded', function () {
     updateSlider();
     startAutoSlide();
