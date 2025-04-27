@@ -38,43 +38,34 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </div>
 
 <div class="slider-container">
-    <div class="video-slider">
-        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
-            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-            <div class="video-meta">
-                <h4>Finetuning Kuka controls (i)</h4>
-                <p>Initial experiments for remote control</p>
-            </div>
-            <button class="play-btn">&#9658;</button>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
-        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
-            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-            <div class="video-meta">
-                <h4>Finetuning Kuka controls (ii)</h4>
-                <p>Trajectory smoothing improvements</p>
-            </div>
-            <button class="play-btn">&#9658;</button>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
-        <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
-            <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-            <div class="video-meta">
-                <h4>Finetuning Kuka controls (iii)</h4>
-                <p>Velocity and responsiveness test</p>
-            </div>
-            <button class="play-btn">&#9658;</button>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
+  <div class="video-slider">
+    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (i)</h4>
+        <p>Initial experiments for remote control</p>
+      </div>
     </div>
-    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
+    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (ii)</h4>
+        <p>Trajectory smoothing improvements</p>
+      </div>
+    </div>
+    <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (iii)</h4>
+        <p>Velocity and responsiveness test</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider to move between videos -->
+  <div class="slider">
+    <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
+  </div>
 </div>
 
 <!-- Modal -->
@@ -103,7 +94,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
-  .slider-container {
+  
+   .slider-container {
     max-width: 100%;
     overflow: hidden;
     position: relative;
@@ -122,13 +114,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .video-slider {
     display: flex;
-    height: 100%;
     width: 100%;
     transition: transform 0.5s ease-in-out;
-    flex-grow: 1;
   }
 
-  .video-slide {
+  .video_slide {
     position: relative;
     width: 100%;
     height: 100%;
@@ -136,38 +126,75 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1);
-    opacity: 0.6;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-  }
-
-  .progress-bar-container {
-    position: absolute;
-    bottom: -10px; /* Move the progress bar below the video */
-    left: 0;
-    right: 0;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    visibility: hidden; /* Initially hidden */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .progress-bar {
-    height: 100%;
-    background-color: #00ffcc;
-    width: 0%;
-  }
-
-  .video-slide:hover .progress-bar-container {
-    visibility: visible; /* Show when hovering */
-    opacity: 1;
   }
 
   .video-slide video {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  .btn-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+    z-index: 10;
+  }
+
+  .btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #00ffcc;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Slider for switching videos */
+  .slider {
+    width: 80%;
+    margin: 20px auto;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .slider input {
+    width: 100%;
+    height: 5px;
+    background: #00ffcc;
+    border: none;
+    border-radius: 5px;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .slider input::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #00ffcc;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .slider input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #00ffcc;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
   .btn-container {
@@ -362,53 +389,15 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     }
   });
 
-  document.querySelectorAll(".video-slide").forEach(tile => {
-    const video = tile.querySelector("video");
-    const progressBar = tile.querySelector(".progress-bar");
-    const playBtn = tile.querySelector(".play-btn");
+ 
+   const videoSlider = document.getElementById("video-slider");
+  const videoSlides = document.querySelectorAll(".video_slide");
+  const videoSliderContainer = document.querySelector(".video-slider");
 
-    // Play/pause button functionality
-    playBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        playBtn.innerHTML = "&#10074;&#10074;"; // Pause symbol
-      } else {
-        video.pause();
-        playBtn.innerHTML = "&#9658;"; // Play symbol
-      }
-    });
-
-    // Progress bar update functionality
-    video.addEventListener("timeupdate", () => {
-      const progress = (video.currentTime / video.duration) * 100;
-      progressBar.style.width = `${progress}%`;
-    });
-
-    // Show the progress bar when mouse hovers over the video
-    tile.addEventListener("mouseenter", () => {
-      tile.querySelector(".progress-bar-container").style.visibility = 'visible';
-    });
-
-    // Hide the progress bar when mouse leaves the video
-    tile.addEventListener("mouseleave", () => {
-      tile.querySelector(".progress-bar-container").style.visibility = 'hidden';
-    });
+  // Update the video slider and switch videos based on slider value
+  videoSlider.addEventListener("input", function () {
+    const slideIndex = parseInt(videoSlider.value);
+    const newTransformValue = -100 * slideIndex + "%";
+    videoSliderContainer.style.transform = `translateX(${newTransformValue})`;
   });
-
-  // Slider functionality
-  let currentSlideIndex = 0;
-
-  function moveSlider(direction) {
-    const slides = document.querySelectorAll('.video_slide');
-    const totalSlides = slides.length;
-
-    // Calculate the new index
-    currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
-
-    // Move the slider
-    const slider = document.querySelector('.video-slider');
-    const offset = -(currentSlideIndex * 100);  // Each slide takes 100% width of the slider container
-    slider.style.transform = `translateX(${offset}%)`;
-  }
 </script>
