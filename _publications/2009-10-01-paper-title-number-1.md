@@ -101,7 +101,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
   .video-tile video {
     width: 100%;
-    height: 80%;
+    height: 100%;
     object-fit: contain;
     display: block;
     filter: grayscale(20%);
