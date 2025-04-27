@@ -303,7 +303,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       }
     });
   });
-
   closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
     modalVideo.pause();
@@ -390,4 +389,27 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
     startAutoSlide();
   });
+
+document.querySelectorAll('.video-slide').forEach(slide => {
+  const video = slide.querySelector('video');
+  const playBtn = slide.querySelector('.play-btn');
+
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent triggering other clicks
+    if (video.paused) {
+      video.play();
+      playBtn.innerHTML = "&#10074;&#10074;"; // Pause icon
+    } else {
+      video.pause();
+      playBtn.innerHTML = "&#9658;"; // Play icon
+    }
+  });
+
+  // Optionally: clicking the video itself can also open the modal if you want.
+  slide.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+      slide.click();
+    }
+  });
+});
 </script>
