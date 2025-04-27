@@ -203,12 +203,17 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   /* Vertical Slider */
-  .slider-vertical {
-    overflow: hidden;
-    height: 400px;
-    object-fit: contain;
-    position: relative;
-  }
+ .slider-vertical .video-tile {
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.slider-vertical .video-tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 
   .slider-wrapper {
     display: flex;
