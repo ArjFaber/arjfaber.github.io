@@ -73,6 +73,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <div class="video-modal" id="videoModal">
   <div class="modal-content">
     <video controls autoplay id="modalVideo"></video>
+     <h4>Press Esc to close</h4>
     <span class="close-btn">&times;</span>
   </div>
 </div>
@@ -287,111 +288,43 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </style>
 
 <script>
- <script>
-const slider = document.querySelector(".video-slider");
-const videoElements = document.querySelectorAll(".video-slider .video-tile");
-let index = 0;
-const totalVideos = videoElements.length;
-let autoSlideInterval = null;
-let isVideoPlaying = false;
-
-// Tile behavior
-document.querySelectorAll(".video-tile").forEach(tile => {
-  const btn = tile.querySelector(".play-btn");
-  const video = tile.querySelector("video");
-  const src = tile.dataset.src;
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (video.paused) {
-      video.play();
-      btn.innerHTML = "&#10074;&#10074;";
-    } else {
-      video.pause();
-      btn.innerHTML = "&#9658;";
-    }
-  });
-
-  tile.addEventListener("click", (e) => {
-    if (e.target.classList.contains('play-btn')) return;
-    const modal = document.getElementById("videoModal");
-    const modalVideo = document.getElementById("modalVideo");
-
-    modalVideo.src = src;
-    modalVideo.load();
-    modalVideo.play();
-    modal.style.display = "flex";
-  });
-
-  tile.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      tile.click();
-    }
-  });
-});
-
-// Modal close button
-document.querySelector(".close-btn").addEventListener("click", () => {
-  closeModal();
-});
-
-// Modal close ESC key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    const modal = document.getElementById("videoModal");
-    if (modal.style.display === "flex") {
-      closeModal();
-    }
-  }
-});
-
-// Modal closing function
-function closeModal() {
-  const modal = document.getElementById("videoModal");
-  const modalVideo = document.getElementById("modalVideo");
-  modal.style.display = "none";
-  modalVideo.pause();
-  modalVideo.src = "";
-}
-
-// Move the slider manually
-function moveSlider(direction) {
-  if (isVideoPlaying) return;
-  index = (index + direction + totalVideos) % totalVideos;
-  updateSlider();
-}
-
-// Update the slider display
-function updateSlider() {
-  slider.style.transform = `translateX(-${index * 100}%)`;
-
-  videoElements.forEach((vid, i) => {
-    vid.classList.toggle('active', i === index);
-  });
-}
-
-// Automatic slider (optional)
-function autoSlide() {
-  if (isVideoPlaying) return;
-  index = (index + 1) % totalVideos;
-  updateSlider();
-}
-
-function startAutoSlide() {
-  if (!autoSlideInterval && !isVideoPlaying) {
-    autoSlideInterval = setInterval(autoSlide, 5000);
-  }
-}
-
-function stopAutoSlide() {
-  clearInterval(autoSlideInterval);
-  autoSlideInterval = null;
-}
-
-// Start when DOM ready
-document.addEventListener('DOMContentLoaded', function () {
-  updateSlider();
-  startAutoSlide();
-});
-</script>
+   document.querySelectorAll(".video-tile").forEach(tile => {
+     const btn = tile.querySelector(".play-btn");
+     const video = tile.querySelector("video");
+     const src = tile.dataset.src;
+ 
+     btn.addEventListener("click", (e) => {
+       e.stopPropagation();
+       if (video.paused) {
+         video.play();
+         btn.innerHTML = "&#10074;&#10074;";
+       } else {
+         video.pause();
+         btn.innerHTML = "&#9658;";
+       }
+     });
+ 
+     tile.addEventListener("click", () => {
+       const modal = document.getElementById("videoModal");
+       const modalVideo = document.getElementById("modalVideo");
+ 
+       modalVideo.src = src;
+       modal.style.display = "flex";
+     });
+ 
+     tile.addEventListener("keypress", (e) => {
+       if (e.key === "Enter") {
+         tile.click();
+       }
+     });
+   });
+ 
+   document.querySelector(".close-btn").addEventListener("click", () => {
+     const modal = document.getElementById("videoModal");
+     const modalVideo = document.getElementById("modalVideo");
+     modal.style.display = "none";
+     modalVideo.pause();
+     modalVideo.src = "";
+   });
+ </script>
 
