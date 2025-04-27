@@ -389,13 +389,12 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     updateSlider();
     startAutoSlide();
   });
-
-document.querySelectorAll('.video-slide').forEach(slide => {
+ document.querySelectorAll('.video-slide').forEach(slide => {
   const video = slide.querySelector('video');
   const playBtn = slide.querySelector('.play-btn');
 
   playBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent triggering other clicks
+    e.stopPropagation(); // prevent triggering the slide click
     if (video.paused) {
       video.play();
       playBtn.innerHTML = "&#10074;&#10074;"; // Pause icon
@@ -405,11 +404,23 @@ document.querySelectorAll('.video-slide').forEach(slide => {
     }
   });
 
-  // Optionally: clicking the video itself can also open the modal if you want.
+  slide.addEventListener('click', () => {
+    let src = video.getAttribute('src') || video.currentSrc;
+    if (src) {
+      modalVideo.src = src;
+      modal.style.display = "flex";
+      modalVideo.play();
+    } else {
+      console.warn('No video source found for modal');
+    }
+  });
+
   slide.addEventListener('keypress', (e) => {
     if (e.key === "Enter") {
       slide.click();
     }
   });
 });
+
+
 </script>
