@@ -115,6 +115,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         width: 100%;
         transition: transform 0.5s ease-in-out;
     }
+   .video-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* or 'cover' if you want full filling */
+}
 .video-slide {
   flex: 0 0 100%; /* Take up 100% of the slider container */
   max-width: 100%;
