@@ -131,7 +131,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         background-color: rgba(0, 0, 0, 0.8);
     }
   .video-tile {
-    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
     position: relative;
     border-radius: 15px;
     overflow: hidden;
