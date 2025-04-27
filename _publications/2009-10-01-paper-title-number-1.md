@@ -82,12 +82,37 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 <div class="video-modal" id="videoModal">
   <div class="modal-content">
     <video controls autoplay id="modalVideo"></video>
+     <p class="esc-text">Press ESC to close</p>
     <span class="close-btn">&times;</span>
   </div>
 </div>
 
 <!-- Styles -->
 <style>
+  .esc-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #00ffcc;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.video-tile:hover .esc-text {
+  display: block;
+}
+
+.esc-text:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
   body {
     background: #000;
     color: #00ffcc;
