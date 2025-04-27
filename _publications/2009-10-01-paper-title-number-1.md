@@ -38,14 +38,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </div>
 
 <div class="slider-container">
-  <div class="video-slider">
+    <div class="video-slider"> 
     <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
-    </div>
     <div class="video_slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
       <div class="video-meta">
@@ -60,10 +59,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <p>Velocity and responsiveness test</p>
       </div>
     </div>
-     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
+       </div>
+       <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
-  </div>
-
+ 
+ </div>
   <!-- Slider to move between videos -->
   <div class="slider">
     <input type="range" min="0" max="2" value="0" id="video-slider" step="1">
@@ -96,7 +96,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 1;
   }
 
-  .slider-container {
+   .slider-container {
     max-width: 100%;
     overflow: hidden;
     aspect-ratio: 16 / 9;
@@ -110,8 +110,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     align-items: center;
     border: 2px solid #00ff00;  /* Neon green border */
     position: relative;
+    transition: opacity 0.3s ease;
   }
-
   .video-slider {
     display: flex;
     height: 100%;
@@ -127,12 +127,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     display: flex;
     justify-content: center;
     align-items: center;
+    object-fit: contain;
   }
 
   .video-slide video {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    
   }
 
   .video-tile {
