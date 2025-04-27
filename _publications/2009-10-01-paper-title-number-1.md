@@ -27,6 +27,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <h4>Unofficial final demo</h4>
     </div>
     <span class="badge">NEW</span>
+    <p class="esc-text">Press ESC to close</p>
     <button class="play-btn">&#9658;</button>
   </div>
 
@@ -36,6 +37,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <h4>Data gathering</h4>
       <p>Leveraging Kuka's cameras and sensor input</p>
     </div>
+    <p class="esc-text">Press ESC to close</p>
     <button class="play-btn">&#9658;</button>
   </div>
 
@@ -47,6 +49,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
+      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
     <div class="video tile " data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
@@ -55,6 +58,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (ii)</h4>
         <p>Trajectory smoothing improvements</p>
       </div>
+      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
     <div class="video tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
@@ -63,6 +67,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (iii)</h4>
         <p>Velocity and responsiveness test</p>
       </div>
+      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
   </div>
