@@ -286,45 +286,53 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     cursor: pointer;
   }
 </style>
-
 <script>
-   document.querySelectorAll(".video-tile").forEach(tile => {
-     const btn = tile.querySelector(".play-btn");
-     const video = tile.querySelector("video");
-     const src = tile.dataset.src;
- 
-     btn.addEventListener("click", (e) => {
-       e.stopPropagation();
-       if (video.paused) {
-         video.play();
-         btn.innerHTML = "&#10074;&#10074;";
-       } else {
-         video.pause();
-         btn.innerHTML = "&#9658;";
-       }
-     });
- 
-     tile.addEventListener("click", () => {
-       const modal = document.getElementById("videoModal");
-       const modalVideo = document.getElementById("modalVideo");
- 
-       modalVideo.src = src;
-       modal.style.display = "flex";
-     });
- 
-     tile.addEventListener("keypress", (e) => {
-       if (e.key === "Enter") {
-         tile.click();
-       }
-     });
-   });
- 
-   document.querySelector(".close-btn").addEventListener("click", () => {
-     const modal = document.getElementById("videoModal");
-     const modalVideo = document.getElementById("modalVideo");
-     modal.style.display = "none";
-     modalVideo.pause();
-     modalVideo.src = "";
-   });
- </script>
+  const modal = document.getElementById("videoModal");
+  const modalVideo = document.getElementById("modalVideo");
+  const closeBtn = document.querySelector(".close-btn");
+
+  document.querySelectorAll(".video-tile").forEach(tile => {
+    const btn = tile.querySelector(".play-btn");
+    const video = tile.querySelector("video");
+    const src = tile.dataset.src;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = "&#10074;&#10074;"; // Pause symbol
+      } else {
+        video.pause();
+        btn.innerHTML = "&#9658;"; // Play symbol
+      }
+    });
+
+    tile.addEventListener("click", () => {
+      modalVideo.src = src;
+      modal.style.display = "flex";
+      modalVideo.play();
+    });
+
+    tile.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        tile.click();
+      }
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    modalVideo.pause();
+    modalVideo.src = "";
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") {
+      modal.style.display = "none";
+      modalVideo.pause();
+      modalVideo.src = "";
+    }
+  });
+</script>
+
 
