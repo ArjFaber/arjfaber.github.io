@@ -128,15 +128,13 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   object-fit: contain; /* or 'cover' if you want full filling */
 }
 .video-slide {
-  flex: 0 0 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-
-}
+   flex: 0 0 100%; /* Take up 100% of the slider container */
+   max-width: 100%;
+   height: auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
    .video-slide.active {
     transform: scale(1.05);
     opacity: 1;
