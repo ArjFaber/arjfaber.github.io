@@ -42,32 +42,38 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 ### 🎯 Kuka Finetuning Experiments
 
-<div class="slider-horizontal">
-  <div class="slider-track">
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4">
-      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-      <div class="video-meta">
-        <h4>Finetuning Kuka controls (i)</h4>
-        <p>Initial experiments for remote control</p>
-      </div>
-    </div>
+<div class="slider-wrapper">
+  <button class="arrow left">&#10094;</button>
 
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4">
-      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-      <div class="video-meta">
-        <h4>Finetuning Kuka controls (ii)</h4>
-        <p>Trajectory smoothing improvements</p>
+  <div class="slider-horizontal" id="videoSlider">
+    <div class="slider-track">
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (i)</h4>
+          <p>Initial experiments for remote control</p>
+        </div>
       </div>
-    </div>
 
-    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4">
-      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-      <div class="video-meta">
-        <h4>Finetuning Kuka controls (iii)</h4>
-        <p>Velocity and responsiveness test</p>
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (ii)</h4>
+          <p>Trajectory smoothing improvements</p>
+        </div>
+      </div>
+
+      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4">
+        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+        <div class="video-meta">
+          <h4>Finetuning Kuka controls (iii)</h4>
+          <p>Velocity and responsiveness test</p>
+        </div>
       </div>
     </div>
   </div>
+
+  <button class="arrow right">&#10095;</button>
 </div>
 
 <!-- Modal -->
@@ -214,12 +220,17 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 3;
   }
 
+  .slider-wrapper {
+    position: relative;
+    margin-top: 30px;
+  }
+
   .slider-horizontal {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     padding: 20px 0;
-    margin-top: 30px;
+    scroll-behavior: smooth;
   }
 
   .slider-track {
@@ -231,6 +242,34 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   .slider-horizontal .video-tile {
     flex: 0 0 300px;
     height: 200px;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 32px;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 5;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .arrow:hover {
+    background: rgba(0, 255, 200, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .left {
+    left: -20px;
+  }
+
+  .right {
+    right: -20px;
   }
 
   @media (max-width: 600px) {
@@ -282,6 +321,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </style>
 
 <script>
+  // Play and Modal Logic
   document.querySelectorAll(".video-tile").forEach(tile => {
     const btn = tile.querySelector(".play-btn");
     const video = tile.querySelector("video");
@@ -321,5 +361,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     modal.style.display = "none";
     modalVideo.pause();
     modalVideo.src = "";
+  });
+
+  // Arrow Button Logic
+  const slider = document.getElementById('videoSlider');
+  document.querySelector('.left').addEventListener('click', () => {
+    slider.scrollBy({ left: -300, behavior: 'smooth' });
+  });
+  document.querySelector('.right').addEventListener('click', () => {
+    slider.scrollBy({ left: 300, behavior: 'smooth' });
   });
 </script>
