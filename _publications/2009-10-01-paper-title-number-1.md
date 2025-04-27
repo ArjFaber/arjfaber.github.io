@@ -113,21 +113,25 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     aspect-ratio: 16 / 9; /* 16:9 aspect ratio */
     position: relative;
 }
+     .video-slider {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
 
-.video-slider {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  transition: transform 0.5s ease-in-out;
-}
+    .video_slide {
+        min-width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1);
+        opacity: 0.6;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
-.video_slide {
-  width: 100%; /* Ensure each slide takes up 100% of the container */
-  height: 100%; /* Ensure the height is also 100% */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .video_slide video {
   width: 100%;
