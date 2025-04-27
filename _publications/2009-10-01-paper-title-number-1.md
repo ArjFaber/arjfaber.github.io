@@ -63,12 +63,11 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
-</div>
  </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
     <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
 </div>
-
+</div>
 <!-- Modal -->
 <div class="video-modal" id="videoModal">
   <div class="modal-content">
