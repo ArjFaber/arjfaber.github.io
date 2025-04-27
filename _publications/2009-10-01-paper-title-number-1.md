@@ -292,6 +292,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     videoElements.forEach((vid, i) => {
       vid.classList.toggle('active', i === index);
     });
+     rangeInput.value = index; 
   }
 
   function moveSlider(direction) {
