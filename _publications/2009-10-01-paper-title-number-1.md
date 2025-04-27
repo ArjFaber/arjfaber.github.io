@@ -264,7 +264,12 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     width: 100%;
     height: 100%;
   }
-
+.video-modal h4 {
+  color: #00ffcc;  /* Ensure text is visible */
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
   .modal-content {
     position: relative;
     max-width: 90%;
