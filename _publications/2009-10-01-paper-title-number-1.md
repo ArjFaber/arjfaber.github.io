@@ -36,30 +36,31 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     <button class="play-btn">&#9658;</button>
   </div>
 </div>
-<div class="slider-container">
-  <div class="video-slider"> 
+
+<div class="dot-indicator-container">
+    <!-- First video slide -->
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-       <button class="play-btn">&#9658;</button>
+      <button class="play-btn">&#9658;</button>
+      <div class="dot-indicator"></div> <!-- Dot for first slide -->
     </div>
+    <!-- Second video slide -->
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-        <button class="play-btn">&#9658;</button>
+      <button class="play-btn">&#9658;</button>
+      <div class="dot-indicator"></div> <!-- Dot for second slide -->
     </div>
+    <!-- Third video slide -->
     <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-        <button class="play-btn">&#9658;</button>
+      <button class="play-btn">&#9658;</button>
+      <div class="dot-indicator"></div> <!-- Dot for third slide -->
     </div>
-  </div> <!-- .video-slider -->
+</div> <!-- .dot-indicator-container -->
 
-</div>
+<!-- Optional for additional styling or controls, ensure you have relevant classes defined in your CSS for .video-slide, .play-btn, .dot-indicator -->
 
-<!-- Glowing Dots Indicator -->
-<div class="dot-indicator-container">
-  <div class="dot-indicator"></div>
-  <div class="dot-indicator"></div>
-  <div class="dot-indicator"></div>
-</div>
+ 
 
 
 <!-- Modal -->
