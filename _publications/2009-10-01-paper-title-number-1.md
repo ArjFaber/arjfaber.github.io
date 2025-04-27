@@ -39,26 +39,22 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 
 <div class="slider-container">
   <div class="video-slider"> 
-    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
+    <div class="video-slide" tabindex="0">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
       <div class="video-meta">
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
     </div> <!-- properly closed -->
-    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
+    <div class="video-slide" tabindex="1">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-      <div class="video-meta">
         <h4>Finetuning Kuka controls (ii)</h4>
         <p>Trajectory smoothing improvements</p>
-      </div>
     </div>
-    <div class="video-slide" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
+    <div class="video-slide" tabindex="2">
       <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-      <div class="video-meta">
         <h4>Finetuning Kuka controls (iii)</h4>
         <p>Velocity and responsiveness test</p>
-      </div>
     </div>
   </div> <!-- .video-slider -->
   <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
