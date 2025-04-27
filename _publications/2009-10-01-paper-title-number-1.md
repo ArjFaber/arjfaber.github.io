@@ -291,6 +291,10 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     color: #00ffcc;
     cursor: pointer;
   }
+  .video-slider .video {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
 </style>
 <!-- Scripts -->
 <script>
