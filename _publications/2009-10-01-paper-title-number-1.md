@@ -93,42 +93,56 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     margin-top: 40px;
     z-index: 1;
   }
-    .slider-container {
+
+/* Make sure the slider container has a fixed aspect ratio */
+.slider-container {
     max-width: 100%;
     overflow: hidden;
-    aspect-ratio: 16 / 9;
     position: relative;
     margin: 40px auto 20px auto;
     border-radius: 15px;
-    background: linear-gradient(145deg, #1f1f1f, #333);  /* Dark futuristic gradient */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);  /* Subtle glowing neon effect */
+    background: linear-gradient(145deg, #1f1f1f, #333);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 0px 10px rgba(0, 255, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #00ff00;  /* Neon green border */
+    border: 2px solid #00ff00;
+    aspect-ratio: 16 / 9; /* 16:9 aspect ratio */
     position: relative;
-  }
-
-    .video-slider {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        transition: transform 0.5s ease-in-out;
-    }
-   .video_slide {
-   /* Default styles for each individual video within the slider */
-   width: 100%; /* Ensure each slide takes up 100% of the container */
-   display: flex; /* Align video content within */
-   justify-content: center; /* Center video horizontally */
-   align-items: center; /* Center video vertically */
 }
- .video.active {
-    transform: scale(1.05);
-    opacity: 1;
-    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.7); /* Neon green active glow */
-}.prev { left: 5px; }
-    .next { right: 5px; }
 
+/* Make sure each video slide takes up full container width */
+.video-slider {
+    display: flex;
+    height: 100%;  /* Make sure the height is 100% of the container */
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Ensure each video slide takes up full width and maintains aspect ratio */
+.video_slide {
+    width: 100%; /* Ensure each slide takes up 100% of the container */
+    height: 100%; /* Ensure the height is also 100% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video_slide video {
+    width: 100%;  /* Ensure video fills the width */
+    height: 100%;  /* Ensure video fills the height */
+    object-fit: contain;  /* Maintain aspect ratio while covering the container */
+}
+
+/* Optional: Styling for the prev/next buttons */
+.prev {
+    left: 5px;
+}
+.next {
+    right: 5px;
+}
+
+   
     .btn:hover {
         background-color: rgba(0, 0, 0, 0.8);
     }
@@ -363,6 +377,10 @@ function moveSlider(direction) {
   slider.style.transform = `translateX(${offset}%)`;  // Apply the slide effect
 }
 
+// Move to previous or next video when clicking buttons
+document.querySelector(".prev").addEventListener("click", () => moveSlider(-1));
+document.querySelector(".next").addEventListener("click", () => moveSlider(1));
+
 // Optional: Add keyboard support for left and right arrow keys to navigate the slider
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {
@@ -370,10 +388,7 @@ document.addEventListener("keydown", (e) => {
   } else if (e.key === "ArrowRight") {
     moveSlider(1);  // Move to next video
   }
-});
-
-
-   
+});   
 </script>
 
 
