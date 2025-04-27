@@ -17,10 +17,10 @@ We implemented Deep Q-Learning (DQN) to optimize decision-making in human-robot 
 
 Future work includes exploring Bayesian neural networks, SMOTE for data balancing, and real-time learning, aiming to refine socially intelligent robotic behavior.
 
-### 🚀 Featured Footage
+---
 
+### 🚀 Featured Footage
 <div class="video-wall">
-  <!-- Normal Tiles -->
   <div class="video-tile tall-fit" data-src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4" tabindex="0">
     <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/Harmony_ML_Module_Final-2.mp4"></video>
     <div class="video-meta">
@@ -38,35 +38,33 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     </div>
     <button class="play-btn">&#9658;</button>
   </div>
+</div>
 
-  <!-- Vertical Slider for 3 Kuka Videos -->
-  <div class="slider-vertical">
-    <div class="slider-wrapper">
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (i)</h4>
-          <p>Initial experiments for remote control</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+### 🎯 Kuka Finetuning Experiments
+
+<div class="slider-horizontal">
+  <div class="slider-track">
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka1_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka1_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (i)</h4>
+        <p>Initial experiments for remote control</p>
       </div>
+    </div>
 
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (ii)</h4>
-          <p>Trajectory smoothing improvements</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka2_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka2_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (ii)</h4>
+        <p>Trajectory smoothing improvements</p>
       </div>
+    </div>
 
-      <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
-        <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
-        <div class="video-meta">
-          <h4>Finetuning Kuka controls (iii)</h4>
-          <p>Velocity and responsiveness test</p>
-        </div>
-        <button class="play-btn">&#9658;</button>
+    <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4">
+      <video muted loop playsinline preload="auto" src="https://arjfaber.github.io/files/kuka3_.mp4"></video>
+      <div class="video-meta">
+        <h4>Finetuning Kuka controls (iii)</h4>
+        <p>Velocity and responsiveness test</p>
       </div>
     </div>
   </div>
@@ -80,7 +78,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   </div>
 </div>
 
-<!-- Styles -->
 <style>
   body {
     background: #000;
@@ -106,6 +103,8 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
     outline: none;
+    width: 100%;
+    height: 100%;
   }
 
   .video-tile video {
@@ -131,8 +130,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   @keyframes pulseFeature {
-    0% { transform: scale(1); box-shadow: 0 0 25px rgba(0, 255, 150, 0.4);}
-    100% { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);}
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 25px rgba(0, 255, 150, 0.4);
+    }
+    100% {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+    }
   }
 
   .play-btn {
@@ -150,6 +155,7 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 2;
     opacity: 0;
     transition: all 0.3s ease;
+    animation: none;
   }
 
   .video-tile:hover .play-btn {
@@ -158,8 +164,14 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 
   @keyframes pulseGlow {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 15px #00ffd5;}
-    50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 25px #00ffcc;}
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 15px #00ffd5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 25px #00ffcc;
+    }
   }
 
   .video-meta {
@@ -202,35 +214,36 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
     z-index: 3;
   }
 
-  /* Vertical Slider */
- .slider-vertical .video-tile {
-  flex: 0 0 100%;
-  height: 100%;
-}
-
-.slider-vertical .video-tile video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-  .slider-wrapper {
-    display: flex;
-    flex-direction: column;
-    animation: slideVertical 9s infinite;
+  .slider-horizontal {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+    margin-top: 30px;
   }
 
-  @keyframes slideVertical {
-    0%, 10% { transform: translateY(0%);}
-    33%, 43% { transform: translateY(-100%);}
-    66%, 76% { transform: translateY(-200%);}
-    100% { transform: translateY(0%);}
+  .slider-track {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .slider-horizontal .video-tile {
+    flex: 0 0 300px;
+    height: 200px;
   }
 
   @media (max-width: 600px) {
-    .video-meta h4 { font-size: 16px;}
-    .video-meta p { font-size: 12px;}
+    .slider-horizontal .video-tile {
+      flex: 0 0 250px;
+      height: 150px;
+    }
+    .video-meta h4 {
+      font-size: 16px;
+    }
+    .video-meta p {
+      font-size: 12px;
+    }
   }
 
   .video-modal {
@@ -268,27 +281,29 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
   }
 </style>
 
-<!-- Scripts -->
 <script>
   document.querySelectorAll(".video-tile").forEach(tile => {
     const btn = tile.querySelector(".play-btn");
     const video = tile.querySelector("video");
     const src = tile.dataset.src;
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "&#10074;&#10074;";
-      } else {
-        video.pause();
-        btn.innerHTML = "&#9658;";
-      }
-    });
+    if (btn) {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (video.paused) {
+          video.play();
+          btn.innerHTML = "&#10074;&#10074;";
+        } else {
+          video.pause();
+          btn.innerHTML = "&#9658;";
+        }
+      });
+    }
 
     tile.addEventListener("click", () => {
       const modal = document.getElementById("videoModal");
       const modalVideo = document.getElementById("modalVideo");
+
       modalVideo.src = src;
       modal.style.display = "flex";
     });
