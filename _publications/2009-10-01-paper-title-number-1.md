@@ -27,7 +27,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <h4>Unofficial final demo</h4>
     </div>
     <span class="badge">NEW</span>
-    <p class="esc-text">Press ESC to close</p>
     <button class="play-btn">&#9658;</button>
   </div>
 
@@ -37,7 +36,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
       <h4>Data gathering</h4>
       <p>Leveraging Kuka's cameras and sensor input</p>
     </div>
-    <p class="esc-text">Press ESC to close</p>
     <button class="play-btn">&#9658;</button>
   </div>
 
@@ -49,7 +47,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (i)</h4>
         <p>Initial experiments for remote control</p>
       </div>
-      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
     <div class="video-tile " data-src="https://arjfaber.github.io/files/kuka2_.mp4" tabindex="0">
@@ -58,7 +55,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (ii)</h4>
         <p>Trajectory smoothing improvements</p>
       </div>
-      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
     <div class="video-tile" data-src="https://arjfaber.github.io/files/kuka3_.mp4" tabindex="0">
@@ -67,7 +63,6 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
         <h4>Finetuning Kuka controls (iii)</h4>
         <p>Velocity and responsiveness test</p>
       </div>
-      <p class="esc-text">Press ESC to close</p>
       <button class="play-btn">&#9658;</button>
     </div>
   </div>
@@ -365,18 +360,20 @@ Future work includes exploring Bayesian neural networks, SMOTE for data balancin
 </style>
 <!-- Scripts -->
 <script>
+<script>
 let index = 0;
 const slider = document.querySelector(".video-slider");
 const videoElements = document.querySelectorAll(".video-slider .video");
 const totalVideos = videoElements.length;
 let isVideoPlaying = false;
 
-// Open modal
+// Handle tile interactions
 document.querySelectorAll(".video-tile").forEach(tile => {
   const btn = tile.querySelector(".play-btn");
   const video = tile.querySelector("video");
   const src = tile.dataset.src;
 
+  // Play/Pause small video when play button clicked
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     if (video.paused) {
@@ -388,7 +385,12 @@ document.querySelectorAll(".video-tile").forEach(tile => {
     }
   });
 
-  tile.addEventListener("click", () => {
+  // Open modal when tile (not play button) clicked
+  tile.addEventListener("click", (e) => {
+    if (e.target.classList.contains('play-btn')) {
+      return; // Clicking play button should NOT open modal
+    }
+
     const modal = document.getElementById("videoModal");
     const modalVideo = document.getElementById("modalVideo");
 
@@ -398,6 +400,7 @@ document.querySelectorAll(".video-tile").forEach(tile => {
     modal.style.display = "flex";
   });
 
+  // Allow Enter key to open modal
   tile.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       tile.click();
@@ -405,51 +408,44 @@ document.querySelectorAll(".video-tile").forEach(tile => {
   });
 });
 
-// Close modal
+// Close modal when clicking X button
 document.querySelector(".close-btn").addEventListener("click", () => {
+  closeModal();
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById("videoModal");
+    if (modal.style.display === "flex") {
+      closeModal();
+    }
+  }
+});
+
+// Unified function to close modal
+function closeModal() {
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
   modal.style.display = "none";
   modalVideo.pause();
   modalVideo.src = "";
-});
-
-// Close modal with ESC
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    const modal = document.getElementById("videoModal");
-    const modalVideo = document.getElementById("modalVideo");
-    if (modal.style.display === "flex") {
-      modal.style.display = "none";
-      modalVideo.pause();
-      modalVideo.src = "";
-    }
-  }
-});
+}
 
 // Move slider manually
+function moveSlider(direction) {
+  index = (index + direction + totalVideos) % totalVideos;
+  updateSlider();
+}
+
+// Update slider position
 function updateSlider() {
-  slider.style.transform = translateX(-${index * 100}%);
+  slider.style.transform = `translateX(-${index * 100}%)`;
 
   videoElements.forEach((vid, i) => {
     vid.classList.toggle('active', i === index);
   });
 }
+</script>
 
-function moveSlider(direction) {
-  if (isVideoPlaying) return;
-
-  const currentVideo = videoElements[index];
-  currentVideo.classList.add('pop-animate');
-
-  setTimeout(() => {
-    currentVideo.classList.remove('pop-animate');
-    index = (index + direction + totalVideos) % totalVideos;
-    updateSlider();
-  }, 400);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  updateSlider();
-});
 </script> 
