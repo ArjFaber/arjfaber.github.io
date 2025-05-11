@@ -63,7 +63,7 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 ## My Strava Activities 🚴
 <div id="strava-activities"></div>
 <script>
-fetch('/assets/data/strava-activities.json') // Adjust if path is different
+fetch('/assets/strava-activities.json') // Adjust if path is different
   .then(response => response.json())
   .then(activities => {
     const container = document.getElementById('strava-activities');
