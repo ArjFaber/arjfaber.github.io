@@ -61,7 +61,6 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 </div>
 
 ## My Strava Activities 🚴
-
 <div id="strava-activities"></div>
 
 <!-- Leaflet.js CSS for map styling -->
@@ -74,26 +73,24 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 fetch('/assets/strava-activities.json') // Adjust if path is different
   .then(response => response.json())
   .then(activities => {
-    const container = document.querySelector('.activity-slider');
-    activities.slice(0, 5).forEach((activity, index) => {
+    const container = document.getElementById('strava-activities');
+    activities.slice(0, 5).forEach(activity => {
       const distanceKm = (activity.distance / 1000).toFixed(2);
       const timeMin = (activity.moving_time / 60).toFixed(1);
       const type = activity.type;
       const maxSpeed = (activity.max_speed * 3.6).toFixed(2); // Max speed in km/h
-
-      const slide = document.createElement('div');
-      slide.className = 'activity-slide';
-      slide.innerHTML = `
-        <div class="activity-card">
-          <h3>${activity.name}</h3>
-          <p>${distanceKm} km • ${timeMin} mins • ${type} • Max Speed: ${maxSpeed} km/h</p>
-          <button onclick="window.open('https://www.strava.com/activities/${activity.id}', '_blank')">
-            View on Strava
-          </button>
-          <div id="map-${activity.id}" class="map" style="height: 300px;"></div>
-        </div>
-      `;
-      container.appendChild(slide);
+      
+      const card = document.createElement('div');
+      card.className = 'project-card'; // Reuse your existing styles
+      card.innerHTML = 
+        <h3>${activity.name}</h3>
+        <p>${distanceKm} km • ${timeMin} mins • ${type} • Max Speed: ${maxSpeed} km/h</p>
+        <button onclick="window.open('https://www.strava.com/activities/${activity.id}', '_blank')">
+          View on Strava
+        </button>
+        <div id="map-${activity.id}" class="map" style="height: 300px;"></div>
+      ;
+      container.appendChild(card);
 
       // Initialize map for this activity
       initializeMap(activity);
@@ -105,7 +102,7 @@ fetch('/assets/strava-activities.json') // Adjust if path is different
   });
 
 function initializeMap(activity) {
-  const mapElement = document.getElementById(`map-${activity.id}`);
+  const mapElement = document.getElementById(map-${activity.id});
 
   // Initialize the map and set the view to the start of the activity
   const map = L.map(mapElement).setView([activity.start_latlng[0], activity.start_latlng[1]], 13);
@@ -155,26 +152,6 @@ function decodePolyline(encoded) {
   }
   return points;
 }
-
-let currentSlide = 0;
-
-function moveSlider(direction) {
-  const slides = document.querySelectorAll('.activity-slide');
-  const totalSlides = slides.length;
-
-  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-  slides.forEach((slide, index) => {
-    slide.style.display = index === currentSlide ? 'block' : 'none';
-  });
-}
-
-// Initially hide all slides except the first one
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.activity-slide');
-  slides.forEach((slide, index) => {
-    slide.style.display = index === 0 ? 'block' : 'none';
-  });
-});
 </script>
 
 
