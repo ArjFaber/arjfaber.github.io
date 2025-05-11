@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1234567890,
+    "name": "Morning Ride",
+    "distance": 25000.0,
+    "moving_time": 3600,
+    "type": "Ride"
+  },
+  {
+    "id": 1234567891,
+    "name": "Evening Run",
+    "distance": 7000.0,
+    "moving_time": 2400,
+    "type": "Run"
+  }
+]
