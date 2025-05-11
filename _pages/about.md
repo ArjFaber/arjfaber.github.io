@@ -60,6 +60,37 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
   <button onclick="alert('Coming soon: A Project Towards Formal Verification of Continuous-Time Bandit Algorithms Using Stochastic Calculus!')">Learn More</button>
 </div>
 
+## My Strava Activities 🚴
+<div id="strava-activities"></div>
+<script>
+fetch('/assets/data/strava-activities.json') // Adjust if path is different
+  .then(response => response.json())
+  .then(activities => {
+    const container = document.getElementById('strava-activities');
+    activities.slice(0, 5).forEach(activity => {
+      const distanceKm = (activity.distance / 1000).toFixed(2);
+      const timeMin = (activity.moving_time / 60).toFixed(1);
+      const type = activity.type;
+      const card = document.createElement('div');
+      card.className = 'project-card'; // Reuse your existing styles
+      card.innerHTML = `
+        <h3>${activity.name}</h3>
+        <p>${distanceKm} km • ${timeMin} mins • ${type}</p>
+        <button onclick="window.open('https://www.strava.com/activities/${activity.id}', '_blank')">
+          View on Strava
+        </button>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    document.getElementById('strava-activities').innerHTML = '<p>Could not load activities.</p>';
+    console.error('Strava load error:', error);
+  });
+</script>
+
+
+
 <style>
     body.dark-mode {
         background-color: #121212;
@@ -595,4 +626,6 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
         startAutoSlide();
         showRandomFact();
     });
+
+
 </script>
