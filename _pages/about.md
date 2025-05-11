@@ -78,7 +78,7 @@ fetch('/assets/strava-activities.json') // Adjust if path is different
       const distanceKm = (activity.distance / 1000).toFixed(2);
       const timeMin = (activity.moving_time / 60).toFixed(1);
       const type = activity.type;
-      const maxSpeed = activity.max_speed.toFixed(2) * 3,6; // Max speed in km/h
+      const maxSpeed = activity.(max_speed * 3.6).toFixed(2); // Max speed in km/h
       
       const card = document.createElement('div');
       card.className = 'project-card'; // Reuse your existing styles
