@@ -62,7 +62,7 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 
 ## My Strava Activities 🚴
 <div class="slider-container">
-    <div class="activity-slider">
+    <div class="video-slider">
         <!-- Activity Slides will be dynamically inserted here -->
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
@@ -181,8 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
-
 
 
 <style>
