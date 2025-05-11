@@ -61,13 +61,8 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 </div>
 
 ## My Strava Activities 🚴
-<div class="slider-container">
-    <div class="video-slider">
-        <!-- Activity Slides will be dynamically inserted here -->
-    </div>
-    <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlider(1)">&#10095;</button>
-</div>
+
+<div id="strava-activities"></div>
 
 <!-- Leaflet.js CSS for map styling -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
