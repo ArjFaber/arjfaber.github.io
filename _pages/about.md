@@ -62,6 +62,13 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 
 ## My Strava Activities 🚴
 <div id="strava-activities"></div>
+
+<!-- Leaflet.js CSS for map styling -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Leaflet.js JS for map functionality -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
 fetch('/assets/strava-activities.json') // Adjust if path is different
   .then(response => response.json())
@@ -71,23 +78,82 @@ fetch('/assets/strava-activities.json') // Adjust if path is different
       const distanceKm = (activity.distance / 1000).toFixed(2);
       const timeMin = (activity.moving_time / 60).toFixed(1);
       const type = activity.type;
+      const maxSpeed = activity.max_speed.toFixed(2); // Max speed in km/h
+      
       const card = document.createElement('div');
       card.className = 'project-card'; // Reuse your existing styles
       card.innerHTML = `
         <h3>${activity.name}</h3>
-        <p>${distanceKm} km • ${timeMin} mins • ${type}</p>
+        <p>${distanceKm} km • ${timeMin} mins • ${type} • Max Speed: ${maxSpeed} km/h</p>
         <button onclick="window.open('https://www.strava.com/activities/${activity.id}', '_blank')">
           View on Strava
         </button>
+        <div id="map-${activity.id}" class="map" style="height: 300px;"></div>
       `;
       container.appendChild(card);
+
+      // Initialize map for this activity
+      initializeMap(activity);
     });
   })
   .catch(error => {
     document.getElementById('strava-activities').innerHTML = '<p>Could not load activities.</p>';
     console.error('Strava load error:', error);
   });
+
+function initializeMap(activity) {
+  const mapElement = document.getElementById(`map-${activity.id}`);
+
+  // Initialize the map and set the view to the start of the activity
+  const map = L.map(mapElement).setView([activity.start_latlng[0], activity.start_latlng[1]], 13);
+
+  // Add OpenStreetMap tile layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Decode the polyline and plot the route
+  const latlngs = decodePolyline(activity.map.summary_polyline);
+  
+  // Add polyline to the map
+  L.polyline(latlngs, {color: 'blue'}).addTo(map);
+
+  // Optionally, add a marker at the start
+  L.marker([activity.start_latlng[0], activity.start_latlng[1]])
+    .addTo(map)
+    .bindPopup("Start of Activity");
+}
+
+function decodePolyline(encoded) {
+  let points = [];
+  let index = 0, lat = 0, lng = 0;
+  while (index < encoded.length) {
+    let shift = 0, result = 0;
+    let byte;
+    do {
+      byte = encoded.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+    let dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+    lat += dlat;
+
+    shift = 0;
+    result = 0;
+    do {
+      byte = encoded.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+    let dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+    lng += dlng;
+
+    points.push([lat / 1E5, lng / 1E5]);
+  }
+  return points;
+}
 </script>
+
 
 
 
