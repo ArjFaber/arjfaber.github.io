@@ -50,14 +50,14 @@ Hi, welcome to my website! Here you'll find most of my academic work to date. Ju
 
 <!-- CV Toggle Button -->
 
-## Upcoming Projects👇
+## Highlighted Projects👇
 
 <!-- Project Cards -->
 <div class="project-card">
-    <h3> Verifying the Upper Confidence Bound in Isabelle/HOL</h3>
+    <h3> Verifying the Upper Confidence Bound in Isabelle/HOL (Officially published in the Isabelle Theorem Archive)</h3>
     <p>This project formally verifies the Upper Confidence Bound (UCB) algorithm in Isabelle/HOL, focusing on its probabilistic guarantees and regret bounds. By leveraging advanced stochastic tools—such as martingales, concentration inequalities, and stopping times—it develops machine-checked proofs of UCB’s correctness. The work extends Isabelle/HOL’s probabilistic framework and explores verification of continuous-time bandit models via stochastic differential equations and Itô calculus. This research advances the formal verification of probabilistic algorithms in reinforcement learning.</p>
     <img src="https://arjfaber.github.io/files/UoE_Logo.png" alt="University of Edinburgh Logo">
-  <button onclick="alert('Coming soon: A Project Towards Formal Verification of Continuous-Time Bandit Algorithms Using Stochastic Calculus!')">Learn More</button>
+  <button onclick="alert('Official publication (link): https://isa-afp.org/entries/Discrete-UCB.html')">Learn More</button>
 </div>
 
 ## My Strava Activities 🚴
