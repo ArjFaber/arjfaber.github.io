@@ -25,11 +25,11 @@ author:
   avatar           : "profile_photo.png"
   name             : "Arjan Faber"
   pronouns         : "He/him" # example: "she/her"  
-  bio              : "Master's student at School of Informatics, Edinburgh, UK"
-  location         : "Edinburgh, United Kingdom"
-  employer         : "University of Edinburgh"
+  bio              : "Currently AI Engineer at Van Amersfoort Racing, Alumni School of Informatics, Edinburgh, UK"
+  location         : "Amsterdam, Netherlands"
+  employer         : "Van Amersfoort Racing"
   uri              : # URL
-  email            : "arjan.bl.faber@gmail.com" 
+  email            : "arjan-faber@hotmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
