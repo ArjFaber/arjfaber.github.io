@@ -64,7 +64,7 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
 </div>
 
 
-## More content
+## Music practice and Strava 🎧🚴
 <div class="slider-container">
     <div class="video-slider">
   <div class="video">
