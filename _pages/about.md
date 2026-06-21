@@ -65,11 +65,13 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
 
 
 ## Custom Gibson
-
+<div class="slider-container">
+    <div class="video-slider">
   <div class="video">
                 <iframe class="video-frame" id="player1" src="https://arjfaber.github.io/files/WhatsApp%20Video%202026-06-22%20at%2000.00.41.mp4" allowfullscreen></iframe>
   </div>
-
+</div>
+</div>
 ## My Strava Activities 🚴
 <div id="strava-activities"></div>
 
