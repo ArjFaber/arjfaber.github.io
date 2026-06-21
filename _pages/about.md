@@ -63,6 +63,13 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
   <button onclick="alert('Official publication (link): https://isa-afp.org/entries/Discrete-UCB.html')">Learn More</button>
 </div>
 
+
+## Custom Gibson
+
+  <div class="video">
+                <iframe class="video-frame" id="player1" src="https://arjfaber.github.io/files/WhatsApp%20Video%202026-06-22%20at%2000.00.41.mp4" allowfullscreen></iframe>
+  </div>
+
 ## My Strava Activities 🚴
 <div id="strava-activities"></div>
 
