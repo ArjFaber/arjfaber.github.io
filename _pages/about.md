@@ -33,14 +33,14 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
-        <div class="video active">
-                <iframe class="video-frame" id="player1" src="https://www.youtube.com/watch?v=7qq0t07MznY?enablejsapi=1" allowfullscreen></iframe>
+        <div class="video">
+                <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/v=7qq0t07MznY?enablejsapi=1" allowfullscreen></iframe>
         </div>
         <div class="video">
                 <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
         </div>
           <div class="video">
-                <iframe class="video-frame" id="player2" src="https://www.youtube.com/watch?v=7VcN5QxCFrs?enablejsapi=1" allowfullscreen></iframe>
+                <iframe class="video-frame" id="player3" src="https://www.youtube.com/embed/v=7VcN5QxCFrs?enablejsapi=1" allowfullscreen></iframe>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
