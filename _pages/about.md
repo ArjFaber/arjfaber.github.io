@@ -36,11 +36,11 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
         <div class="video">
                 <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/7qq0t07MznY?enablejsapi=1" allowfullscreen></iframe>
         </div>
-        <div class="video">
-                <iframe class="video-frame" id="player2" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
-        </div>
           <div class="video">
-                <iframe class="video-frame" id="player3" src="https://www.youtube.com/embed/7VcN5QxCFrs?enablejsapi=1" allowfullscreen></iframe>
+                <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/7VcN5QxCFrs?enablejsapi=1" allowfullscreen></iframe>
+        </div>
+       <div class="video">
+                <iframe class="video-frame" id="player3" src="https://www.youtube.com/embed/X8vEKe2i508?enablejsapi=1" allowfullscreen></iframe>
         </div>
     </div>
     <button class="btn prev" onclick="moveSlider(-1)">&#10094;</button>
@@ -64,7 +64,7 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
 </div>
 
 
-## Custom Gibson
+## More content
 <div class="slider-container">
     <div class="video-slider">
   <div class="video">
