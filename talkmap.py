@@ -9,7 +9,7 @@ import frontmatter
 import glob
 import getorg
 from geopy import Nominatim
-from geopy.exc import GeocoderTimedOut
+from geopy.exc import GeocoderTimedOut 
 
 # Set the default timeout, in seconds
 TIMEOUT = 5
