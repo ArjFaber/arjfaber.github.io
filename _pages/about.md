@@ -33,6 +33,9 @@ Hi, welcome to my website! Here you'll find most of my academic work, profession
 <!-- Video Slider -->
 <div class="slider-container">
     <div class="video-slider">
+       <div class="video">
+                <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/Yxy9VL2HzSU?enablejsapi=1" allowfullscreen></iframe>
+        </div>
         <div class="video">
                 <iframe class="video-frame" id="player1" src="https://www.youtube.com/embed/7qq0t07MznY?enablejsapi=1" allowfullscreen></iframe>
         </div>
